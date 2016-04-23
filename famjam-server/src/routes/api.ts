@@ -6,7 +6,7 @@ import * as jsonwebtoken from "jsonwebtoken";
 import * as uuid from "node-uuid";
 
 import { config } from "../app/config";
-import { IUser } from "../app/interfaces";
+import { IImage, ITopic, IUser } from "../app/interfaces";
 import { authorizeToken } from "../middleware";
 import { Image, Topic, User } from "../models";
 
@@ -57,9 +57,11 @@ api.get("/topics", authorizeToken, (req, res) => {
 });
 
 api.post("/topics", authorizeToken, (req, res) => {
+  const user = req.authenticatedUser as IUser;
   new Topic({
-    _creator: (req.authenticatedUser as IUser)._id,
+    _creator: user._id,
     name: req.body["name"],
+    users: [ user ]
   }).save((err, topic) => {
     if (err) res.status(500).json(err);
     else {
@@ -69,19 +71,29 @@ api.post("/topics", authorizeToken, (req, res) => {
 });
 
 api.get("/topics/:id", authorizeToken, (req, res) => {
-  Topic.findById(req.query["id"], (err, topic) => {
-    res.json(topic);
-  });
+  Topic.findById(req.params["id"])
+    .populate("images")
+    .exec((err, topic) => {
+      res.json(topic);
+    });
 });
 
 api.post("/topics/:id", authorizeToken, (req, res) => {
   new Image({
     _creator: (req.authenticatedUser as IUser)._id,
-    _topic: req.query["id"],
+    _topic: req.params["id"],
     description: req.body["description"],
     url: req.body["url"]
-  }).save((err, image) => {
-    res.json(image);
+  }).save((err, image: IImage) => {
+    Topic.findById(req.params["id"], (err, topic: ITopic) => {
+      topic.images.push(image._id);
+      topic.save((err) => {
+        if (err) res.status(401).json(err);
+        else {
+          res.sendStatus(200);
+        }
+      });
+    });
   });
 });
 

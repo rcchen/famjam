@@ -47,9 +47,11 @@ exports.api.get("/topics", middleware_1.authorizeToken, function (req, res) {
     });
 });
 exports.api.post("/topics", middleware_1.authorizeToken, function (req, res) {
+    var user = req.authenticatedUser;
     new models_1.Topic({
-        _creator: req.authenticatedUser._id,
+        _creator: user._id,
         name: req.body["name"],
+        users: [user]
     }).save(function (err, topic) {
         if (err)
             res.status(500).json(err);
@@ -59,18 +61,29 @@ exports.api.post("/topics", middleware_1.authorizeToken, function (req, res) {
     });
 });
 exports.api.get("/topics/:id", middleware_1.authorizeToken, function (req, res) {
-    models_1.Topic.findById(req.query["id"], function (err, topic) {
+    models_1.Topic.findById(req.params["id"])
+        .populate("images")
+        .exec(function (err, topic) {
         res.json(topic);
     });
 });
 exports.api.post("/topics/:id", middleware_1.authorizeToken, function (req, res) {
     new models_1.Image({
         _creator: req.authenticatedUser._id,
-        _topic: req.query["id"],
+        _topic: req.params["id"],
         description: req.body["description"],
         url: req.body["url"]
     }).save(function (err, image) {
-        res.json(image);
+        models_1.Topic.findById(req.params["id"], function (err, topic) {
+            topic.images.push(image._id);
+            topic.save(function (err) {
+                if (err)
+                    res.status(401).json(err);
+                else {
+                    res.sendStatus(200);
+                }
+            });
+        });
     });
 });
 exports.api.post("/get_signed_upload", middleware_1.authorizeToken, function (req, res) {
