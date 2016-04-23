@@ -1,5 +1,7 @@
 import * as mongoose from "mongoose";
 
-mongoose.connect(process.env.MONGODB_URI);
+const mongoUri = (process.env.NODE_ENV || "mongodb://localhost/test");
+
+mongoose.connect(mongoUri);
 
 export const db = mongoose.connection;

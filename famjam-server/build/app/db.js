@@ -1,4 +1,5 @@
 "use strict";
 var mongoose = require("mongoose");
-mongoose.connect(process.env.MONGODB_URI);
+var mongoUri = (process.env.NODE_ENV || "mongodb://localhost/test");
+mongoose.connect(mongoUri);
 exports.db = mongoose.connection;
