@@ -1,5 +1,5 @@
 import * as mongoose from "mongoose";
 
-mongoose.connect("mongodb://localhost/famjam");
+mongoose.connect(process.env.MONGODB_URI);
 
 export const db = mongoose.connection;
