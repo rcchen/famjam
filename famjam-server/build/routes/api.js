@@ -49,7 +49,7 @@ exports.api.get("/topics", middleware_1.authorizeToken, function (req, res) {
 exports.api.post("/topics", middleware_1.authorizeToken, function (req, res) {
     new models_1.Topic({
         _creator: req.authenticatedUser._id,
-        name: req.param("name"),
+        name: req.body["name"],
     }).save(function (err, topic) {
         if (err)
             res.status(500).json(err);
@@ -59,11 +59,19 @@ exports.api.post("/topics", middleware_1.authorizeToken, function (req, res) {
     });
 });
 exports.api.get("/topics/:id", middleware_1.authorizeToken, function (req, res) {
-    models_1.Topic.findById(req.param("id"), function (err, topic) {
+    models_1.Topic.findById(req.query["id"], function (err, topic) {
         res.json(topic);
     });
 });
-exports.api.post("/topics/:id", function (req, res) {
+exports.api.post("/topics/:id", middleware_1.authorizeToken, function (req, res) {
+    new models_1.Image({
+        _creator: req.authenticatedUser._id,
+        _topic: req.query["id"],
+        description: req.body["description"],
+        url: req.body["url"]
+    }).save(function (err, image) {
+        res.json(image);
+    });
 });
 exports.api.post("/get_signed_upload", middleware_1.authorizeToken, function (req, res) {
     var s3 = new aws.S3();

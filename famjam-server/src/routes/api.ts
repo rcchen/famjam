@@ -59,7 +59,7 @@ api.get("/topics", authorizeToken, (req, res) => {
 api.post("/topics", authorizeToken, (req, res) => {
   new Topic({
     _creator: (req.authenticatedUser as IUser)._id,
-    name: req.param("name"),
+    name: req.body["name"],
   }).save((err, topic) => {
     if (err) res.status(500).json(err);
     else {
@@ -69,13 +69,20 @@ api.post("/topics", authorizeToken, (req, res) => {
 });
 
 api.get("/topics/:id", authorizeToken, (req, res) => {
-  Topic.findById(req.param("id"), (err, topic) => {
+  Topic.findById(req.query["id"], (err, topic) => {
     res.json(topic);
   });
 });
 
-api.post("/topics/:id", (req, res) => {
-
+api.post("/topics/:id", authorizeToken, (req, res) => {
+  new Image({
+    _creator: (req.authenticatedUser as IUser)._id,
+    _topic: req.query["id"],
+    description: req.body["description"],
+    url: req.body["url"]
+  }).save((err, image) => {
+    res.json(image);
+  });
 });
 
 api.post("/get_signed_upload", authorizeToken, (req, res) => {

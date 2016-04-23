@@ -12,11 +12,13 @@ export const authorizeToken = (req: express.Request, res: express.Response, next
     const token = authorizationHeader.split(" ")[1];
     jwt.verify(token, config.secret, (err, decoded: { uid: string }) => {
       if (err) res.sendStatus(401);
-      User.findById(decoded.uid, (err, user: IUser) => {
-        if (err) res.sendStatus(401);
-        req.authenticatedUser = user;
-        next();
-      });
+      else {
+        User.findById(decoded.uid, (err, user: IUser) => {
+          if (err) res.sendStatus(401);
+          req.authenticatedUser = user;
+          next();
+        });        
+      }
     });
   }
 }

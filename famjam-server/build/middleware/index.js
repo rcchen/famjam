@@ -11,12 +11,14 @@ exports.authorizeToken = function (req, res, next) {
         jwt.verify(token, config_1.config.secret, function (err, decoded) {
             if (err)
                 res.sendStatus(401);
-            models_1.User.findById(decoded.uid, function (err, user) {
-                if (err)
-                    res.sendStatus(401);
-                req.authenticatedUser = user;
-                next();
-            });
+            else {
+                models_1.User.findById(decoded.uid, function (err, user) {
+                    if (err)
+                        res.sendStatus(401);
+                    req.authenticatedUser = user;
+                    next();
+                });
+            }
         });
     }
 };
