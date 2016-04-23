@@ -45,7 +45,8 @@ api.get("/users", authorizeToken, (req, res) => {
 });
 
 api.get("/topics", authorizeToken, (req, res) => {
-  Topic.find({}, (err, topics) => {
+  const _creator = (req.authenticatedUser as IUser)._id;
+  Topic.find({ _creator }, (err, topics) => {
     res.json(topics);
   });
 });
@@ -62,8 +63,10 @@ api.post("/topics", authorizeToken, (req, res) => {
   });
 });
 
-api.get("/topics/:id", (req, res) => {
-
+api.get("/topics/:id", authorizeToken, (req, res) => {
+  Topic.findById(req.param("id"), (err, topic) => {
+    res.json(topic);
+  });
 });
 
 api.post("/topics/:id", (req, res) => {
