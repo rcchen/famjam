@@ -15,9 +15,9 @@
     "express": "^4.13.4",
     "jsonwebtoken": "^5.7.0",
     "mongodb": "^2.1.16",
-    "mongoose": "^4.4.13"
+    "mongoose": "^4.4.13",
+    "morgan": "^1.7.0"
   },
   "devDependencies": {
-    "morgan": "^1.7.0"
   }
 }
