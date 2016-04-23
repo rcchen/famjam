@@ -3,5 +3,5 @@ interface IConfig {
 }
 
 export const config: IConfig = {
-  secret: process.env.FAMJAM_SECRET
+  secret: process.env.FAMJAM_SECRET || "DEV_SECRET"
 };

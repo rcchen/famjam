@@ -1,13 +1,16 @@
 "use strict";
+var aws = require("aws-sdk");
 var bcrypt = require("bcrypt");
 var bodyParser = require("body-parser");
 var express = require("express");
 var jsonwebtoken = require("jsonwebtoken");
+var uuid = require("node-uuid");
 var config_1 = require("../app/config");
 var middleware_1 = require("../middleware");
 var models_1 = require("../models");
 exports.api = express();
 exports.api.use(bodyParser.json());
+aws.config.region = "us-west-2";
 exports.api.post("/users", function (req, res) {
     var username = req.body.username;
     bcrypt.hash(req.body.password, 10, function (err, password) {
@@ -61,4 +64,19 @@ exports.api.get("/topics/:id", middleware_1.authorizeToken, function (req, res) 
     });
 });
 exports.api.post("/topics/:id", function (req, res) {
+});
+exports.api.post("/get_signed_upload", middleware_1.authorizeToken, function (req, res) {
+    var s3 = new aws.S3();
+    var s3_params = {
+        Bucket: "famjam",
+        Key: uuid.v4(),
+        ContentType: req.body["file_type"]
+    };
+    s3.getSignedUrl("putObject", s3_params, function (err, data) {
+        if (err)
+            res.status(500).json(err);
+        else {
+            res.json(data);
+        }
+    });
 });

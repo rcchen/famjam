@@ -1,7 +1,9 @@
+import * as aws from "aws-sdk";
 import * as bcrypt from "bcrypt";
 import * as bodyParser from "body-parser";
 import * as express from "express";
 import * as jsonwebtoken from "jsonwebtoken";
+import * as uuid from "node-uuid";
 
 import { config } from "../app/config";
 import { IUser } from "../app/interfaces";
@@ -12,6 +14,9 @@ export const api = express();
 
 // load JSON parsing middleware
 api.use(bodyParser.json());
+
+// set AWS region
+aws.config.region = "us-west-2";
 
 api.post("/users", (req, res) => {
   const username = req.body.username;
@@ -71,4 +76,19 @@ api.get("/topics/:id", authorizeToken, (req, res) => {
 
 api.post("/topics/:id", (req, res) => {
 
+});
+
+api.post("/get_signed_upload", authorizeToken, (req, res) => {
+  const s3 = new aws.S3();
+  const s3_params = {
+    Bucket: "famjam",
+    Key: uuid.v4(),
+    ContentType: req.body["file_type"]
+  };
+  s3.getSignedUrl("putObject", s3_params, (err, data) => {
+    if (err) res.status(500).json(err);
+    else {
+      res.json(data);
+    }
+  });
 });
