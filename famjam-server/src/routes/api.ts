@@ -50,8 +50,15 @@ api.get("/users", authorizeToken, (req, res) => {
 });
 
 api.get("/topics", authorizeToken, (req, res) => {
-  const _creator = (req.authenticatedUser as IUser)._id;
-  Topic.find({ _creator }, (err, topics) => {
+  const uid = (req.authenticatedUser as IUser)._id;
+  Topic.find({
+    $or: [
+      { _creator: uid },
+      { users: {
+        $in: [ uid ]
+      }}
+    ]
+  }, (err, topics) => {
     res.json(topics);
   });
 });
@@ -61,7 +68,7 @@ api.post("/topics", authorizeToken, (req, res) => {
   new Topic({
     _creator: user._id,
     name: req.body["name"],
-    users: [ user ]
+    users: req.body["users"]
   }).save((err, topic) => {
     if (err) res.status(500).json(err);
     else {

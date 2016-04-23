@@ -41,8 +41,15 @@ exports.api.get("/users", middleware_1.authorizeToken, function (req, res) {
     });
 });
 exports.api.get("/topics", middleware_1.authorizeToken, function (req, res) {
-    var _creator = req.authenticatedUser._id;
-    models_1.Topic.find({ _creator: _creator }, function (err, topics) {
+    var uid = req.authenticatedUser._id;
+    models_1.Topic.find({
+        $or: [
+            { _creator: uid },
+            { users: {
+                    $in: [uid]
+                } }
+        ]
+    }, function (err, topics) {
         res.json(topics);
     });
 });
@@ -51,7 +58,7 @@ exports.api.post("/topics", middleware_1.authorizeToken, function (req, res) {
     new models_1.Topic({
         _creator: user._id,
         name: req.body["name"],
-        users: [user]
+        users: req.body["users"]
     }).save(function (err, topic) {
         if (err)
             res.status(500).json(err);
