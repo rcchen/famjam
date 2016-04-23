@@ -1,2 +1,4 @@
 "use strict";
-exports.config = require("../../config.json");
+exports.config = {
+    secret: process.env.FAMJAM_SECRET
+};

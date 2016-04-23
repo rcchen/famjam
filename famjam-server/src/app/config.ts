@@ -2,4 +2,6 @@ interface IConfig {
   secret: string;
 }
 
-export const config: IConfig = require("../../config.json");
+export const config: IConfig = {
+  secret: process.env.FAMJAM_SECRET
+};
