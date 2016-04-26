@@ -15,6 +15,14 @@ class Constants {
     static let ALBUM_HEADER_OFFSET_Y = 5 as CGFloat
     static let DEFAULT_LOCK_TEXT = "This album is locked. Upload your own photo to see it!"
     static let DEFAULT_LOCK_IMAGE_NAME = "lockImage"
+    static let FAMJAM_FONT = UIFont(name: "Apple SD Gothic Neo", size: 16)
+    static let FAMJAM_SUBHEADER_FONT = UIFont(name: "Apple SD Gothic Neo", size: 20)
+    static let FAMJAM_HEADER_FONT = UIFont(name: "Apple SD Gothic Neo", size: 24)
+    static let FAMJAM_WHITE_COLOR = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
+    static let FAMJAM_DARK_BLUE_COLOR = UIColor(red: 0/255, green: 45/255, blue: 64/255, alpha: 1.0)
+    static let FAMJAM_BLUE_COLOR = UIColor(red: 42/255, green: 87/255, blue: 106/255, alpha: 1.0)
+    static let FAMJAM_LIGHT_ORANGE_COLOR = UIColor(red: 251/255, green: 188/255, blue: 75/255, alpha: 1.0)
+    static let FAMJAM_ORANGE_COLOR = UIColor(red: 250/255, green: 150/255, blue: 0/255, alpha: 1.0)
 }
 
 class UserData {

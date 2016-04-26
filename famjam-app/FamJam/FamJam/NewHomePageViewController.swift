@@ -55,13 +55,16 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var navigationBar: UINavigationBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         photoCollectionView.dataSource = self
         collectionView.registerClass(AlbumHeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header")
-        collectionView.backgroundColor = UIColor.clearColor()
+        collectionView.backgroundColor = Constants.FAMJAM_ORANGE_COLOR
+        navigationBar.barTintColor = Constants.FAMJAM_ORANGE_COLOR
         
     }
 
@@ -93,6 +96,10 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
             cell.photo.image = UIImage(named: UserData.USER_PHOTO_NAMES[indexPath.row])
         }
         cell.name.text = UserData.NAMES[indexPath.row]
+        cell.caption.font = Constants.FAMJAM_FONT
+        cell.name.font = Constants.FAMJAM_SUBHEADER_FONT
+        cell.name.textColor = Constants.FAMJAM_WHITE_COLOR
+        cell.caption.textColor = Constants.FAMJAM_WHITE_COLOR
         return cell
     }
     
@@ -102,7 +109,7 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
         switch kind {
         case UICollectionElementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "header", forIndexPath: indexPath) as? AlbumHeaderCollectionReusableView
-            headerView!.changeLabelTitle("Today's theme is: " + AppData.ACTIVE_THEME)
+            headerView!.changeLabelTitle(AppData.ACTIVE_THEME)
             return headerView!
 
         

@@ -16,6 +16,9 @@ class FamilyDashboardViewController: UIViewController, UITableViewDataSource {
         // Do any additional setup after loading the view.
         self.familyDashboardTableView.dataSource = self
         welcomeLabel.text = welcomeLabel.text?.stringByAppendingString(AppData.ACTIVE_USER)
+        welcomeLabel.font = Constants.FAMJAM_HEADER_FONT
+        welcomeLabel.textColor = Constants.FAMJAM_WHITE_COLOR
+        navigationBar.barTintColor = Constants.FAMJAM_ORANGE_COLOR
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,14 +38,18 @@ class FamilyDashboardViewController: UIViewController, UITableViewDataSource {
     
     @IBOutlet weak var welcomeLabel: UILabel!
     
+    @IBOutlet weak var navigationBar: UINavigationBar!
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("familyCell", forIndexPath: indexPath) as! FamilyTableViewCell
         let nameString = UserData.NAMES[indexPath.row]
         cell.name.text = nameString
+        cell.name.font = Constants.FAMJAM_SUBHEADER_FONT
         if (nameString == AppData.ACTIVE_USER) {
             cell.remindButton.hidden = true
         }
         cell.profilePicture.image = UIImage(named: UserData.USER_PHOTO_NAMES[indexPath.row])
+        cell.name.textColor = Constants.FAMJAM_WHITE_COLOR
         return cell
     }
     

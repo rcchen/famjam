@@ -12,6 +12,8 @@ class AllPhotosViewController: UIViewController, UICollectionViewDataSource {
 
     @IBOutlet weak var allPhotosCollectionView: UICollectionView!
     
+    @IBOutlet weak var navigationBar: UINavigationBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,7 +21,8 @@ class AllPhotosViewController: UIViewController, UICollectionViewDataSource {
         
         allPhotosCollectionView.dataSource = self
         allPhotosCollectionView.registerClass(AlbumHeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header")
-        allPhotosCollectionView.backgroundColor = UIColor.clearColor()
+        allPhotosCollectionView.backgroundColor = Constants.FAMJAM_ORANGE_COLOR
+        navigationBar.barTintColor = Constants.FAMJAM_ORANGE_COLOR
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,6 +45,11 @@ class AllPhotosViewController: UIViewController, UICollectionViewDataSource {
         cell.name.text = UserData.NAMES[indexPath.row]
         cell.photo.image = UIImage(named: Constants.DEFAULT_LOCK_IMAGE_NAME)
         cell.caption.text = Constants.DEFAULT_LOCK_TEXT
+        
+        cell.name.font = Constants.FAMJAM_SUBHEADER_FONT
+        cell.caption.font = Constants.FAMJAM_FONT
+        cell.name.textColor = Constants.FAMJAM_WHITE_COLOR
+        cell.caption.textColor = Constants.FAMJAM_WHITE_COLOR
         
         return cell
     }

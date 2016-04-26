@@ -175,6 +175,7 @@
                                                 <constraint firstItem="cJq-Fb-PIF" firstAttribute="centerY" secondItem="37d-Nb-beo" secondAttribute="centerY" id="rKN-AN-cNG"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.96862745098039216" green="0.68235294117647061" blue="0.18431372549019609" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="name" destination="V71-dj-tQq" id="rPI-RE-rlg"/>
                                             <outlet property="profilePicture" destination="7Py-re-QHK" id="ynP-0P-2iC"/>
@@ -193,7 +194,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ATh-5l-3Yo">
-                                <rect key="frame" x="0.0" y="33" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </textAttributes>
                                 <items>
                                     <navigationItem title="My Family" id="0Ev-cH-cU9">
                                         <barButtonItem key="leftBarButtonItem" title="Logout" id="2pA-Av-qzd">
@@ -205,7 +209,7 @@
                                 </items>
                             </navigationBar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.95686274510000002" green="0.58431372550000005" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="oBh-vl-LAW" firstAttribute="leading" secondItem="z7u-Pa-hra" secondAttribute="leading" id="00N-xW-Oih"/>
                             <constraint firstItem="ATh-5l-3Yo" firstAttribute="centerX" secondItem="oBh-vl-LAW" secondAttribute="centerX" id="HdP-fC-QM3"/>
@@ -214,14 +218,15 @@
                             <constraint firstItem="oBh-vl-LAW" firstAttribute="trailing" secondItem="z7u-Pa-hra" secondAttribute="trailing" id="dku-69-CPR"/>
                             <constraint firstItem="oBh-vl-LAW" firstAttribute="leading" secondItem="tGT-ni-7dT" secondAttribute="leadingMargin" id="enp-em-cLS"/>
                             <constraint firstAttribute="trailing" secondItem="ATh-5l-3Yo" secondAttribute="trailing" id="gIl-91-Z8S"/>
-                            <constraint firstItem="oBh-vl-LAW" firstAttribute="top" secondItem="ATh-5l-3Yo" secondAttribute="bottom" id="rkP-Vc-fhC"/>
+                            <constraint firstItem="oBh-vl-LAW" firstAttribute="top" secondItem="ATh-5l-3Yo" secondAttribute="bottom" constant="13" id="rkP-Vc-fhC"/>
                             <constraint firstItem="z7u-Pa-hra" firstAttribute="top" secondItem="oBh-vl-LAW" secondAttribute="bottom" constant="8" symbolic="YES" id="uAc-X6-CJP"/>
-                            <constraint firstItem="ATh-5l-3Yo" firstAttribute="top" secondItem="0OC-V5-RmH" secondAttribute="bottom" constant="13" id="vo3-60-w8V"/>
+                            <constraint firstItem="ATh-5l-3Yo" firstAttribute="top" secondItem="0OC-V5-RmH" secondAttribute="bottom" id="vo3-60-w8V"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="7Zq-4m-M5u"/>
                     <connections>
                         <outlet property="familyDashboardTableView" destination="z7u-Pa-hra" id="9rI-DX-kTh"/>
+                        <outlet property="navigationBar" destination="ATh-5l-3Yo" id="sWY-5T-mB3"/>
                         <outlet property="welcomeLabel" destination="oBh-vl-LAW" id="12k-Kd-L6w"/>
                     </connections>
                 </viewController>
@@ -244,6 +249,9 @@
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v5w-PX-wq2">
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </textAttributes>
                                 <items>
                                     <navigationItem title="All Our Photos" id="pcS-Kd-5RN"/>
                                 </items>
@@ -311,7 +319,7 @@
                                 </collectionReusableView>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.95686274510000002" green="0.58431372550000005" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="v5w-PX-wq2" firstAttribute="trailing" secondItem="3tr-bO-dgk" secondAttribute="trailing" id="Ba8-Iv-kNA"/>
                             <constraint firstItem="3tr-bO-dgk" firstAttribute="bottom" secondItem="5HD-Ae-d8j" secondAttribute="top" id="Eww-sw-O3c"/>
@@ -325,6 +333,7 @@
                     <tabBarItem key="tabBarItem" title="Item" id="cCf-QP-phq"/>
                     <connections>
                         <outlet property="allPhotosCollectionView" destination="3tr-bO-dgk" id="ptU-pc-o8k"/>
+                        <outlet property="navigationBar" destination="v5w-PX-wq2" id="ARx-oF-Fs6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qhA-UU-sRD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -362,6 +371,9 @@
                             </textView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TLU-xy-KwZ">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </textAttributes>
                                 <items>
                                     <navigationItem title="Saving Your Memories" id="lsB-zt-OwR">
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="C6c-Pm-ogh">
@@ -480,6 +492,9 @@
                             </collectionView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HQn-yJ-QaF">
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </textAttributes>
                                 <items>
                                     <navigationItem title="Today's Theme" id="fWe-1P-tRh">
                                         <barButtonItem key="rightBarButtonItem" systemItem="camera" id="8Zn-lS-Ay7">
@@ -491,7 +506,7 @@
                                 </items>
                             </navigationBar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.95686274510000002" green="0.58431372550000005" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="HQn-yJ-QaF" firstAttribute="leading" secondItem="C9f-X5-5RU" secondAttribute="leading" id="D9r-Ca-5HO"/>
                             <constraint firstItem="C9f-X5-5RU" firstAttribute="top" secondItem="HQn-yJ-QaF" secondAttribute="bottom" id="Nue-qZ-SOP"/>
@@ -507,6 +522,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="C9f-X5-5RU" id="BuB-ij-ioN"/>
+                        <outlet property="navigationBar" destination="HQn-yJ-QaF" id="6Eq-2x-Tkg"/>
                         <outlet property="photoCollectionView" destination="C9f-X5-5RU" id="ugE-P5-rKN"/>
                         <segue destination="0HZ-aQ-Tbc" kind="show" identifier="savePhoto" id="uYt-AK-P7K"/>
                     </connections>
