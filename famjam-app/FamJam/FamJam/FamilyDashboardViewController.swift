@@ -42,6 +42,7 @@ class FamilyDashboardViewController: UIViewController, UITableViewDataSource {
         if (nameString == AppData.ACTIVE_USER) {
             cell.remindButton.hidden = true
         }
+        cell.profilePicture.image = UIImage(named: UserData.USER_PHOTO_NAMES[indexPath.row])
         return cell
     }
     
