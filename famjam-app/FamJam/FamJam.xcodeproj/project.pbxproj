@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		337946871CD059200055DB03 /* Services in Resources */ = {isa = PBXBuildFile; fileRef = 337946861CD059200055DB03 /* Services */; };
 		650E1C7A1CCC2F28002C69DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650E1C791CCC2F28002C69DC /* AppDelegate.swift */; };
 		650E1C7C1CCC2F28002C69DC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650E1C7B1CCC2F28002C69DC /* ViewController.swift */; };
 		650E1C7F1CCC2F28002C69DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 650E1C7D1CCC2F28002C69DC /* Main.storyboard */; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		24FADB32D4772F8C0FC94045 /* Pods-FamJam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FamJam.release.xcconfig"; path = "Pods/Target Support Files/Pods-FamJam/Pods-FamJam.release.xcconfig"; sourceTree = "<group>"; };
+		337946861CD059200055DB03 /* Services */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Services; sourceTree = "<group>"; };
 		3A1476206C6AAB4150E8559C /* Pods-FamJam.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FamJam.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FamJam/Pods-FamJam.debug.xcconfig"; sourceTree = "<group>"; };
 		650E1C761CCC2F28002C69DC /* FamJam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FamJam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		650E1C791CCC2F28002C69DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 		650E1C781CCC2F28002C69DC /* FamJam */ = {
 			isa = PBXGroup;
 			children = (
+				337946861CD059200055DB03 /* Services */,
 				6546CB101CCDAE1D00BEEA54 /* AllPhotosViewController.swift */,
 				6546CB121CCDAE8600BEEA54 /* SavingPhotoViewController.swift */,
 				650E1CAC1CCC3109002C69DC /* FrontPageViewController.swift */,
@@ -295,6 +298,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				337946871CD059200055DB03 /* Services in Resources */,
 				650E1C871CCC2F28002C69DC /* LaunchScreen.storyboard in Resources */,
 				650E1C841CCC2F28002C69DC /* Assets.xcassets in Resources */,
 				650E1C7F1CCC2F28002C69DC /* Main.storyboard in Resources */,
