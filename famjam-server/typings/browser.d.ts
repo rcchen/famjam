@@ -7,6 +7,7 @@
 /// <reference path="browser/ambient/mongodb/index.d.ts" />
 /// <reference path="browser/ambient/mongoose/index.d.ts" />
 /// <reference path="browser/ambient/morgan/index.d.ts" />
+/// <reference path="browser/ambient/multer/index.d.ts" />
 /// <reference path="browser/ambient/node-uuid/index.d.ts" />
 /// <reference path="browser/ambient/node/index.d.ts" />
 /// <reference path="browser/ambient/serve-static/index.d.ts" />

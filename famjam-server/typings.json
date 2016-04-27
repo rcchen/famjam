@@ -12,6 +12,7 @@
     "mongodb": "registry:dt/mongodb#2.1.0+20160328151449",
     "mongoose": "registry:dt/mongoose#3.8.5+20160316155526",
     "morgan": "registry:dt/morgan#1.2.2+20160317120654",
+    "multer": "registry:dt/multer#0.0.0+20160317120654",
     "node": "registry:dt/node#4.0.0+20160412142033",
     "node-uuid": "registry:dt/node-uuid#0.0.0+20160316155526",
     "serve-static": "registry:dt/serve-static#0.0.0+20160317120654",
