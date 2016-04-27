@@ -1,0 +1,6 @@
+framework module Pods_FamJam {
+  umbrella header "Pods-FamJam-umbrella.h"
+
+  export *
+  module * { export * }
+}
