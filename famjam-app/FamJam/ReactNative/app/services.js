@@ -1,4 +1,4 @@
-BASE_URL = "https://young-eyrie-25027.herokuapp.com/api"
+export const BASE_URL = "https://young-eyrie-25027.herokuapp.com/api"
 
 export function fetchTopic(id, token) {
   return fetch(BASE_URL + "/topics/" + id, {
@@ -23,8 +23,4 @@ export function fetchSignedUploadUrl(token) {
     })
   })
   .then(response => response.text());
-}
-
-export function fetchUploadPhoto(uri) {
-
 }

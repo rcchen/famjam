@@ -13,7 +13,7 @@ var RNUploader = require('NativeModules').RNUploader;
 
 var Progress = require('react-native-progress');
 
-import { fetchSignedUploadUrl, fetchTopic } from "../app/services";
+import { BASE_URL, fetchSignedUploadUrl, fetchTopic } from "../app/services";
 import { LetterCircle } from "../components/letterCircle";
 
 var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI1NzFiYjkzZjg1YzZiNTExMDA1MjI4ODAiLCJpYXQiOjE0NjE3NDU5NDh9.xUlHWLUAk_cgn_T5oLdWJ0oeFJIQ6IXsqOLZR02hr2o";
@@ -61,6 +61,8 @@ export default class TopicView extends React.Component {
       const users = topic.users.slice();
       users.push(topic._creator);
 
+      console.log(topic.photos);
+
       const userCircles = users.map((user, index) => {
         const color = colors[index % colors.length];
         return (
@@ -75,7 +77,6 @@ export default class TopicView extends React.Component {
       return (
         <View style={styles.container}>
           <Text>{topic.name}</Text>
-          <LetterCircle backgroundColor="blue" color="white" label="Roger" />
           <Progress.Circle size={100} progress={this.state.progress} />
           <TouchableWithoutFeedback onPress={this.increment}>
             <Text>Increment</Text>
@@ -111,17 +112,19 @@ export default class TopicView extends React.Component {
   }
 
   componentDidMount() {
-    this.getUploadURL();
+    this.attachListeners();
     this.setTopic();
   }
 
-  getUploadURL() {
-    fetchSignedUploadUrl(token)
-      .then((uploadUrl) => {
-        this.setState({
-          uploadUrl: decodeURI(uploadUrl)
-        });
-      });
+  attachListeners = () => {
+    // upload progress
+    DeviceEventEmitter.addListener('RNUploaderProgress', (data)=>{
+      let bytesWritten = data.totalBytesWritten;
+      let bytesTotal   = data.totalBytesExpectedToWrite;
+      let progress     = data.progress;
+
+      console.log( "upload progress: " + progress + "%");
+    });
   }
 
   increment = () => {
@@ -157,7 +160,6 @@ export default class TopicView extends React.Component {
     };
 
     ImagePickerManager.showImagePicker(options, (response) => {
-
       if (response.didCancel) {
         console.log('User cancelled image picker');
       }
@@ -167,6 +169,7 @@ export default class TopicView extends React.Component {
       else if (response.customButton) {
         console.log('User tapped custom button: ', response.customButton);
       }
+
       else {
         this.uploadPhoto(response);
       }
@@ -174,68 +177,38 @@ export default class TopicView extends React.Component {
   };
 
   uploadPhoto = (response) => {
-    // console.log(this.state.uploadUrl);
-    // fetch(this.state.uploadUrl, {
-    //   headers: {
-    //     "Content-Type": "image/jpeg"
-    //   },
-    //   body: response.uri,
-    //   method: "PUT"
-    // }).then(response => {
-    //   console.log(response);
-    // });
+    console.log(response);
+    const files = [
+      {
+        name: "photo",
+        filename: "image.jpg",
+        filepath: response.origURL,
+        filetype: "image/jpeg"
+      }
+    ];
+    const options = {
+      url: BASE_URL + "/topics/" + this.props.id,
+      files: files,
+      method: "POST",
+      headers: {
+        "Authorization": "Bearer " + token
+      },
+      params: {
+        "description": "ffffuuuuuuuuuuu"
+      }
+    }
 
-    // const file = {
-    //   uri: response.uri,
-    //   type: "image/jpeg",
-    //   name: "photo.jpg"
-    // };
-    // var body = new FormData();
-    // body.append("file", file);
+    RNUploader.upload(options, (err, response) => {
+        if( err ){
+            console.log(err);
+            return;
+        }
 
-    const xhr = new XMLHttpRequest();
-    xhr.open("PUT", this.state.uploadUrl, true);
-    xhr.onload = (e) => {
-      console.log(e);
-    };
-    const body = new FormData();
-    body.append("file", "data:image/jpeg;base64," + response.data);
-    // const blob = new Blob("data:image/jpeg;base64," + response.data);
-    xhr.send(body);
+        console.log(response);
 
-    // console.log(response);
-    //
-    // let files = [
-    //   {
-    //     name: 'file',
-    //     filename: 'file.jpg',
-    //     filepath: "data:image/jpeg;base64," + response.data,
-    //     filetype: 'image/jpeg',
-    //   }
-    // ];
-    //
-    // let opts = {
-    //   url: this.state.uploadUrl.replace(/"/g, ""),
-    //   method: "PUT",
-    //   headers: {
-    //     "Content-Type": "image/jpeg"
-    //   },
-    //   files: files
-    // };
-    //
-    // this.setState({ uploading: true, showUploadModal: true, });
-    // RNUploader.upload( opts, ( err, res )=>{
-    //   if( err ){
-    //       console.log(err);
-    //       return;
-    //   }
-    //
-    //   let status = res.status;
-    //   let responseString = res.data;
-    //
-    //   console.log('upload complete with status ' + status);
-    //   console.log( responseString );
-    //   this.setState( { uploading: false, uploadStatus: status } );
-    // });
+        let status = response.status;
+
+        console.log('upload complete with status ' + status);
+    });
   };
 }

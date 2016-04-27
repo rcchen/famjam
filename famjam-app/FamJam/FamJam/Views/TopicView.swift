@@ -12,7 +12,7 @@ import UIKit
 class TopicView : UIView {
     
     let rootView: RCTRootView = RCTRootView(
-        bundleURL: NSURL(string: "http://192.168.10.112:8081/index.ios.bundle?platform=ios"),
+        bundleURL: NSURL(string: "http://192.168.10.106:8081/index.ios.bundle?platform=ios"),
         moduleName: "TopicView",
         initialProperties: [
             "id": "571c0b1d9ad4be1100057554"
