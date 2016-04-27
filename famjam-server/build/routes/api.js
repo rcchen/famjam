@@ -4,13 +4,16 @@ var bcrypt = require("bcrypt");
 var bodyParser = require("body-parser");
 var express = require("express");
 var jsonwebtoken = require("jsonwebtoken");
+var multer = require("multer");
 var uuid = require("node-uuid");
+var multerS3 = require("multer-s3");
 var config_1 = require("../app/config");
 var middleware_1 = require("../middleware");
 var models_1 = require("../models");
 exports.api = express();
 exports.api.use(bodyParser.json());
 aws.config.region = "us-west-2";
+var s3 = new aws.S3();
 exports.api.post("/users", function (req, res) {
     var username = req.body.username;
     bcrypt.hash(req.body.password, 10, function (err, password) {
@@ -76,12 +79,25 @@ exports.api.get("/topics/:id", middleware_1.authorizeToken, function (req, res) 
         res.json(topic);
     });
 });
-exports.api.post("/topics/:id", middleware_1.authorizeToken, function (req, res) {
+var upload = multer({
+    storage: multerS3({
+        acl: "public-read",
+        bucket: "famjam",
+        contentType: function (req, file, cb) {
+            cb(null, "image/jpeg");
+        },
+        key: function (req, file, cb) {
+            cb(null, uuid.v4());
+        },
+        s3: s3
+    })
+});
+exports.api.post("/topics/:id", middleware_1.authorizeToken, upload.array("photo", 1), function (req, res) {
     new models_1.Image({
         _creator: req.authenticatedUser._id,
         _topic: req.params["id"],
         description: req.body["description"],
-        url: req.body["url"]
+        url: req.files[0].location
     }).save(function (err, image) {
         models_1.Topic.findById(req.params["id"], function (err, topic) {
             topic.images.push(image._id);
@@ -96,7 +112,6 @@ exports.api.post("/topics/:id", middleware_1.authorizeToken, function (req, res)
     });
 });
 exports.api.post("/get_signed_upload", middleware_1.authorizeToken, function (req, res) {
-    var s3 = new aws.S3();
     var s3_params = {
         Bucket: "famjam",
         Key: uuid.v4(),
