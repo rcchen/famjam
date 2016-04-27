@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		337946871CD059200055DB03 /* Services in Resources */ = {isa = PBXBuildFile; fileRef = 337946861CD059200055DB03 /* Services */; };
 		650E1C7A1CCC2F28002C69DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650E1C791CCC2F28002C69DC /* AppDelegate.swift */; };
 		650E1C7C1CCC2F28002C69DC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650E1C7B1CCC2F28002C69DC /* ViewController.swift */; };
 		650E1C7F1CCC2F28002C69DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 650E1C7D1CCC2F28002C69DC /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 		6546CB0B1CCD9BB800BEEA54 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6546CB0A1CCD9BB800BEEA54 /* Utilities.swift */; };
 		6546CB111CCDAE1D00BEEA54 /* AllPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6546CB101CCDAE1D00BEEA54 /* AllPhotosViewController.swift */; };
 		6546CB131CCDAE8600BEEA54 /* SavingPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6546CB121CCDAE8600BEEA54 /* SavingPhotoViewController.swift */; };
+		9B336C4EE24947E8776D17AB /* Pods_FamJam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DB12F18EFB86D522592B570 /* Pods_FamJam.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		24FADB32D4772F8C0FC94045 /* Pods-FamJam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FamJam.release.xcconfig"; path = "Pods/Target Support Files/Pods-FamJam/Pods-FamJam.release.xcconfig"; sourceTree = "<group>"; };
+		337946861CD059200055DB03 /* Services */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Services; sourceTree = "<group>"; };
+		3A1476206C6AAB4150E8559C /* Pods-FamJam.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FamJam.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FamJam/Pods-FamJam.debug.xcconfig"; sourceTree = "<group>"; };
 		650E1C761CCC2F28002C69DC /* FamJam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FamJam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		650E1C791CCC2F28002C69DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		650E1C7B1CCC2F28002C69DC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +78,7 @@
 		6546CB0A1CCD9BB800BEEA54 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		6546CB101CCDAE1D00BEEA54 /* AllPhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AllPhotosViewController.swift; path = ../AllPhotosViewController.swift; sourceTree = "<group>"; };
 		6546CB121CCDAE8600BEEA54 /* SavingPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavingPhotoViewController.swift; sourceTree = "<group>"; };
+		8DB12F18EFB86D522592B570 /* Pods_FamJam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FamJam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B336C4EE24947E8776D17AB /* Pods_FamJam.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +107,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		23DB5E7FDAE37D8B80274A76 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3A1476206C6AAB4150E8559C /* Pods-FamJam.debug.xcconfig */,
+				24FADB32D4772F8C0FC94045 /* Pods-FamJam.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		3817A65E813B3B92CC1B063B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8DB12F18EFB86D522592B570 /* Pods_FamJam.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		650E1C6D1CCC2F28002C69DC = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +131,8 @@
 				650E1C901CCC2F28002C69DC /* FamJamTests */,
 				650E1C9B1CCC2F28002C69DC /* FamJamUITests */,
 				650E1C771CCC2F28002C69DC /* Products */,
+				23DB5E7FDAE37D8B80274A76 /* Pods */,
+				3817A65E813B3B92CC1B063B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -123,6 +149,7 @@
 		650E1C781CCC2F28002C69DC /* FamJam */ = {
 			isa = PBXGroup;
 			children = (
+				337946861CD059200055DB03 /* Services */,
 				6546CB101CCDAE1D00BEEA54 /* AllPhotosViewController.swift */,
 				6546CB121CCDAE8600BEEA54 /* SavingPhotoViewController.swift */,
 				650E1CAC1CCC3109002C69DC /* FrontPageViewController.swift */,
@@ -171,9 +198,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 650E1CA11CCC2F28002C69DC /* Build configuration list for PBXNativeTarget "FamJam" */;
 			buildPhases = (
+				56B5DC2C18EE00847D751158 /* 📦 Check Pods Manifest.lock */,
 				650E1C721CCC2F28002C69DC /* Sources */,
 				650E1C731CCC2F28002C69DC /* Frameworks */,
 				650E1C741CCC2F28002C69DC /* Resources */,
+				E0E8F4AAC89005CF2B6FCC30 /* 📦 Embed Pods Frameworks */,
+				BD4DE872642663B222A0B824 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -268,6 +298,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				337946871CD059200055DB03 /* Services in Resources */,
 				650E1C871CCC2F28002C69DC /* LaunchScreen.storyboard in Resources */,
 				650E1C841CCC2F28002C69DC /* Assets.xcassets in Resources */,
 				650E1C7F1CCC2F28002C69DC /* Main.storyboard in Resources */,
@@ -289,6 +320,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		56B5DC2C18EE00847D751158 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BD4DE872642663B222A0B824 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FamJam/Pods-FamJam-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E0E8F4AAC89005CF2B6FCC30 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FamJam/Pods-FamJam-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		650E1C721CCC2F28002C69DC /* Sources */ = {
@@ -451,6 +530,7 @@
 		};
 		650E1CA21CCC2F28002C69DC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3A1476206C6AAB4150E8559C /* Pods-FamJam.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = FamJam/Info.plist;
@@ -462,6 +542,7 @@
 		};
 		650E1CA31CCC2F28002C69DC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 24FADB32D4772F8C0FC94045 /* Pods-FamJam.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = FamJam/Info.plist;
