@@ -69,7 +69,9 @@ exports.api.post("/topics", middleware_1.authorizeToken, function (req, res) {
 });
 exports.api.get("/topics/:id", middleware_1.authorizeToken, function (req, res) {
     models_1.Topic.findById(req.params["id"])
+        .populate("_creator")
         .populate("images")
+        .populate("users")
         .exec(function (err, topic) {
         res.json(topic);
     });

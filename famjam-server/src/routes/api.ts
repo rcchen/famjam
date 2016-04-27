@@ -3,6 +3,7 @@ import * as bcrypt from "bcrypt";
 import * as bodyParser from "body-parser";
 import * as express from "express";
 import * as jsonwebtoken from "jsonwebtoken";
+import * as mongoose from "mongoose";
 import * as uuid from "node-uuid";
 
 import { config } from "../app/config";
@@ -79,7 +80,9 @@ api.post("/topics", authorizeToken, (req, res) => {
 
 api.get("/topics/:id", authorizeToken, (req, res) => {
   Topic.findById(req.params["id"])
+    .populate("_creator")
     .populate("images")
+    .populate("users")
     .exec((err, topic) => {
       res.json(topic);
     });
