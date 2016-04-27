@@ -7,7 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3367DB461CD09E2700AEDE71 /* TopicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3367DB451CD09E2700AEDE71 /* TopicView.swift */; };
 		337946871CD059200055DB03 /* Services in Resources */ = {isa = PBXBuildFile; fileRef = 337946861CD059200055DB03 /* Services */; };
+		339538A21CD0C7380094AB46 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 339538A01CD0C6AB0094AB46 /* libART.a */; };
+		339538AC1CD135EA0094AB46 /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 339538AB1CD135DC0094AB46 /* libRCTCamera.a */; };
+		339538B71CD13E470094AB46 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 339538B61CD13E3B0094AB46 /* libRNImagePicker.a */; };
+		339538B91CD142C20094AB46 /* ImagePickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 339538B81CD142C20094AB46 /* ImagePickerManager.m */; };
+		339538C01CD151960094AB46 /* libRNUploader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 339538BF1CD151830094AB46 /* libRNUploader.a */; };
+		339538C21CD153810094AB46 /* RNUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 339538C11CD153810094AB46 /* RNUploader.m */; };
 		650E1C7A1CCC2F28002C69DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650E1C791CCC2F28002C69DC /* AppDelegate.swift */; };
 		650E1C7C1CCC2F28002C69DC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650E1C7B1CCC2F28002C69DC /* ViewController.swift */; };
 		650E1C7F1CCC2F28002C69DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 650E1C7D1CCC2F28002C69DC /* Main.storyboard */; };
@@ -32,6 +39,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3395389F1CD0C6AB0094AB46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3395389B1CD0C6AB0094AB46 /* ART.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0CF68AC11AF0540F00FF9E5C;
+			remoteInfo = ART;
+		};
+		339538AA1CD135DC0094AB46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 339538A51CD135DB0094AB46 /* RCTCamera.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4107012F1ACB723B00C6AA39;
+			remoteInfo = RCTCamera;
+		};
+		339538B51CD13E3B0094AB46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 339538AF1CD13E3B0094AB46 /* RNImagePicker.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 014A3B5C1C6CF33500B6D375;
+			remoteInfo = RNImagePicker;
+		};
+		339538BE1CD151830094AB46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 339538BA1CD151830094AB46 /* RNUploader.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNUploader;
+		};
 		650E1C8E1CCC2F28002C69DC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 650E1C6E1CCC2F28002C69DC /* Project object */;
@@ -50,7 +85,15 @@
 
 /* Begin PBXFileReference section */
 		24FADB32D4772F8C0FC94045 /* Pods-FamJam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FamJam.release.xcconfig"; path = "Pods/Target Support Files/Pods-FamJam/Pods-FamJam.release.xcconfig"; sourceTree = "<group>"; };
+		3367DB451CD09E2700AEDE71 /* TopicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopicView.swift; path = Views/TopicView.swift; sourceTree = "<group>"; };
 		337946861CD059200055DB03 /* Services */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Services; sourceTree = "<group>"; };
+		339538961CD0BCAB0094AB46 /* android */ = {isa = PBXFileReference; lastKnownFileType = folder; name = android; path = "node_modules/react-native/android"; sourceTree = "<group>"; };
+		3395389B1CD0C6AB0094AB46 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = SOURCE_ROOT; };
+		339538A51CD135DB0094AB46 /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCamera.xcodeproj; path = "node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = SOURCE_ROOT; };
+		339538AF1CD13E3B0094AB46 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = SOURCE_ROOT; };
+		339538B81CD142C20094AB46 /* ImagePickerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImagePickerManager.m; path = "node_modules/react-native-image-picker/ios/ImagePickerManager.m"; sourceTree = "<group>"; };
+		339538BA1CD151830094AB46 /* RNUploader.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNUploader.xcodeproj; path = "node_modules/react-native-uploader/RNUploader/RNUploader.xcodeproj"; sourceTree = SOURCE_ROOT; };
+		339538C11CD153810094AB46 /* RNUploader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RNUploader.m; path = "node_modules/react-native-uploader/RNUploader/RNUploader.m"; sourceTree = "<group>"; };
 		3A1476206C6AAB4150E8559C /* Pods-FamJam.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FamJam.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FamJam/Pods-FamJam.debug.xcconfig"; sourceTree = "<group>"; };
 		650E1C761CCC2F28002C69DC /* FamJam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FamJam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		650E1C791CCC2F28002C69DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +129,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				339538C01CD151960094AB46 /* libRNUploader.a in Frameworks */,
+				339538B71CD13E470094AB46 /* libRNImagePicker.a in Frameworks */,
+				339538AC1CD135EA0094AB46 /* libRCTCamera.a in Frameworks */,
+				339538A21CD0C7380094AB46 /* libART.a in Frameworks */,
 				9B336C4EE24947E8776D17AB /* Pods_FamJam.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -116,9 +163,62 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		3367DB441CD09DFC00AEDE71 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3367DB451CD09E2700AEDE71 /* TopicView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		3395389A1CD0C6870094AB46 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				339538BA1CD151830094AB46 /* RNUploader.xcodeproj */,
+				339538AF1CD13E3B0094AB46 /* RNImagePicker.xcodeproj */,
+				339538A51CD135DB0094AB46 /* RCTCamera.xcodeproj */,
+				3395389B1CD0C6AB0094AB46 /* ART.xcodeproj */,
+			);
+			name = Libraries;
+			path = FamJam;
+			sourceTree = "<group>";
+		};
+		3395389C1CD0C6AB0094AB46 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				339538A01CD0C6AB0094AB46 /* libART.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		339538A61CD135DB0094AB46 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				339538AB1CD135DC0094AB46 /* libRCTCamera.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		339538B01CD13E3B0094AB46 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				339538B61CD13E3B0094AB46 /* libRNImagePicker.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		339538BB1CD151830094AB46 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				339538BF1CD151830094AB46 /* libRNUploader.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		3817A65E813B3B92CC1B063B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				339538961CD0BCAB0094AB46 /* android */,
 				8DB12F18EFB86D522592B570 /* Pods_FamJam.framework */,
 			);
 			name = Frameworks;
@@ -127,6 +227,9 @@
 		650E1C6D1CCC2F28002C69DC = {
 			isa = PBXGroup;
 			children = (
+				339538C11CD153810094AB46 /* RNUploader.m */,
+				339538B81CD142C20094AB46 /* ImagePickerManager.m */,
+				3395389A1CD0C6870094AB46 /* Libraries */,
 				650E1C781CCC2F28002C69DC /* FamJam */,
 				650E1C901CCC2F28002C69DC /* FamJamTests */,
 				650E1C9B1CCC2F28002C69DC /* FamJamUITests */,
@@ -149,6 +252,7 @@
 		650E1C781CCC2F28002C69DC /* FamJam */ = {
 			isa = PBXGroup;
 			children = (
+				3367DB441CD09DFC00AEDE71 /* Views */,
 				337946861CD059200055DB03 /* Services */,
 				6546CB101CCDAE1D00BEEA54 /* AllPhotosViewController.swift */,
 				6546CB121CCDAE8600BEEA54 /* SavingPhotoViewController.swift */,
@@ -256,12 +360,13 @@
 		650E1C6E1CCC2F28002C69DC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastSwiftUpdateCheck = 730;
+				LastUpgradeCheck = 730;
 				ORGANIZATIONNAME = Accord.io;
 				TargetAttributes = {
 					650E1C751CCC2F28002C69DC = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 23JPF8VA7F;
 					};
 					650E1C8C1CCC2F28002C69DC = {
 						CreatedOnToolsVersion = 7.3;
@@ -284,6 +389,24 @@
 			mainGroup = 650E1C6D1CCC2F28002C69DC;
 			productRefGroup = 650E1C771CCC2F28002C69DC /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 3395389C1CD0C6AB0094AB46 /* Products */;
+					ProjectRef = 3395389B1CD0C6AB0094AB46 /* ART.xcodeproj */;
+				},
+				{
+					ProductGroup = 339538A61CD135DB0094AB46 /* Products */;
+					ProjectRef = 339538A51CD135DB0094AB46 /* RCTCamera.xcodeproj */;
+				},
+				{
+					ProductGroup = 339538B01CD13E3B0094AB46 /* Products */;
+					ProjectRef = 339538AF1CD13E3B0094AB46 /* RNImagePicker.xcodeproj */;
+				},
+				{
+					ProductGroup = 339538BB1CD151830094AB46 /* Products */;
+					ProjectRef = 339538BA1CD151830094AB46 /* RNUploader.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				650E1C751CCC2F28002C69DC /* FamJam */,
@@ -292,6 +415,37 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		339538A01CD0C6AB0094AB46 /* libART.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libART.a;
+			remoteRef = 3395389F1CD0C6AB0094AB46 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		339538AB1CD135DC0094AB46 /* libRCTCamera.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTCamera.a;
+			remoteRef = 339538AA1CD135DC0094AB46 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		339538B61CD13E3B0094AB46 /* libRNImagePicker.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNImagePicker.a;
+			remoteRef = 339538B51CD13E3B0094AB46 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		339538BF1CD151830094AB46 /* libRNUploader.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNUploader.a;
+			remoteRef = 339538BE1CD151830094AB46 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		650E1C741CCC2F28002C69DC /* Resources */ = {
@@ -374,10 +528,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				339538C21CD153810094AB46 /* RNUploader.m in Sources */,
 				6546CB071CCD90E400BEEA54 /* HomePageTabBarViewController.swift in Sources */,
 				65434D251CCEC3C500B73C60 /* FamilyDashboardViewController.swift in Sources */,
 				650E1C821CCC2F28002C69DC /* FamJam.xcdatamodeld in Sources */,
 				6546CB0B1CCD9BB800BEEA54 /* Utilities.swift in Sources */,
+				3367DB461CD09E2700AEDE71 /* TopicView.swift in Sources */,
 				6546CB091CCD970100BEEA54 /* AlbumHeaderCollectionReusableView.swift in Sources */,
 				65173BE71CCF1AF800F5A028 /* AllPhotosCollectionViewCell.swift in Sources */,
 				65434D271CCEC6BB00B73C60 /* FamilyTableViewCell.swift in Sources */,
@@ -389,6 +545,7 @@
 				650E1C7A1CCC2F28002C69DC /* AppDelegate.swift in Sources */,
 				650E1CB31CCC360C002C69DC /* PhotoCollectionViewCell.swift in Sources */,
 				6546CB131CCDAE8600BEEA54 /* SavingPhotoViewController.swift in Sources */,
+				339538B91CD142C20094AB46 /* ImagePickerManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,8 +690,14 @@
 			baseConfigurationReference = 3A1476206C6AAB4150E8559C /* Pods-FamJam.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../node_modules/react-native/React/**";
 				INFOPLIST_FILE = FamJam/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.accord.io.lctan21.FamJam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -545,8 +708,14 @@
 			baseConfigurationReference = 24FADB32D4772F8C0FC94045 /* Pods-FamJam.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../node_modules/react-native/React/**";
 				INFOPLIST_FILE = FamJam/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.accord.io.lctan21.FamJam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -558,6 +727,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = FamJamTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.accord.io.lctan21.FamJamTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FamJam.app/FamJam";
@@ -570,6 +743,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = FamJamTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.accord.io.lctan21.FamJamTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FamJam.app/FamJam";
@@ -581,6 +758,10 @@
 			buildSettings = {
 				INFOPLIST_FILE = FamJamUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.accord.io.lctan21.FamJamUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_TARGET_NAME = FamJam;
@@ -592,6 +773,10 @@
 			buildSettings = {
 				INFOPLIST_FILE = FamJamUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.accord.io.lctan21.FamJamUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_TARGET_NAME = FamJam;

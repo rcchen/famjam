@@ -1,6 +1,10 @@
 PODS:
   - Alamofire (3.3.1)
+  - React/ART (0.24.1):
+    - React/Core
   - React/Core (0.24.1)
+  - React/RCTCameraRoll (0.24.1):
+    - React/Core
   - React/RCTImage (0.24.1):
     - React/Core
     - React/RCTNetwork
@@ -13,7 +17,9 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - React/ART (from `./node_modules/react-native`)
   - React/Core (from `./node_modules/react-native`)
+  - React/RCTCameraRoll (from `./node_modules/react-native`)
   - React/RCTImage (from `./node_modules/react-native`)
   - React/RCTNetwork (from `./node_modules/react-native`)
   - React/RCTText (from `./node_modules/react-native`)
@@ -27,6 +33,6 @@ SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
   React: 386bbe687faee56ab75bad6132813945d5857403
 
-PODFILE CHECKSUM: baaae3670b9af3e94b4bc482175b821c0e7f2e1b
+PODFILE CHECKSUM: 7b741c39823125e68a737b33e9e23a2858f8ed1a
 
 COCOAPODS: 1.0.0.beta.8

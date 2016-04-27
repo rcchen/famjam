@@ -3,10 +3,12 @@ use_frameworks!
 target 'FamJam' do
   pod 'Alamofire'
   pod 'React', :path => './node_modules/react-native', :subspecs => [
+    'ART',
     'Core',
+    'RCTCameraRoll',
     'RCTImage',
     'RCTNetwork',
     'RCTText',
-    'RCTWebSocket'
+    'RCTWebSocket',
   ]
 end
