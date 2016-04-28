@@ -90,7 +90,10 @@ api.get("/topics/:id", authorizeToken, (req, res) => {
     .populate("images")
     .populate("users")
     .exec((err, topic) => {
-      res.json(topic);
+      res.json({
+        user: req.authenticatedUser,
+        topic
+      });
     });
 });
 
