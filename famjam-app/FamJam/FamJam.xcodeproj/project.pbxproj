@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		334401261CD20E5F00559BDE /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 334401251CD20E5F00559BDE /* main.jsbundle */; };
 		3367DB461CD09E2700AEDE71 /* TopicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3367DB451CD09E2700AEDE71 /* TopicView.swift */; };
 		337946871CD059200055DB03 /* Services in Resources */ = {isa = PBXBuildFile; fileRef = 337946861CD059200055DB03 /* Services */; };
 		339538A21CD0C7380094AB46 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 339538A01CD0C6AB0094AB46 /* libART.a */; };
@@ -67,6 +68,13 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNUploader;
 		};
+		33F3845B1CD2122900EF7C8D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 33F384521CD2122700EF7C8D /* CodePush.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = CodePush;
+		};
 		650E1C8E1CCC2F28002C69DC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 650E1C6E1CCC2F28002C69DC /* Project object */;
@@ -85,6 +93,7 @@
 
 /* Begin PBXFileReference section */
 		24FADB32D4772F8C0FC94045 /* Pods-FamJam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FamJam.release.xcconfig"; path = "Pods/Target Support Files/Pods-FamJam/Pods-FamJam.release.xcconfig"; sourceTree = "<group>"; };
+		334401251CD20E5F00559BDE /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		3367DB451CD09E2700AEDE71 /* TopicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopicView.swift; path = Views/TopicView.swift; sourceTree = "<group>"; };
 		337946861CD059200055DB03 /* Services */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Services; sourceTree = "<group>"; };
 		339538961CD0BCAB0094AB46 /* android */ = {isa = PBXFileReference; lastKnownFileType = folder; name = android; path = "node_modules/react-native/android"; sourceTree = "<group>"; };
@@ -94,6 +103,8 @@
 		339538B81CD142C20094AB46 /* ImagePickerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImagePickerManager.m; path = "node_modules/react-native-image-picker/ios/ImagePickerManager.m"; sourceTree = "<group>"; };
 		339538BA1CD151830094AB46 /* RNUploader.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNUploader.xcodeproj; path = "node_modules/react-native-uploader/RNUploader/RNUploader.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		339538C11CD153810094AB46 /* RNUploader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RNUploader.m; path = "node_modules/react-native-uploader/RNUploader/RNUploader.m"; sourceTree = "<group>"; };
+		33F3844D1CD210E700EF7C8D /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		33F384521CD2122700EF7C8D /* CodePush.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CodePush.xcodeproj; path = "../node_modules/react-native-code-push/ios/CodePush.xcodeproj"; sourceTree = "<group>"; };
 		3A1476206C6AAB4150E8559C /* Pods-FamJam.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FamJam.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FamJam/Pods-FamJam.debug.xcconfig"; sourceTree = "<group>"; };
 		650E1C761CCC2F28002C69DC /* FamJam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FamJam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		650E1C791CCC2F28002C69DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -174,6 +185,7 @@
 		3395389A1CD0C6870094AB46 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				33F384521CD2122700EF7C8D /* CodePush.xcodeproj */,
 				339538BA1CD151830094AB46 /* RNUploader.xcodeproj */,
 				339538AF1CD13E3B0094AB46 /* RNImagePicker.xcodeproj */,
 				339538A51CD135DB0094AB46 /* RCTCamera.xcodeproj */,
@@ -215,6 +227,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		33F384581CD2122900EF7C8D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				33F3845C1CD2122900EF7C8D /* libCodePush.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		3817A65E813B3B92CC1B063B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,6 +272,7 @@
 		650E1C781CCC2F28002C69DC /* FamJam */ = {
 			isa = PBXGroup;
 			children = (
+				334401251CD20E5F00559BDE /* main.jsbundle */,
 				3367DB441CD09DFC00AEDE71 /* Views */,
 				337946861CD059200055DB03 /* Services */,
 				6546CB101CCDAE1D00BEEA54 /* AllPhotosViewController.swift */,
@@ -273,6 +294,7 @@
 				650E1C851CCC2F28002C69DC /* LaunchScreen.storyboard */,
 				650E1C881CCC2F28002C69DC /* Info.plist */,
 				650E1C801CCC2F28002C69DC /* FamJam.xcdatamodeld */,
+				33F3844D1CD210E700EF7C8D /* BridgingHeader.h */,
 			);
 			path = FamJam;
 			sourceTree = "<group>";
@@ -395,6 +417,10 @@
 					ProjectRef = 3395389B1CD0C6AB0094AB46 /* ART.xcodeproj */;
 				},
 				{
+					ProductGroup = 33F384581CD2122900EF7C8D /* Products */;
+					ProjectRef = 33F384521CD2122700EF7C8D /* CodePush.xcodeproj */;
+				},
+				{
 					ProductGroup = 339538A61CD135DB0094AB46 /* Products */;
 					ProjectRef = 339538A51CD135DB0094AB46 /* RCTCamera.xcodeproj */;
 				},
@@ -445,6 +471,13 @@
 			remoteRef = 339538BE1CD151830094AB46 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		33F3845C1CD2122900EF7C8D /* libCodePush.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCodePush.a;
+			remoteRef = 33F3845B1CD2122900EF7C8D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -454,6 +487,7 @@
 			files = (
 				337946871CD059200055DB03 /* Services in Resources */,
 				650E1C871CCC2F28002C69DC /* LaunchScreen.storyboard in Resources */,
+				334401261CD20E5F00559BDE /* main.jsbundle in Resources */,
 				650E1C841CCC2F28002C69DC /* Assets.xcassets in Resources */,
 				650E1C7F1CCC2F28002C69DC /* Main.storyboard in Resources */,
 			);
@@ -691,7 +725,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/../node_modules/react-native/React/**";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../node_modules/react-native/React/**",
+					"${SRCROOT)/../node_modules/react-native-code-push/**",
+				);
 				INFOPLIST_FILE = FamJam/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -700,6 +737,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.accord.io.lctan21.FamJam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/FamJam/BridgingHeader.h";
 			};
 			name = Debug;
 		};
@@ -709,7 +747,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/../node_modules/react-native/React/**";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../node_modules/react-native/React/**",
+					"${SRCROOT)/../node_modules/react-native-code-push/**",
+				);
 				INFOPLIST_FILE = FamJam/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -718,6 +759,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.accord.io.lctan21.FamJam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/FamJam/BridgingHeader.h";
 			};
 			name = Release;
 		};

@@ -534,7 +534,6 @@
         <!--Item-->
         <scene sceneID="ZON-ra-dG6">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Wuc-0Q-8KR" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="qHN-eI-BGS" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BMb-lW-T5m"/>
@@ -547,6 +546,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="P0Q-4U-2oA"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wuc-0Q-8KR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1427" y="1526"/>
         </scene>

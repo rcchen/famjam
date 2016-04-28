@@ -11,4 +11,5 @@ target 'FamJam' do
     'RCTText',
     'RCTWebSocket',
   ]
+  pod 'CodePush', :path => './node_modules/react-native-code-push'
 end
