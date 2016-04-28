@@ -76,7 +76,10 @@ exports.api.get("/topics/:id", middleware_1.authorizeToken, function (req, res) 
         .populate("images")
         .populate("users")
         .exec(function (err, topic) {
-        res.json(topic);
+        res.json({
+            user: req.authenticatedUser,
+            topic: topic
+        });
     });
 });
 var upload = multer({
