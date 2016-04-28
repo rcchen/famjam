@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '71240ECB339205FE43B2A09F228E89D6'
+               BlueprintIdentifier = '8036AE92866BC812BC8CCF09CF19B78F'
                BlueprintName = 'React'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'React.framework'>
