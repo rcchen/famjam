@@ -9,6 +9,4 @@
 #ifndef BridgingHeader_h
 #define BridgingHeader_h
 
-#import "CodePush/CodePush.h"
-
 #endif /* BridgingHeader_h */

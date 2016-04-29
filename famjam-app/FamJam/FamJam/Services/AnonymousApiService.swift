@@ -24,9 +24,7 @@ class AnonymousApiService: BaseApiService {
         }
     }
 
-    static func authenticateUser(username: String, password: String, cb: (Bool) -> Void) {
-        print(username, password)
-        
+    static func authenticateUser(username: String, password: String, cb: (Bool) -> Void) {        
         Alamofire.request(
             .POST,
             "\(BaseApiService.SERVER_BASE_URL)/authenticate",
