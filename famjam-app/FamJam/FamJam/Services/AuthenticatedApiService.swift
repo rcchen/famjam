@@ -44,13 +44,35 @@ class AuthenticatedApiService: BaseApiService {
             if let data = response.result.value {
                 var topic: Topic?
                 var user: User?
-
                 user <-- data["user"]
                 topic <-- data["topic"]
-                
                 cb(user!, topic!)
             }
         }
+    }
+
+    
+    func addPhotoToTopic(topicId: String, photoUrl: NSURL, description: String, cb: (Bool) -> Void) {
+        let url = "\(BaseApiService.SERVER_BASE_URL)/topics/\(topicId)"
+        Alamofire.upload(
+            .POST,
+            url,
+            headers: self.headers,
+            multipartFormData: { multipartFormData in
+                multipartFormData.appendBodyPart(fileURL: photoUrl, name: "photo")
+            },
+            encodingCompletion: { encodingResult in
+                switch encodingResult {
+                case .Success(let upload, _, _):
+                    upload.responseJSON { response in
+                        let statusCode = (response.response)!.statusCode
+                        cb(statusCode == 200)
+                    }
+                case .Failure(_):
+                    cb(false)
+                }
+            }
+        )
     }
 }
 
