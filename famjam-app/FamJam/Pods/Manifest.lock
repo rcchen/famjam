@@ -1,46 +1,15 @@
 PODS:
   - Alamofire (3.3.1)
-  - CodePush (1.10.5):
-    - React
-  - React (0.24.1):
-    - React/Core (= 0.24.1)
-  - React/ART (0.24.1):
-    - React/Core
-  - React/Core (0.24.1)
-  - React/RCTCameraRoll (0.24.1):
-    - React/Core
-  - React/RCTImage (0.24.1):
-    - React/Core
-    - React/RCTNetwork
-  - React/RCTNetwork (0.24.1):
-    - React/Core
-  - React/RCTText (0.24.1):
-    - React/Core
-  - React/RCTWebSocket (0.24.1):
-    - React/Core
+  - JSONHelper (1.7.0)
 
 DEPENDENCIES:
   - Alamofire
-  - CodePush (from `./node_modules/react-native-code-push`)
-  - React/ART (from `./node_modules/react-native`)
-  - React/Core (from `./node_modules/react-native`)
-  - React/RCTCameraRoll (from `./node_modules/react-native`)
-  - React/RCTImage (from `./node_modules/react-native`)
-  - React/RCTNetwork (from `./node_modules/react-native`)
-  - React/RCTText (from `./node_modules/react-native`)
-  - React/RCTWebSocket (from `./node_modules/react-native`)
-
-EXTERNAL SOURCES:
-  CodePush:
-    :path: "./node_modules/react-native-code-push"
-  React:
-    :path: "./node_modules/react-native"
+  - JSONHelper
 
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
-  CodePush: 9b9505eb992bd60d15ec62bd1e30e7052308a156
-  React: 386bbe687faee56ab75bad6132813945d5857403
+  JSONHelper: b71808273ac60fb9e1878eb115370b0faac14a81
 
-PODFILE CHECKSUM: 687cd3f8dd17aab8237ac87ced010d9f946ee044
+PODFILE CHECKSUM: f122b5bd403f424bb399a5f32d2da6d14a487201
 
 COCOAPODS: 1.0.0.beta.8
