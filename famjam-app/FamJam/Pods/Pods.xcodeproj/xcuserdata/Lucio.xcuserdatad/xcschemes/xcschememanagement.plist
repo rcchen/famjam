@@ -14,6 +14,11 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>JSONHelper.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>10</integer>
+		</dict>
 		<key>Pods-FamJam.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -27,7 +32,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>24FB1BB0AB4B68388EB65B09AB3B9A67</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>5F7860934FA60A3EAD6B31B9D20A2B11</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>785D0E81386EF86AA49CA63BFE2A6803</key>
 		<dict>
 			<key>primary</key>
 			<true/>

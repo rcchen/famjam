@@ -10,14 +10,40 @@ import UIKit
 
 class FamilyDashboardViewController: UIViewController, UITableViewDataSource {
     
+    
+    @IBAction func unwindFromEditUserCancel(segue: UIStoryboardSegue) {
+    
+    }
+    
+    @IBAction func unwindFromEditUserSave(segue: UIStoryboardSegue) {
+    
+    }
+    
+    @IBOutlet weak var profilePicture: UIImageView!
+    
+    @IBOutlet weak var topViewNameLabel: UILabel!
+    
+    @IBOutlet weak var familyLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.familyDashboardTableView.dataSource = self
         welcomeLabel.text = welcomeLabel.text?.stringByAppendingString(AppData.ACTIVE_USER)
-        welcomeLabel.font = Constants.FAMJAM_HEADER_FONT
+        profilePicture.image = UIImage(named: "lucioImage")
+        topViewNameLabel.text = AppData.ACTIVE_USER
+        familyLabel.text = "Family: " + AppData.ACTIVE_FAMILY
+        
+        welcomeLabel.font = Constants.FAMJAM_SUBHEADER_FONT
         welcomeLabel.textColor = Constants.FAMJAM_WHITE_COLOR
+        
+        topViewNameLabel.font = Constants.FAMJAM_HEADER_FONT
+        topViewNameLabel.textColor = Constants.FAMJAM_WHITE_COLOR
+        
+        familyLabel.font = Constants.FAMJAM_SUBHEADER_FONT
+        familyLabel.textColor = Constants.FAMJAM_WHITE_COLOR
+        
         navigationBar.barTintColor = Constants.FAMJAM_ORANGE_COLOR
     }
 

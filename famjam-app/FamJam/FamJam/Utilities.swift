@@ -44,6 +44,7 @@ class ThemeOfDayConstants {
 class AppData {
     static var ACTIVE_USER = "Lucio"
     static var ACTIVE_THEME = "Random"
+    static var ACTIVE_FAMILY = "CS 377U Fam"
 }
 
 class TabItemLabels {
@@ -53,5 +54,5 @@ class TabItemLabels {
 }
 
 class AllPhotosConstants {
-    static let THEMES = ["Random", "Lunch", "Winning", "Cute Animals", "Dessert"]
+    static let THEMES = ["Random", "Lunch", "Winning", "Cute Animals", "Dessert", "Night-Out"]
 }

@@ -10,6 +10,7 @@ import UIKit
 
 class FrontPageViewController: UIViewController {
 
+    @IBOutlet weak var systemMessageLabel: UILabel!
     
     var keyBoardShowing = false
     
@@ -33,6 +34,14 @@ class FrontPageViewController: UIViewController {
     }
     
     @IBAction func unwindWithLogout(segue: UIStoryboardSegue) {
+        
+    }
+    
+    @IBAction func unwindWithCancelNewUser(segue: UIStoryboardSegue) {
+        
+    }
+    
+    @IBAction func unwindWithNewUserCreated(segue: UIStoryboardSegue) {
         
     }
     
@@ -70,6 +79,8 @@ class FrontPageViewController: UIViewController {
         AnonymousApiService.authenticateUser(usernameTextField.text!, password: passwordTextField.text!, cb: {(valid:Bool) in
             if (valid) {
                 self.performSegueWithIdentifier("loginUser", sender: self)
+            } else {
+                self.systemMessageLabel.text = "Invalid username/password combination."
             }
         })
     }
