@@ -53,7 +53,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="Ofl-u1-TH2" kind="show" id="X5n-w3-row"/>
+                                            <action selector="loginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vmk-V0-7jW"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -109,6 +109,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="WG9-T2-sxF"/>
+                    <connections>
+                        <outlet property="passwordTextField" destination="ODY-h7-tEh" id="qQB-Lf-cIi"/>
+                        <outlet property="usernameTextField" destination="Xef-n6-7N9" id="a3t-Nc-cZL"/>
+                        <segue destination="Ofl-u1-TH2" kind="show" identifier="loginUser" id="P27-2E-1Es"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -445,35 +450,35 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="C9f-X5-5RU">
                                 <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="MOI-Y4-eii">
-                                    <size key="itemSize" width="148" height="193"/>
+                                    <size key="itemSize" width="150" height="223"/>
                                     <size key="headerReferenceSize" width="50" height="50"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="dUj-k5-qSJ" customClass="PhotoCollectionViewCell" customModule="FamJam" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="148" height="193"/>
+                                        <rect key="frame" x="0.0" y="50" width="150" height="223"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="148" height="193"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="223"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zNg-Mi-xvs">
-                                                    <rect key="frame" x="0.0" y="39" width="148" height="133"/>
+                                                    <rect key="frame" x="0.0" y="39" width="150" height="150"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WsD-yu-Oms">
                                                     <rect key="frame" x="0.0" y="0.0" width="148" height="38"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="38" id="9ii-Q7-glj"/>
+                                                        <constraint firstAttribute="height" constant="38" id="UzL-8b-Hlo"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caption" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iAU-sk-Bpd">
-                                                    <rect key="frame" x="0.0" y="171" width="148" height="22"/>
+                                                    <rect key="frame" x="0.0" y="187" width="148" height="22"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="22" id="MoZ-Uf-hRQ"/>
+                                                        <constraint firstAttribute="height" constant="22" id="1Z4-VZ-p4L"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -483,16 +488,16 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="WsD-yu-Oms" firstAttribute="leading" secondItem="zNg-Mi-xvs" secondAttribute="leading" id="0qy-D2-QFr"/>
-                                            <constraint firstItem="zNg-Mi-xvs" firstAttribute="top" secondItem="WsD-yu-Oms" secondAttribute="bottom" constant="1" id="5LJ-07-qXa"/>
-                                            <constraint firstAttribute="bottom" secondItem="iAU-sk-Bpd" secondAttribute="bottom" id="Bty-vB-sDD"/>
-                                            <constraint firstItem="WsD-yu-Oms" firstAttribute="trailing" secondItem="zNg-Mi-xvs" secondAttribute="trailing" id="HMw-JP-hSe"/>
-                                            <constraint firstItem="WsD-yu-Oms" firstAttribute="top" secondItem="dUj-k5-qSJ" secondAttribute="top" id="OKW-Su-Wss"/>
-                                            <constraint firstItem="zNg-Mi-xvs" firstAttribute="trailing" secondItem="iAU-sk-Bpd" secondAttribute="trailing" id="cyZ-5H-vPm"/>
-                                            <constraint firstItem="zNg-Mi-xvs" firstAttribute="leading" secondItem="iAU-sk-Bpd" secondAttribute="leading" id="fGt-ou-SLK"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="zNg-Mi-xvs" secondAttribute="bottom" constant="13" id="jLS-yB-lp5"/>
-                                            <constraint firstAttribute="trailing" secondItem="WsD-yu-Oms" secondAttribute="trailing" id="lIf-9r-of4"/>
-                                            <constraint firstItem="WsD-yu-Oms" firstAttribute="leading" secondItem="dUj-k5-qSJ" secondAttribute="leading" id="naa-P8-IEm"/>
+                                            <constraint firstItem="zNg-Mi-xvs" firstAttribute="leading" secondItem="iAU-sk-Bpd" secondAttribute="leading" id="5V2-tD-LPj"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="iAU-sk-Bpd" secondAttribute="bottom" constant="6" id="6jm-AJ-GNn"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="WsD-yu-Oms" secondAttribute="trailing" constant="-6" id="ahR-qQ-9Da"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="zNg-Mi-xvs" secondAttribute="bottom" constant="26" id="dPN-LF-O8S"/>
+                                            <constraint firstItem="WsD-yu-Oms" firstAttribute="leading" secondItem="zNg-Mi-xvs" secondAttribute="leading" id="eHO-59-4Mk"/>
+                                            <constraint firstItem="WsD-yu-Oms" firstAttribute="leading" secondItem="dUj-k5-qSJ" secondAttribute="leading" id="hY3-pM-dha"/>
+                                            <constraint firstItem="WsD-yu-Oms" firstAttribute="trailing" secondItem="iAU-sk-Bpd" secondAttribute="trailing" id="rzT-y4-Jct"/>
+                                            <constraint firstAttribute="trailing" secondItem="zNg-Mi-xvs" secondAttribute="trailing" id="tkV-AR-9NT"/>
+                                            <constraint firstItem="WsD-yu-Oms" firstAttribute="top" secondItem="dUj-k5-qSJ" secondAttribute="top" id="vLY-Ur-QoP"/>
+                                            <constraint firstItem="zNg-Mi-xvs" firstAttribute="top" secondItem="WsD-yu-Oms" secondAttribute="bottom" constant="1" id="zEr-kz-vYZ"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="caption" destination="iAU-sk-Bpd" id="LxC-v1-EEG"/>

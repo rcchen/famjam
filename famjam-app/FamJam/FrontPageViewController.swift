@@ -62,6 +62,17 @@ class FrontPageViewController: UIViewController {
         view.endEditing(true)
     }
 
+    @IBOutlet weak var usernameTextField: UITextField!
+    
+    @IBOutlet weak var passwordTextField: UITextField!
+    
+    @IBAction func loginPressed(sender: UIButton) {
+        AnonymousApiService.authenticateUser(usernameTextField.text!, password: passwordTextField.text!, cb: {(valid:Bool) in
+            if (valid) {
+                self.performSegueWithIdentifier("loginUser", sender: self)
+            }
+        })
+    }
     
     /*
     // MARK: - Navigation

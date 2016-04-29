@@ -24,7 +24,9 @@ class AnonymousApiService: BaseApiService {
         }
     }
 
-    static func authenticateUser(username: String, password: String) {
+    static func authenticateUser(username: String, password: String, cb: (Bool) -> Void) {
+        print(username, password)
+        
         Alamofire.request(
             .POST,
             "\(BaseApiService.SERVER_BASE_URL)/authenticate",
@@ -34,12 +36,15 @@ class AnonymousApiService: BaseApiService {
             ],
             encoding: .JSON)
             .responseJSON { response in
-                let defaults = NSUserDefaults.standardUserDefaults()
-                defaults.setValue("Bearer \(response.result.value!)", forKey: BaseApiService.TOKEN_KEY)
-                defaults.synchronize()
-                
-                let service = AuthenticatedApiService()
-                service.getFeed()
+                let statusCode = (response.response)!.statusCode
+                if statusCode == 401 {
+                    cb(false)
+                } else {
+                    let defaults = NSUserDefaults.standardUserDefaults()
+                    defaults.setValue("Bearer \(response.result.value!)", forKey: BaseApiService.TOKEN_KEY)
+                    defaults.synchronize()
+                    cb(true)
+                }
         }
     }
     
