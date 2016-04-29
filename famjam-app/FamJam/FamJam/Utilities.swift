@@ -48,8 +48,8 @@ class AppData {
 
 class TabItemLabels {
     static var FIRST_LABEL = "My Family"
-    static var SECOND_LABEL = "All our Photos"
-    static var THIRD_LABEL = "Theme of the Day"
+    static var SECOND_LABEL = "Theme of the Day"
+    static var THIRD_LABEL = "All Our Photos"
 }
 
 class AllPhotosConstants {
