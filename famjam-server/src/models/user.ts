@@ -1,10 +1,13 @@
 import { Schema, model } from "mongoose";
 
 const userSchema = new Schema({
-  _id: Schema.Types.ObjectId,
-  username: String,
+  attributes: {
+    displayName: String,
+    profileUrl: String
+  },
+  families: [{ type: Schema.Types.ObjectId, ref: "Family" }],
   password: { type: String, select: false },
-  topics: [{ type: Schema.Types.ObjectId, ref: "Topic" }]
+  username: String
 });
 
 export const User = model("User", userSchema);

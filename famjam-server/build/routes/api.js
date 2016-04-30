@@ -16,8 +16,11 @@ aws.config.region = "us-west-2";
 var s3 = new aws.S3();
 exports.api.post("/users", function (req, res) {
     var username = req.body.username;
+    var attributes = {
+        displayName: req.body.displayName
+    };
     bcrypt.hash(req.body.password, 10, function (err, password) {
-        new models_1.User({ username: username, password: password }).save(function (err, user) {
+        new models_1.User({ username: username, password: password, attributes: attributes }).save(function (err, user) {
             res.json(user);
         });
     });
@@ -43,16 +46,54 @@ exports.api.get("/users", middleware_1.authorizeToken, function (req, res) {
         res.json(users);
     });
 });
-exports.api.get("/topics", middleware_1.authorizeToken, function (req, res) {
+exports.api.get("/families", middleware_1.authorizeToken, function (req, res) {
+    models_1.Family.find({
+        attributes: {
+            displayName: req.query["displayName"]
+        }
+    }, function (err, families) {
+        res.json(families);
+    });
+});
+exports.api.post("/families", middleware_1.authorizeToken, function (req, res) {
     var uid = req.authenticatedUser._id;
+    new models_1.Family({
+        attributes: {
+            displayName: req.body["displayName"]
+        },
+        members: [uid]
+    }).save(function (err, family) {
+        models_1.User.findById(uid, function (err, user) {
+            user.families.push(family._id);
+            user.save(function (_) { return res.json(family); });
+        });
+    });
+});
+exports.api.post("/families/:id/join", middleware_1.authorizeToken, function (req, res) {
+    var uid = req.authenticatedUser._id;
+    models_1.Family.findById(req.params["id"], function (err, family) {
+        if (err)
+            return res.status(500).json(err);
+        family.members.push(uid);
+        family.save(function (_) {
+            models_1.User.findById(uid, function (err, user) {
+                if (err)
+                    return res.status(500).json(err);
+                user.families.push(family._id);
+                user.save(function (_) { return res.sendStatus(200); });
+            });
+        });
+    });
+});
+exports.api.get("/topics", middleware_1.authorizeToken, function (req, res) {
+    var user = req.authenticatedUser;
     models_1.Topic.find({
-        $or: [
-            { _creator: uid },
-            { users: {
-                    $in: [uid]
-                } }
-        ]
+        _family: {
+            $in: user.families
+        }
     }, function (err, topics) {
+        if (err)
+            res.status(500).json(err);
         res.json(topics);
     });
 });
@@ -60,11 +101,13 @@ exports.api.post("/topics", middleware_1.authorizeToken, function (req, res) {
     var user = req.authenticatedUser;
     new models_1.Topic({
         _creator: user._id,
-        name: req.body["name"],
-        users: req.body["users"]
+        _family: user.families[0],
+        active: true,
+        locked: true,
+        name: req.body["name"]
     }).save(function (err, topic) {
         if (err)
-            res.status(500).json(err);
+            return res.status(500).json(err);
         else {
             res.json(topic);
         }
@@ -73,9 +116,11 @@ exports.api.post("/topics", middleware_1.authorizeToken, function (req, res) {
 exports.api.get("/topics/:id", middleware_1.authorizeToken, function (req, res) {
     models_1.Topic.findById(req.params["id"])
         .populate("_creator")
+        .populate("_family")
         .populate("images")
-        .populate("users")
         .exec(function (err, topic) {
+        if (err)
+            return res.status(500).json(err);
         res.json({
             user: req.authenticatedUser,
             topic: topic
@@ -112,19 +157,5 @@ exports.api.post("/topics/:id", middleware_1.authorizeToken, upload.array("photo
                 }
             });
         });
-    });
-});
-exports.api.post("/get_signed_upload", middleware_1.authorizeToken, function (req, res) {
-    var s3_params = {
-        Bucket: "famjam",
-        Key: uuid.v4(),
-        ContentType: req.body["file_type"]
-    };
-    s3.getSignedUrl("putObject", s3_params, function (err, data) {
-        if (err)
-            res.status(500).json(err);
-        else {
-            res.json(data);
-        }
     });
 });

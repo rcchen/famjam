@@ -10,9 +10,9 @@ import * as uuid from "node-uuid";
 const multerS3 = require("multer-s3");
 
 import { config } from "../app/config";
-import { IImage, ITopic, IUser } from "../app/interfaces";
+import { IFamily, IImage, ITopic, IUser } from "../app/interfaces";
 import { authorizeToken } from "../middleware";
-import { Image, Topic, User } from "../models";
+import { Family, Image, Topic, User } from "../models";
 
 export const api = express();
 
@@ -27,8 +27,11 @@ const s3 = new aws.S3();
 
 api.post("/users", (req, res) => {
   const username = req.body.username;
+  const attributes = {
+    displayName: req.body.displayName
+  };
   bcrypt.hash(req.body.password, 10, (err, password) => {
-    new User({ username, password }).save((err, user: IUser) => {
+    new User({ username, password, attributes }).save((err, user: IUser) => {
       res.json(user);
     });
   });
@@ -56,16 +59,54 @@ api.get("/users", authorizeToken, (req, res) => {
   });
 });
 
-api.get("/topics", authorizeToken, (req, res) => {
+api.get("/families", authorizeToken, (req, res) => {
+  Family.find({
+    attributes: {
+      displayName: req.query["displayName"]
+    }
+  }, (err, families) => {
+    res.json(families);
+  });
+});
+
+api.post("/families", authorizeToken, (req, res) => {
   const uid = (req.authenticatedUser as IUser)._id;
+  new Family({
+    attributes: {
+      displayName: req.body["displayName"]
+    },
+    members: [uid]
+  }).save((err, family: IFamily) => {
+    User.findById(uid, (err, user: IUser) => {
+      user.families.push(family._id);
+      user.save(_ => res.json(family));
+    });
+  });
+});
+
+api.post("/families/:id/join", authorizeToken, (req, res) => {
+  const uid = (req.authenticatedUser as IUser)._id;
+  Family.findById(req.params["id"], (err, family: IFamily) => {
+    if (err) return res.status(500).json(err);
+    family.members.push(uid);
+    family.save(_ => {
+      User.findById(uid, (err, user: IUser) => {
+        if (err) return res.status(500).json(err);
+        user.families.push(family._id);
+        user.save(_ => res.sendStatus(200));
+      });
+    });
+  });
+});
+
+api.get("/topics", authorizeToken, (req, res) => {
+  const user = req.authenticatedUser as IUser;
   Topic.find({
-    $or: [
-      { _creator: uid },
-      { users: {
-        $in: [ uid ]
-      }}
-    ]
+    _family: {
+      $in: user.families
+    }
   }, (err, topics) => {
+    if (err) res.status(500).json(err);
     res.json(topics);
   });
 });
@@ -74,10 +115,12 @@ api.post("/topics", authorizeToken, (req, res) => {
   const user = req.authenticatedUser as IUser;
   new Topic({
     _creator: user._id,
-    name: req.body["name"],
-    users: req.body["users"]
+    _family: user.families[0],
+    active: true,
+    locked: true,
+    name: req.body["name"]
   }).save((err, topic) => {
-    if (err) res.status(500).json(err);
+    if (err) return res.status(500).json(err);
     else {
       res.json(topic);
     }
@@ -87,9 +130,10 @@ api.post("/topics", authorizeToken, (req, res) => {
 api.get("/topics/:id", authorizeToken, (req, res) => {
   Topic.findById(req.params["id"])
     .populate("_creator")
+    .populate("_family")
     .populate("images")
-    .populate("users")
     .exec((err, topic) => {
+      if (err) return res.status(500).json(err);
       res.json({
         user: req.authenticatedUser,
         topic
@@ -127,19 +171,5 @@ api.post("/topics/:id", authorizeToken, upload.array("photo", 1), (req, res) => 
         }
       });
     });
-  });
-});
-
-api.post("/get_signed_upload", authorizeToken, (req, res) => {
-  const s3_params = {
-    Bucket: "famjam",
-    Key: uuid.v4(),
-    ContentType: req.body["file_type"]
-  };
-  s3.getSignedUrl("putObject", s3_params, (err, data) => {
-    if (err) res.status(500).json(err);
-    else {
-      res.json(data);
-    }
   });
 });
