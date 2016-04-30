@@ -46,6 +46,14 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
     @IBAction func unwindFromPhotoDetailView(segue: UIStoryboardSegue) {
     }
     
+    @IBAction func unwindFromNewTopicViewCancel(segue: UIStoryboardSegue) {
+        
+    }
+    
+    @IBAction func unwindFromNewTopicViewSave(segue: UIStoryboardSegue) {
+        
+    }
+    
     
     // Variables for this controller
     var defaultCaption = ""

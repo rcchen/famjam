@@ -1,14 +1,14 @@
 //
-//  NewUserViewController.swift
+//  NewTopicViewController.swift
 //  FamJam
 //
-//  Created by Lucio Tan on 4/28/16.
+//  Created by Lucio Tan on 4/29/16.
 //  Copyright © 2016 Accord.io. All rights reserved.
 //
 
 import UIKit
 
-class NewUserViewController: UIViewController {
+class NewTopicViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,27 +29,14 @@ class NewUserViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "newUserCreated") {
-            print(usernameTextField.text)
-            print(displaynameTextField.text)
-            print(passwordTextField.text)
-            print(familyTextField.text)
+        if (segue.identifier == "savedTopic") {
+            print(newTopicTextField.text)
         }
     }
     
     var keyBoardShowing = false
     
-    @IBOutlet weak var usernameTextField: UITextField!
-    
-    
-    @IBOutlet weak var displaynameTextField: UITextField!
-    
-    
-    @IBOutlet weak var passwordTextField: UITextField!
-
-    
-    @IBOutlet weak var familyTextField: UITextField!
-    
+    @IBOutlet weak var newTopicTextField: UITextField!
     
     // Will show the keyboard
     func keyboardWillShow(notification: NSNotification) {
@@ -76,7 +63,8 @@ class NewUserViewController: UIViewController {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
-    
+
+
     /*
     // MARK: - Navigation
 
