@@ -10,13 +10,14 @@ import Foundation
 
 class AnonymousApiService: BaseApiService {
     
-    static func createUser(username: String, password: String, cb: () -> Void) {
+    static func createUser(username: String, password: String, displayName: String, cb: () -> Void) {
         Alamofire.request(
             .POST,
             "\(BaseApiService.SERVER_BASE_URL)/users",
             parameters: [
                 "username": username,
-                "password": password
+                "password": password,
+                "displayName": displayName,
             ],
             encoding: .JSON)
             .responseJSON { _ in
