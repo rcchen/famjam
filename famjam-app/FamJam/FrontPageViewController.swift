@@ -78,6 +78,7 @@ class FrontPageViewController: UIViewController {
     @IBAction func loginPressed(sender: UIButton) {
         AnonymousApiService.authenticateUser(usernameTextField.text!, password: passwordTextField.text!, cb: {(valid:Bool) in
             if (valid) {
+                AuthenticatedApiService.sharedInstance.setHeaders()
                 self.performSegueWithIdentifier("loginUser", sender: self)
             } else {
                 self.systemMessageLabel.text = "Invalid username/password combination."
