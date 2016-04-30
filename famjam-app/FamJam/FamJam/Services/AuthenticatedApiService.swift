@@ -10,9 +10,11 @@ import Foundation
 import JSONHelper
 
 class AuthenticatedApiService: BaseApiService {
-    let headers: [String: String];
+    var headers: [String: String] = [:];
 
-    override init() {
+    static let sharedInstance = AuthenticatedApiService()
+    
+    func setHeaders () {
         let defaults = NSUserDefaults.standardUserDefaults()
         self.headers = [
             "Authorization": defaults.stringForKey(BaseApiService.TOKEN_KEY)!
