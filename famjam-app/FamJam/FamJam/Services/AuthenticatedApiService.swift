@@ -21,6 +21,59 @@ class AuthenticatedApiService: BaseApiService {
         ]
     }
 
+    // Creates a new family with the given display name.
+    // Will add the authenticated user to the family automatically.
+    func createFamily(displayName: String, cb: (Bool) -> Void) {
+        Alamofire.request(
+            .POST,
+            "\(BaseApiService.SERVER_BASE_URL)/families",
+            parameters: [
+                "displayName": displayName
+            ],
+            encoding: .JSON,
+            headers: self.headers
+        ).responseJSON { response in
+            let statusCode = (response.response)!.statusCode
+            cb(statusCode == 200)
+        }
+    }
+
+    // Search for the family with the given display name.
+    func getFamilyByDisplayName(displayName: String, cb: (Family?) -> Void) {
+        Alamofire.request(
+            .GET,
+            "\(BaseApiService.SERVER_BASE_URL)/families",
+            parameters: [
+                "displayName": displayName
+            ],
+            encoding: .JSON,
+            headers: self.headers
+        ).responseJSON { response in
+            if let data = response.result.value {
+                var families: [Family]?
+                families <-- data
+                if (families?.count > 0) {
+                    cb(families![0])
+                } else {
+                    cb(nil)
+                }
+            }
+        }
+    }
+
+    // Join the family with the given ID
+    func joinFamily(id: String, cb: (Bool) -> Void) {
+        Alamofire.request(
+            .POST,
+            "\(BaseApiService.SERVER_BASE_URL)/families/\(id)/join",
+            encoding: .JSON,
+            headers: self.headers
+        ).responseJSON { response in
+            let statusCode = (response.response)!.statusCode
+            cb(statusCode == 200)
+        }
+    }
+    
     func getFeed(cb: ([Topic]) -> Void) {
         Alamofire.request(
             .GET,
@@ -30,7 +83,7 @@ class AuthenticatedApiService: BaseApiService {
         ).responseJSON { response in
             if let data = response.result.value {
                 var topics: [Topic]?
-                topics <-- data["topics"]
+                topics <-- data
                 cb(topics!)
             }
         }
