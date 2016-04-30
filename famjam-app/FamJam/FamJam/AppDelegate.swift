@@ -16,18 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-        
-//        AnonymousApiService.authenticateUser("lucio", password: "lucio", cb: {(valid:Bool) in
-//            if (valid) {
-//                let service = AuthenticatedApiService()
-//                service.getTopic("571c0b1d9ad4be1100057554", cb: {(creator: User, topic: Topic) in
-//                    debugPrint(creator._id!)
-//                    debugPrint(topic.images!)
-//                })
-//            }
-//        })
-//        
+
         return true
     }
 
