@@ -16,8 +16,11 @@ aws.config.region = "us-west-2";
 var s3 = new aws.S3();
 exports.api.post("/users", function (req, res) {
     var username = req.body.username;
+    var attributes = {
+        displayName: req.body.displayName
+    };
     bcrypt.hash(req.body.password, 10, function (err, password) {
-        new models_1.User({ username: username, password: password }).save(function (err, user) {
+        new models_1.User({ username: username, password: password, attributes: attributes }).save(function (err, user) {
             res.json(user);
         });
     });
@@ -42,6 +45,42 @@ exports.api.get("/users", middleware_1.authorizeToken, function (req, res) {
     models_1.User.find({}, function (err, users) {
         res.json(users);
     });
+});
+exports.api.get("/families", middleware_1.authorizeToken, function (req, res) {
+    models_1.Family.find({
+        attributes: {
+            displayName: req.query["displayName"]
+        }
+    }, function (err, families) {
+        res.json(families);
+    });
+});
+exports.api.post("/families", middleware_1.authorizeToken, function (req, res) {
+    var uid = req.authenticatedUser._id;
+    new models_1.Family({
+        attributes: {
+            displayName: req.body["displayName"]
+        },
+        members: [uid]
+    }).save(function (err, family) {
+        models_1.User.findById(uid, function (err, user) {
+            user.families.push(family._id);
+            user.save(function (_) { return res.json(family); });
+        });
+    });
+});
+exports.api.post("/families/:id/join", middleware_1.authorizeToken, function (req, res) {
+    var uid = req.authenticatedUser._id;
+    models_1.Family.findById(req.params["id"], function (err, family) {
+        family.members.push(uid);
+        family.save(function (_) {
+            models_1.User.findById(uid, function (err, user) {
+                user.families.push(family._id);
+                user.save(function (_) { return res.sendStatus(200); });
+            });
+        });
+    });
+    return res.sendStatus(500);
 });
 exports.api.get("/topics", middleware_1.authorizeToken, function (req, res) {
     var uid = req.authenticatedUser._id;

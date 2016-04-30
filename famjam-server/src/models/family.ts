@@ -8,4 +8,4 @@ const familySchema = new Schema({
   name: String
 });
 
-export const family = model("Family", familySchema);
+export const Family = model("Family", familySchema);

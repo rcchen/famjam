@@ -7,4 +7,4 @@ var familySchema = new mongoose_1.Schema({
     members: [{ type: mongoose_1.Schema.Types.ObjectId, ref: "User" }],
     name: String
 });
-exports.family = mongoose_1.model("Family", familySchema);
+exports.Family = mongoose_1.model("Family", familySchema);

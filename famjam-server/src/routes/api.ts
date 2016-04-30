@@ -10,9 +10,9 @@ import * as uuid from "node-uuid";
 const multerS3 = require("multer-s3");
 
 import { config } from "../app/config";
-import { IImage, ITopic, IUser } from "../app/interfaces";
+import { IFamily, IImage, ITopic, IUser } from "../app/interfaces";
 import { authorizeToken } from "../middleware";
-import { Image, Topic, User } from "../models";
+import { Family, Image, Topic, User } from "../models";
 
 export const api = express();
 
@@ -27,8 +27,11 @@ const s3 = new aws.S3();
 
 api.post("/users", (req, res) => {
   const username = req.body.username;
+  const attributes = {
+    displayName: req.body.displayName
+  };
   bcrypt.hash(req.body.password, 10, (err, password) => {
-    new User({ username, password }).save((err, user: IUser) => {
+    new User({ username, password, attributes }).save((err, user: IUser) => {
       res.json(user);
     });
   });
@@ -54,6 +57,45 @@ api.get("/users", authorizeToken, (req, res) => {
   User.find({}, (err, users) => {
     res.json(users);
   });
+});
+
+api.get("/families", authorizeToken, (req, res) => {
+  Family.find({
+    attributes: {
+      displayName: req.query["displayName"]
+    }
+  }, (err, families) => {
+    res.json(families);
+  });
+});
+
+api.post("/families", authorizeToken, (req, res) => {
+  const uid = (req.authenticatedUser as IUser)._id;
+  new Family({
+    attributes: {
+      displayName: req.body["displayName"]
+    },
+    members: [uid]
+  }).save((err, family: IFamily) => {
+    User.findById(uid, (err, user: IUser) => {
+      user.families.push(family._id);
+      user.save(_ => res.json(family));
+    });
+  });
+});
+
+api.post("/families/:id/join", authorizeToken, (req, res) => {
+  const uid = (req.authenticatedUser as IUser)._id;
+  Family.findById(req.params["id"], (err, family: IFamily) => {
+    family.members.push(uid);
+    family.save(_ => {
+      User.findById(uid, (err, user: IUser) => {
+        user.families.push(family._id);
+        user.save(_ => res.sendStatus(200));
+      });
+    });
+  });
+  return res.sendStatus(500);
 });
 
 api.get("/topics", authorizeToken, (req, res) => {
