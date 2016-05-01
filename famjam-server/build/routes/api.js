@@ -28,7 +28,7 @@ exports.api.post("/users", function (req, res) {
 exports.api.post("/authenticate", function (req, res) {
     var username = req.body.username;
     models_1.User.findOne({ username: username }, "password", function (err, user) {
-        if (user !== undefined) {
+        if (user !== null) {
             bcrypt.compare(req.body.password, user.password, function (err, authenticated) {
                 if (authenticated) {
                     var uid = user._id;
@@ -38,7 +38,9 @@ exports.api.post("/authenticate", function (req, res) {
                 }
             });
         }
-        return res.sendStatus(401);
+        else {
+            return res.sendStatus(401);
+        }
     });
 });
 exports.api.get("/users", middleware_1.authorizeToken, function (req, res) {

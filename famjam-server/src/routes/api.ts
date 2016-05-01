@@ -40,7 +40,7 @@ api.post("/users", (req, res) => {
 api.post("/authenticate", (req, res) => {
   const username = req.body.username;
   User.findOne({ username }, "password", (err, user: IUser) => {
-    if (user !== undefined) {
+    if (user !== null) {
       bcrypt.compare(req.body.password, user.password, (err, authenticated) => {
         if (authenticated) {
           const uid = user._id;
@@ -49,8 +49,9 @@ api.post("/authenticate", (req, res) => {
           });
         }
       });
+    } else {
+      return res.sendStatus(401);      
     }
-    return res.sendStatus(401);
   });
 });
 
