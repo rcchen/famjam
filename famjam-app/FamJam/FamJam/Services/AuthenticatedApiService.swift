@@ -22,6 +22,21 @@ class AuthenticatedApiService: BaseApiService {
         print("Setting headers")
     }
 
+    func getMe(cb: (User) -> Void) {
+        Alamofire.request(
+            .GET,
+            "\(BaseApiService.SERVER_BASE_URL)/me",
+            encoding: .JSON,
+            headers: self.headers
+        ).responseJSON { response in
+            if let data = response.result.value {
+                var user: User?
+                user <-- data
+                cb(user!)
+            }
+        }
+    }
+    
     // Creates a new family with the given display name.
     // Will add the authenticated user to the family automatically.
     func createFamily(displayName: String, cb: (Bool) -> Void) {
@@ -90,7 +105,8 @@ class AuthenticatedApiService: BaseApiService {
         }
     }
 
-    func getTopic(topicId: String, cb: (User, Topic) -> Void) {
+    // Retrieve a topic
+    func getTopic(topicId: String, cb: (Topic) -> Void) {
         Alamofire.request(
             .GET,
             "\(BaseApiService.SERVER_BASE_URL)/topics/\(topicId)",
@@ -99,10 +115,8 @@ class AuthenticatedApiService: BaseApiService {
         ).responseJSON { response in
             if let data = response.result.value {
                 var topic: Topic?
-                var user: User?
-                user <-- data["user"]
-                topic <-- data["topic"]
-                cb(user!, topic!)
+                topic <-- data
+                cb(topic!)
             }
         }
     }
