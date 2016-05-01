@@ -40,16 +40,17 @@ api.post("/users", (req, res) => {
 api.post("/authenticate", (req, res) => {
   const username = req.body.username;
   User.findOne({ username }, "password", (err, user: IUser) => {
-    bcrypt.compare(req.body.password, user.password, (err, authenticated) => {
-      if (authenticated) {
-        const uid = user._id;
-        jsonwebtoken.sign({ uid }, config.secret, {}, (token) => {
-          res.json(token);
-        });
-      } else {
-        res.sendStatus(401);
-      }
-    });
+    if (user !== undefined) {
+      bcrypt.compare(req.body.password, user.password, (err, authenticated) => {
+        if (authenticated) {
+          const uid = user._id;
+          jsonwebtoken.sign({ uid }, config.secret, {}, (token) => {
+            return res.json(token);
+          });
+        }
+      });
+    }
+    return res.sendStatus(401);
   });
 });
 
@@ -134,10 +135,7 @@ api.get("/topics/:id", authorizeToken, (req, res) => {
     .populate("images")
     .exec((err, topic) => {
       if (err) return res.status(500).json(err);
-      res.json({
-        user: req.authenticatedUser,
-        topic
-      });
+      res.json(topic);
     });
 });
 

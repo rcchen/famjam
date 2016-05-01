@@ -28,17 +28,17 @@ exports.api.post("/users", function (req, res) {
 exports.api.post("/authenticate", function (req, res) {
     var username = req.body.username;
     models_1.User.findOne({ username: username }, "password", function (err, user) {
-        bcrypt.compare(req.body.password, user.password, function (err, authenticated) {
-            if (authenticated) {
-                var uid = user._id;
-                jsonwebtoken.sign({ uid: uid }, config_1.config.secret, {}, function (token) {
-                    res.json(token);
-                });
-            }
-            else {
-                res.sendStatus(401);
-            }
-        });
+        if (user !== undefined) {
+            bcrypt.compare(req.body.password, user.password, function (err, authenticated) {
+                if (authenticated) {
+                    var uid = user._id;
+                    jsonwebtoken.sign({ uid: uid }, config_1.config.secret, {}, function (token) {
+                        return res.json(token);
+                    });
+                }
+            });
+        }
+        return res.sendStatus(401);
     });
 });
 exports.api.get("/users", middleware_1.authorizeToken, function (req, res) {
@@ -121,10 +121,7 @@ exports.api.get("/topics/:id", middleware_1.authorizeToken, function (req, res) 
         .exec(function (err, topic) {
         if (err)
             return res.status(500).json(err);
-        res.json({
-            user: req.authenticatedUser,
-            topic: topic
-        });
+        res.json(topic);
     });
 });
 var upload = multer({
