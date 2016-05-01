@@ -65,6 +65,16 @@ api.get("/users", authorizeToken, (req, res) => {
   });
 });
 
+api.get("/me", authorizeToken, (req, res) => {
+  const uid = (req.authenticatedUser as IUser)._id;
+  User.findById(uid)
+    .populate("families")
+    .exec((err, user) => {
+      if (err) return res.status(500).json(err);
+      res.json(user);
+    });
+});
+
 api.get("/families", authorizeToken, (req, res) => {
   Family.find({
     attributes: {

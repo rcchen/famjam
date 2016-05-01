@@ -52,6 +52,16 @@ exports.api.get("/users", middleware_1.authorizeToken, function (req, res) {
         res.json(users);
     });
 });
+exports.api.get("/me", middleware_1.authorizeToken, function (req, res) {
+    var uid = req.authenticatedUser._id;
+    models_1.User.findById(uid)
+        .populate("families")
+        .exec(function (err, user) {
+        if (err)
+            return res.status(500).json(err);
+        res.json(user);
+    });
+});
 exports.api.get("/families", middleware_1.authorizeToken, function (req, res) {
     models_1.Family.find({
         attributes: {
