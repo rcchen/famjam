@@ -19,9 +19,13 @@ exports.api.post("/users", function (req, res) {
     var attributes = {
         displayName: req.body.displayName
     };
-    bcrypt.hash(req.body.password, 10, function (err, password) {
-        new models_1.User({ username: username, password: password, attributes: attributes }).save(function (err, user) {
-            res.json(user);
+    models_1.User.findOne({ username: username }, function (err, user) {
+        if (user)
+            return res.sendStatus(409);
+        bcrypt.hash(req.body.password, 10, function (err, password) {
+            new models_1.User({ username: username, password: password, attributes: attributes }).save(function (err, user) {
+                res.json(user);
+            });
         });
     });
 });

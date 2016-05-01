@@ -30,9 +30,13 @@ api.post("/users", (req, res) => {
   const attributes = {
     displayName: req.body.displayName
   };
-  bcrypt.hash(req.body.password, 10, (err, password) => {
-    new User({ username, password, attributes }).save((err, user: IUser) => {
-      res.json(user);
+
+  User.findOne({ username }, (err, user: IUser) => {
+    if (user) return res.sendStatus(409);
+    bcrypt.hash(req.body.password, 10, (err, password) => {
+      new User({ username, password, attributes }).save((err, user: IUser) => {
+        res.json(user);
+      });
     });
   });
 });
@@ -50,7 +54,7 @@ api.post("/authenticate", (req, res) => {
         }
       });
     } else {
-      return res.sendStatus(401);      
+      return res.sendStatus(401);
     }
   });
 });
