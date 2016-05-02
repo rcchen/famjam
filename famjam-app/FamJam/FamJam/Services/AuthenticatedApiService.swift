@@ -39,7 +39,7 @@ class AuthenticatedApiService: BaseApiService {
     
     // Creates a new family with the given display name.
     // Will add the authenticated user to the family automatically.
-    func createFamily(displayName: String, cb: (Bool) -> Void) {
+    func createFamily(displayName: String, cb: (Family) -> Void) {
         Alamofire.request(
             .POST,
             "\(BaseApiService.SERVER_BASE_URL)/families",
@@ -49,8 +49,11 @@ class AuthenticatedApiService: BaseApiService {
             encoding: .JSON,
             headers: self.headers
         ).responseJSON { response in
-            let statusCode = (response.response)!.statusCode
-            cb(statusCode == 200)
+            if let data = response.result.value {
+                var family: Family?
+                family <-- data
+                cb(family!)
+            }
         }
     }
 
