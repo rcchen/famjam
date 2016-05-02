@@ -19,9 +19,13 @@ exports.api.post("/users", function (req, res) {
     var attributes = {
         displayName: req.body.displayName
     };
-    bcrypt.hash(req.body.password, 10, function (err, password) {
-        new models_1.User({ username: username, password: password, attributes: attributes }).save(function (err, user) {
-            res.json(user);
+    models_1.User.findOne({ username: username }, function (err, user) {
+        if (user)
+            return res.sendStatus(409);
+        bcrypt.hash(req.body.password, 10, function (err, password) {
+            new models_1.User({ username: username, password: password, attributes: attributes }).save(function (err, user) {
+                res.json(user);
+            });
         });
     });
 });
@@ -46,6 +50,16 @@ exports.api.post("/authenticate", function (req, res) {
 exports.api.get("/users", middleware_1.authorizeToken, function (req, res) {
     models_1.User.find({}, function (err, users) {
         res.json(users);
+    });
+});
+exports.api.get("/me", middleware_1.authorizeToken, function (req, res) {
+    var uid = req.authenticatedUser._id;
+    models_1.User.findById(uid)
+        .populate("families")
+        .exec(function (err, user) {
+        if (err)
+            return res.status(500).json(err);
+        res.json(user);
     });
 });
 exports.api.get("/families", middleware_1.authorizeToken, function (req, res) {

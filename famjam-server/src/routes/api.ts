@@ -30,9 +30,13 @@ api.post("/users", (req, res) => {
   const attributes = {
     displayName: req.body.displayName
   };
-  bcrypt.hash(req.body.password, 10, (err, password) => {
-    new User({ username, password, attributes }).save((err, user: IUser) => {
-      res.json(user);
+
+  User.findOne({ username }, (err, user: IUser) => {
+    if (user) return res.sendStatus(409);
+    bcrypt.hash(req.body.password, 10, (err, password) => {
+      new User({ username, password, attributes }).save((err, user: IUser) => {
+        res.json(user);
+      });
     });
   });
 });
@@ -50,7 +54,7 @@ api.post("/authenticate", (req, res) => {
         }
       });
     } else {
-      return res.sendStatus(401);      
+      return res.sendStatus(401);
     }
   });
 });
@@ -59,6 +63,16 @@ api.get("/users", authorizeToken, (req, res) => {
   User.find({}, (err, users) => {
     res.json(users);
   });
+});
+
+api.get("/me", authorizeToken, (req, res) => {
+  const uid = (req.authenticatedUser as IUser)._id;
+  User.findById(uid)
+    .populate("families")
+    .exec((err, user) => {
+      if (err) return res.status(500).json(err);
+      res.json(user);
+    });
 });
 
 api.get("/families", authorizeToken, (req, res) => {
