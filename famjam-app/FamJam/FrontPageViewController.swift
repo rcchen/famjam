@@ -83,6 +83,12 @@ class FrontPageViewController: UIViewController {
                 AppData.ACTIVE_USER = self.usernameTextField.text!
                 
                 // Need to set active family here
+                AuthenticatedApiService.sharedInstance.getMe({(user: User) in
+                    let userFamily = user.families![0]
+                    //AppData.ACTIVE_FAMILY = userFamily._id!
+                    AppData.ACTIVE_FAMILY = userFamily
+                })
+                
                 
                 
                 self.performSegueWithIdentifier("loginUser", sender: self)

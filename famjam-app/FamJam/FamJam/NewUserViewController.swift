@@ -28,6 +28,8 @@ class NewUserViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 //        if (segue.identifier == "newUserCreated") {
 //            AnonymousApiService.createUser(usernameTextField.text!, password: passwordTextField.text!, displayName: displaynameTextField.text!, cb: {})
@@ -35,42 +37,42 @@ class NewUserViewController: UIViewController {
 //        }
         
         if (segue.identifier == "newUserCreated") {
-            AnonymousApiService.createUser(usernameTextField.text!, password: passwordTextField.text!, displayName: displaynameTextField.text!, cb: {})
-            
-            
-            AnonymousApiService.authenticateUser(usernameTextField.text!, password: passwordTextField.text!, cb: {(success: Bool) in
+            AnonymousApiService.createUser(usernameTextField.text!, password: passwordTextField.text!, displayName: displaynameTextField.text!, cb: {
+                
+                AnonymousApiService.authenticateUser(self.usernameTextField.text!, password: self.passwordTextField.text!, cb: {(success: Bool) in
                     AuthenticatedApiService.sharedInstance.setHeaders()
-                })
-            
-            
-            
-            // Joins family
-            
-            AuthenticatedApiService.sharedInstance.getFamilyByDisplayName(familyTextField.text!, cb: {(family: Family?) in
-                if let familyToJoin = family {
-                    print("family found")
-                    AuthenticatedApiService.sharedInstance.joinFamily(familyToJoin._id!, cb: {_ in })
-                } else {
-                    print("no family found")
-                    AuthenticatedApiService.sharedInstance.createFamily(self.familyTextField.text!, cb: {(successfullyCreated: Bool) in
-                        print("family successfully created")
-                        AuthenticatedApiService.sharedInstance.getFamilyByDisplayName(self.familyTextField.text!, cb: {(family: Family?) in
-                            
-                            if let familyCreated = family {
-                                AuthenticatedApiService.sharedInstance.joinFamily(familyCreated._id!, cb: {_ in
-                                print("successfully created and then joined")})
-                            }
-                        
-                        })
-                        
-                        
+                    
+                    
+                    // Joins family
+                    
+                    AuthenticatedApiService.sharedInstance.getFamilyByDisplayName(self.familyTextField.text!, cb: {(family: Family?) in
+                        if let familyToJoin = family {
+                            print("family found")
+                            AuthenticatedApiService.sharedInstance.joinFamily(familyToJoin._id!, cb: {_ in })
+                            AppData.ACTIVE_FAMILY = familyToJoin
+                        } else {
+                            print("no family found")
+                            AuthenticatedApiService.sharedInstance.createFamily(self.familyTextField.text!, cb: {(successfullyCreated: Bool) in
+                                
+                                
+                                
+                            })
+                        }
                     })
-                }
+                    
+                    
                 })
+
+                
+            
+            })
             
             
-            AppData.ACTIVE_USER = self.usernameTextField.text!
-            AppData.ACTIVE_FAMILY = self.familyTextField.text!
+            AppDataFunctions.setActiveUserAndActiveFamily(self.usernameTextField.text!, family: self.familyTextField.text!)
+            
+
+//            AppData.ACTIVE_USER = self.usernameTextField.text!
+//            AppData.ACTIVE_FAMILY = self.familyTextField.text!
             
         }
         

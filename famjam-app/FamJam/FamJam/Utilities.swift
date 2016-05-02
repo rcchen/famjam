@@ -42,9 +42,11 @@ class ThemeOfDayConstants {
 }
 
 class AppData {
-    static var ACTIVE_USER = ""
+//    static var ACTIVE_USER = ""
     static var ACTIVE_THEME = "Random"
-    static var ACTIVE_FAMILY = "CS 377U Fam"
+    //static var ACTIVE_FAMILY = "CS 377U Fam"
+    static var ACTIVE_USER: User?
+    static var ACTIVE_FAMILY: Family?
 }
 
 class TabItemLabels {
@@ -56,3 +58,12 @@ class TabItemLabels {
 class AllPhotosConstants {
     static let THEMES = ["Random", "Lunch", "Winning", "Cute Animals", "Dessert", "Night-Out"]
 }
+
+class AppDataFunctions {
+    static func setActiveUserAndActiveFamily(user: String, family: String) {
+        AppData.ACTIVE_USER = user
+        //AppData.ACTIVE_FAMILY = family
+    }
+}
+
+
