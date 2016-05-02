@@ -32,7 +32,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Done" id="8We-No-GYp">
                                             <connections>
-                                                <segue destination="uKB-k3-cAI" kind="unwind" identifier="newUserCreated" unwindAction="unwindWithNewUserCreated:" id="Yy0-H2-S6E"/>
+                                                <segue destination="Ofl-u1-TH2" kind="show" identifier="newUserCreated" id="h1t-J7-8bD"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -156,7 +156,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iwc-dV-2up" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="uKB-k3-cAI" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-368" y="1273"/>
+            <point key="canvasLocation" x="-179" y="1185"/>
         </scene>
         <!--Front Page View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -956,7 +956,10 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PGD-do-5RO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="741" y="548"/>
+            <point key="canvasLocation" x="594" y="845"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="h1t-J7-8bD"/>
+    </inferredMetricsTieBreakers>
 </document>

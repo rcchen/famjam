@@ -42,7 +42,7 @@ class ThemeOfDayConstants {
 }
 
 class AppData {
-    static var ACTIVE_USER = "Lucio"
+    static var ACTIVE_USER = ""
     static var ACTIVE_THEME = "Random"
     static var ACTIVE_FAMILY = "CS 377U Fam"
 }

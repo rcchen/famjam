@@ -29,12 +29,52 @@ class NewUserViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if (segue.identifier == "newUserCreated") {
+//            AnonymousApiService.createUser(usernameTextField.text!, password: passwordTextField.text!, displayName: displaynameTextField.text!, cb: {})
+//            
+//        }
+        
         if (segue.identifier == "newUserCreated") {
-            print(usernameTextField.text)
-            print(displaynameTextField.text)
-            print(passwordTextField.text)
-            print(familyTextField.text)
+            AnonymousApiService.createUser(usernameTextField.text!, password: passwordTextField.text!, displayName: displaynameTextField.text!, cb: {})
+            
+            
+            AnonymousApiService.authenticateUser(usernameTextField.text!, password: passwordTextField.text!, cb: {(success: Bool) in
+                    AuthenticatedApiService.sharedInstance.setHeaders()
+                })
+            
+            
+            
+            // Joins family
+            
+            AuthenticatedApiService.sharedInstance.getFamilyByDisplayName(familyTextField.text!, cb: {(family: Family?) in
+                if let familyToJoin = family {
+                    print("family found")
+                    AuthenticatedApiService.sharedInstance.joinFamily(familyToJoin._id!, cb: {_ in })
+                } else {
+                    print("no family found")
+                    AuthenticatedApiService.sharedInstance.createFamily(self.familyTextField.text!, cb: {(successfullyCreated: Bool) in
+                        print("family successfully created")
+                        AuthenticatedApiService.sharedInstance.getFamilyByDisplayName(self.familyTextField.text!, cb: {(family: Family?) in
+                            
+                            if let familyCreated = family {
+                                AuthenticatedApiService.sharedInstance.joinFamily(familyCreated._id!, cb: {_ in
+                                print("successfully created and then joined")})
+                            }
+                        
+                        })
+                        
+                        
+                    })
+                }
+                })
+            
+            
+            AppData.ACTIVE_USER = self.usernameTextField.text!
+            AppData.ACTIVE_FAMILY = self.familyTextField.text!
+            
         }
+        
+        
     }
     
     var keyBoardShowing = false

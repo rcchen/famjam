@@ -50,6 +50,7 @@ class AuthenticatedApiService: BaseApiService {
             encoding: .JSON,
             headers: self.headers
         ).responseJSON { response in
+            print(response)
             if let data = response.result.value {
                 var families: [Family]?
                 families <-- data
