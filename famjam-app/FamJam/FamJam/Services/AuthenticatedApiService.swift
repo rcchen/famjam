@@ -58,10 +58,7 @@ class AuthenticatedApiService: BaseApiService {
     func getFamilyByDisplayName(displayName: String, cb: (Family?) -> Void) {
         Alamofire.request(
             .GET,
-            "\(BaseApiService.SERVER_BASE_URL)/families",
-            parameters: [
-                "displayName": displayName
-            ],
+            "\(BaseApiService.SERVER_BASE_URL)/families?displayName=\(displayName)",
             encoding: .JSON,
             headers: self.headers
         ).responseJSON { response in
