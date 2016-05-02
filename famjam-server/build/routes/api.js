@@ -85,11 +85,21 @@ exports.api.post("/families", middleware_1.authorizeToken, function (req, res) {
         });
     });
 });
+exports.api.get("/families/:id", middleware_1.authorizeToken, function (req, res) {
+    var uid = req.authenticatedUser._id;
+    models_1.Family.findById(req.params["id"], function (err, family) {
+        if (err)
+            return res.status(500).json(err);
+        return res.json(family);
+    });
+});
 exports.api.post("/families/:id/join", middleware_1.authorizeToken, function (req, res) {
     var uid = req.authenticatedUser._id;
     models_1.Family.findById(req.params["id"], function (err, family) {
         if (err)
             return res.status(500).json(err);
+        if (family.members.indexOf(uid) > 0)
+            return res.status(200);
         family.members.push(uid);
         family.save(function (_) {
             models_1.User.findById(uid, function (err, user) {
