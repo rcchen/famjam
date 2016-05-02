@@ -39,48 +39,29 @@ class NewUserViewController: UIViewController {
     }
     
     @IBAction func doneButtonPressed(sender: UIBarButtonItem) {
-        
-        AnonymousApiService.createUser(usernameTextField.text!, password: passwordTextField.text!, displayName: displaynameTextField.text!, cb: {
-            
-            AnonymousApiService.authenticateUser(self.usernameTextField.text!, password: self.passwordTextField.text!, cb: {(success: Bool) in
-                AuthenticatedApiService.sharedInstance.setHeaders()
-                
-                
-                AuthenticatedApiService.sharedInstance.getMe({(user: User) in
-                    AppData.ACTIVE_USER = user
-                    
-                    AuthenticatedApiService.sharedInstance.getFamilyByDisplayName(self.familyTextField.text!, cb: {(family: Family?) in
-                        if let familyToJoin = family {
-                            print("family found")
-                            AuthenticatedApiService.sharedInstance.joinFamily(familyToJoin._id!, cb: {_ in })
-                            AppData.ACTIVE_FAMILY = familyToJoin
-                            
-                            
-                        } else {
-                            print("no family found")
-                            AuthenticatedApiService.sharedInstance.createFamily(self.familyTextField.text!, cb: {(familyToJoin: Family) in
-                                AppData.ACTIVE_FAMILY = familyToJoin
-                                
-                            })
-                        }
-                        
-                        self.performSegueWithIdentifier("newUserCreated", sender: self)
-                    })
-                    
-                })
-                
-            })
-            
-        })
-        
-        //            AppDataFunctions.setActiveUserAndActiveFamily(self.usernameTextField.text!, family: self.familyTextField.text!)
-        
-        
-        //            AppData.ACTIVE_USER = self.usernameTextField.text!
-        //            AppData.ACTIVE_FAMILY = self.familyTextField.text!
-        
-        
 
+        let username = usernameTextField.text!
+        let password = passwordTextField.text!
+        let displayName = displaynameTextField.text!
+        
+        let authenticatedService = AuthenticatedApiService.sharedInstance;
+
+        AnonymousApiService.createUser(username, password: password, displayName: displayName)
+            .onSuccess { _ in
+                AnonymousApiService.authenticateUser(username, password: password)
+                    .onSuccess { _ in
+                        authenticatedService.setHeaders()
+                        authenticatedService.getMe()
+                            .onSuccess { user in
+                                AppData.ACTIVE_USER = user
+                                authenticatedService.joinOrCreateFamily(displayName)
+                                    .onSuccess { family in
+                                        AppData.ACTIVE_FAMILY = family
+                                        self.performSegueWithIdentifier("newUserCreated", sender: self)
+                                }
+                        }
+                }
+        }
     }
     
     

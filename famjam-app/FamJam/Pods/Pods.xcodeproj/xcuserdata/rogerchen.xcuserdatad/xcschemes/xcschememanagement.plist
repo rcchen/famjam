@@ -9,7 +9,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>CodePush.xcscheme</key>
+		<key>BrightFutures.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -24,7 +24,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>React.xcscheme</key>
+		<key>Result.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -37,12 +37,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>785D0E81386EF86AA49CA63BFE2A6803</key>
+		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
+		<key>7BB17359068A26BB1EF61653A3E7C9A3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B9B4DDC6AA4D85A16E085BD38240F789</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DCB45C0AF8651B0CC72E303D3F242439</key>
 		<dict>
 			<key>primary</key>
 			<true/>

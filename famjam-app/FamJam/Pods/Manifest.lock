@@ -1,15 +1,21 @@
 PODS:
   - Alamofire (3.3.1)
+  - BrightFutures (4.0.0):
+    - Result (~> 2.0)
   - JSONHelper (1.7.0)
+  - Result (2.0.0)
 
 DEPENDENCIES:
   - Alamofire
+  - BrightFutures
   - JSONHelper
 
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
+  BrightFutures: ddeb9a2747c101914d7b2cf5094acfd5fb67395c
   JSONHelper: b71808273ac60fb9e1878eb115370b0faac14a81
+  Result: 9e75e1111c774c6ac594e14907b15057053a7959
 
-PODFILE CHECKSUM: f122b5bd403f424bb399a5f32d2da6d14a487201
+PODFILE CHECKSUM: 1dea89d07f302280f836ca4f1eeca61a2f628776
 
 COCOAPODS: 1.0.0.beta.8

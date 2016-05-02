@@ -2,5 +2,6 @@ use_frameworks!
 
 target 'FamJam' do
   pod 'Alamofire'
+  pod 'BrightFutures'
   pod 'JSONHelper'
 end

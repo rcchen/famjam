@@ -79,31 +79,31 @@ class FrontPageViewController: UIViewController {
         
         print("login pressed")
         
-        AnonymousApiService.authenticateUser(usernameTextField.text!, password: passwordTextField.text!, cb: {(valid:Bool) in
-            if (valid) {
-                AuthenticatedApiService.sharedInstance.setHeaders()
-                
-//                AppData.ACTIVE_USER = self.usernameTextField.text!
-                
-                print("Is valid")
-                
-                // Need to set active family here
-                AuthenticatedApiService.sharedInstance.getMe({(user: User) in
-                    let userFamily = user.families![0]
-                    //AppData.ACTIVE_FAMILY = userFamily._id!
-                    AppData.ACTIVE_FAMILY = userFamily
-                    AppData.ACTIVE_USER = user
-                    self.performSegueWithIdentifier("loginUser", sender: self)
-                })
-                
-                
-                
-                
-            } else {
-                print("Not valid")
-                self.systemMessageLabel.text = "Invalid username/password combination."
-            }
-        })
+//        AnonymousApiService.authenticateUser(usernameTextField.text!, password: passwordTextField.text!, cb: {(valid:Bool) in
+//            if (valid) {
+//                AuthenticatedApiService.sharedInstance.setHeaders()
+//                
+////                AppData.ACTIVE_USER = self.usernameTextField.text!
+//                
+//                print("Is valid")
+//                
+//                // Need to set active family here
+//                AuthenticatedApiService.sharedInstance.getMe({(user: User) in
+//                    let userFamily = user.families![0]
+//                    //AppData.ACTIVE_FAMILY = userFamily._id!
+//                    AppData.ACTIVE_FAMILY = userFamily
+//                    AppData.ACTIVE_USER = user
+//                    self.performSegueWithIdentifier("loginUser", sender: self)
+//                })
+//                
+//                
+//                
+//                
+//            } else {
+//                print("Not valid")
+//                self.systemMessageLabel.text = "Invalid username/password combination."
+//            }
+//        })
     }
     
     /*
