@@ -30,10 +30,10 @@ class FamilyDashboardViewController: UIViewController, UITableViewDataSource {
 
         // Do any additional setup after loading the view.
         self.familyDashboardTableView.dataSource = self
-        welcomeLabel.text = welcomeLabel.text?.stringByAppendingString(AppData.ACTIVE_USER)
+        welcomeLabel.text = welcomeLabel.text?.stringByAppendingString(AppDataFunctions.getActiveUserDisplayname(AppData.ACTIVE_USER!))
         profilePicture.image = UIImage(named: "lucioImage")
-        topViewNameLabel.text = AppData.ACTIVE_USER
-        familyLabel.text = "Family: " + AppData.ACTIVE_FAMILY
+        topViewNameLabel.text = AppDataFunctions.getActiveUserDisplayname(AppData.ACTIVE_USER!)
+        familyLabel.text = "Family: " + AppDataFunctions.getActiveFamilyname(AppData.ACTIVE_FAMILY!)
         
         welcomeLabel.font = Constants.FAMJAM_SUBHEADER_FONT
         welcomeLabel.textColor = Constants.FAMJAM_WHITE_COLOR
@@ -59,6 +59,8 @@ class FamilyDashboardViewController: UIViewController, UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return FamilyDashboardConstants.NUM_ROWS_IN_SECTION
+//        print(AppData.ACTIVE_FAMILY)
+//        return AppDataFunctions.getNumFamilyMembersFromFamily(AppData.ACTIVE_FAMILY!)
     }
     
     
@@ -71,7 +73,7 @@ class FamilyDashboardViewController: UIViewController, UITableViewDataSource {
         let nameString = UserData.NAMES[indexPath.row]
         cell.name.text = nameString
         cell.name.font = Constants.FAMJAM_SUBHEADER_FONT
-        if (nameString == AppData.ACTIVE_USER) {
+        if (nameString == AppDataFunctions.getActiveUserDisplayname(AppData.ACTIVE_USER!)) {
             cell.remindButton.hidden = true
         }
         cell.profilePicture.image = UIImage(named: UserData.USER_PHOTO_NAMES[indexPath.row])

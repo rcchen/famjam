@@ -36,48 +36,53 @@ class NewUserViewController: UIViewController {
 //            
 //        }
         
-        if (segue.identifier == "newUserCreated") {
-            AnonymousApiService.createUser(usernameTextField.text!, password: passwordTextField.text!, displayName: displaynameTextField.text!, cb: {
+    }
+    
+    @IBAction func doneButtonPressed(sender: UIBarButtonItem) {
+        
+        AnonymousApiService.createUser(usernameTextField.text!, password: passwordTextField.text!, displayName: displaynameTextField.text!, cb: {
+            
+            AnonymousApiService.authenticateUser(self.usernameTextField.text!, password: self.passwordTextField.text!, cb: {(success: Bool) in
+                AuthenticatedApiService.sharedInstance.setHeaders()
                 
-                AnonymousApiService.authenticateUser(self.usernameTextField.text!, password: self.passwordTextField.text!, cb: {(success: Bool) in
-                    AuthenticatedApiService.sharedInstance.setHeaders()
-                    
-                    
-                    // Joins family
+                
+                AuthenticatedApiService.sharedInstance.getMe({(user: User) in
+                    AppData.ACTIVE_USER = user
                     
                     AuthenticatedApiService.sharedInstance.getFamilyByDisplayName(self.familyTextField.text!, cb: {(family: Family?) in
                         if let familyToJoin = family {
                             print("family found")
                             AuthenticatedApiService.sharedInstance.joinFamily(familyToJoin._id!, cb: {_ in })
                             AppData.ACTIVE_FAMILY = familyToJoin
+                            
+                            
                         } else {
                             print("no family found")
-                            AuthenticatedApiService.sharedInstance.createFamily(self.familyTextField.text!, cb: {(successfullyCreated: Bool) in
-                                
-                                
+                            AuthenticatedApiService.sharedInstance.createFamily(self.familyTextField.text!, cb: {(familyToJoin: Family) in
+                                AppData.ACTIVE_FAMILY = familyToJoin
                                 
                             })
                         }
+                        
+                        self.performSegueWithIdentifier("newUserCreated", sender: self)
                     })
                     
-                    
                 })
-
                 
-            
             })
             
-            
-            AppDataFunctions.setActiveUserAndActiveFamily(self.usernameTextField.text!, family: self.familyTextField.text!)
-            
+        })
+        
+        //            AppDataFunctions.setActiveUserAndActiveFamily(self.usernameTextField.text!, family: self.familyTextField.text!)
+        
+        
+        //            AppData.ACTIVE_USER = self.usernameTextField.text!
+        //            AppData.ACTIVE_FAMILY = self.familyTextField.text!
+        
+        
 
-//            AppData.ACTIVE_USER = self.usernameTextField.text!
-//            AppData.ACTIVE_FAMILY = self.familyTextField.text!
-            
-        }
-        
-        
     }
+    
     
     var keyBoardShowing = false
     

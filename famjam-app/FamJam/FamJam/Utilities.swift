@@ -60,10 +60,27 @@ class AllPhotosConstants {
 }
 
 class AppDataFunctions {
-    static func setActiveUserAndActiveFamily(user: String, family: String) {
-        AppData.ACTIVE_USER = user
-        //AppData.ACTIVE_FAMILY = family
+    
+    static func getActiveUsername(user: User) -> String {
+        return user.username!
     }
+    
+    static func getActiveUserDisplayname(user: User) -> String {
+        return user.attributes!["displayName"]!
+    }
+    
+    static func getActiveFamilyname(family: Family) -> String {
+        return family.attributes!["displayName"]!
+    }
+    
+    static func getFamilyMembersFromFamily(family: Family) -> [User] {
+        return family.members!
+    }
+    
+    static func getNumFamilyMembersFromFamily(family: Family) -> Int {
+        return family.members!.count
+    }
+    
 }
 
 

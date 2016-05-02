@@ -32,7 +32,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Done" id="8We-No-GYp">
                                             <connections>
-                                                <segue destination="Ofl-u1-TH2" kind="show" identifier="newUserCreated" id="h1t-J7-8bD"/>
+                                                <action selector="doneButtonPressed:" destination="2gn-9a-Qky" id="Fui-A1-5QD"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -151,12 +151,13 @@
                         <outlet property="familyTextField" destination="x7r-4U-CBZ" id="0kr-zk-aop"/>
                         <outlet property="passwordTextField" destination="b6K-fd-vRa" id="wKs-GL-s9U"/>
                         <outlet property="usernameTextField" destination="DO0-82-oXF" id="hBa-rq-prN"/>
+                        <segue destination="Ofl-u1-TH2" kind="show" identifier="newUserCreated" id="HW1-pq-1Ur"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iwc-dV-2up" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="uKB-k3-cAI" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-179" y="1185"/>
+            <point key="canvasLocation" x="-421" y="1218"/>
         </scene>
         <!--Front Page View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -305,7 +306,7 @@
                                         <rect key="frame" x="0.0" y="28" width="560" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EMP-7u-cYF" id="37d-Nb-beo">
-                                            <rect key="frame" x="0.0" y="0.0" width="560" height="89.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V71-dj-tQq">
@@ -960,6 +961,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="h1t-J7-8bD"/>
+        <segue reference="HW1-pq-1Ur"/>
     </inferredMetricsTieBreakers>
 </document>

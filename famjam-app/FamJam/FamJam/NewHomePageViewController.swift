@@ -93,7 +93,7 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PhotoCell", forIndexPath: indexPath) as! PhotoCollectionViewCell
         
-        if (AppData.ACTIVE_USER == UserData.NAMES[indexPath.row]) {
+        if (AppDataFunctions.getActiveUsername(AppData.ACTIVE_USER!) == UserData.NAMES[indexPath.row]) {
             cell.photo.image = savedImage
             cell.caption.text = defaultCaption
         } else if (pageIsLocked) {
