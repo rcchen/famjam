@@ -79,23 +79,31 @@ class FrontPageViewController: UIViewController {
         
         print("login pressed")
         
+        let username = usernameTextField.text!
+        let password = passwordTextField.text!
+        
+        AnonymousApiService.authenticateUser(username, password: password)
+            .onSuccess { valid in
+                print("Is valid")
+                
+                let authenticatedService = AuthenticatedApiService.sharedInstance
+                
+                authenticatedService.setHeaders()
+                
+                authenticatedService.getMe()
+                    .onSuccess { user in
+                        AppData.ACTIVE_USER = user
+                        authenticatedService.getFamily(user.families![0]._id!)
+                            .onSuccess { family in
+                                AppData.ACTIVE_FAMILY = family
+                                self.performSegueWithIdentifier("loginUser", sender: self)
+                        }
+                }
+        }
+        
 //        AnonymousApiService.authenticateUser(usernameTextField.text!, password: passwordTextField.text!, cb: {(valid:Bool) in
 //            if (valid) {
-//                AuthenticatedApiService.sharedInstance.setHeaders()
-//                
-////                AppData.ACTIVE_USER = self.usernameTextField.text!
-//                
-//                print("Is valid")
-//                
-//                // Need to set active family here
-//                AuthenticatedApiService.sharedInstance.getMe({(user: User) in
-//                    let userFamily = user.families![0]
-//                    //AppData.ACTIVE_FAMILY = userFamily._id!
-//                    AppData.ACTIVE_FAMILY = userFamily
-//                    AppData.ACTIVE_USER = user
-//                    self.performSegueWithIdentifier("loginUser", sender: self)
-//                })
-//                
+//
 //                
 //                
 //                
