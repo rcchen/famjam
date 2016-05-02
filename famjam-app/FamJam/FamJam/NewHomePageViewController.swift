@@ -51,7 +51,7 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
     }
     
     @IBAction func unwindFromNewTopicViewSave(segue: UIStoryboardSegue) {
-        
+        collectionView.reloadData()
     }
     
     
@@ -103,6 +103,10 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
             cell.caption.text = UserData.USER_PHOTO_CAPTIONS[indexPath.row]
             cell.photo.image = UIImage(named: UserData.USER_PHOTO_NAMES[indexPath.row])
         }
+        
+        
+        
+        
         cell.name.text = UserData.NAMES[indexPath.row]
         cell.caption.font = Constants.FAMJAM_FONT
         cell.name.font = Constants.FAMJAM_SUBHEADER_FONT
@@ -117,7 +121,9 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
         switch kind {
         case UICollectionElementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "header", forIndexPath: indexPath) as? AlbumHeaderCollectionReusableView
-            headerView!.changeLabelTitle(AppData.ACTIVE_THEME)
+            print("ACTIVE TOPIC WHEN PRINTING: ")
+            print(AppData.ACTIVE_TOPIC)
+            headerView!.changeLabelTitle(AppData.ACTIVE_TOPIC!.name!)
             return headerView!
 
         

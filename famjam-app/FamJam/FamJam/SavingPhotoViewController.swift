@@ -9,17 +9,6 @@
 import UIKit
 
 class SavingPhotoViewController: UIViewController {
-
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-
-        if segue.identifier == "savedPhoto" {
-            let destination = segue.destinationViewController as? NewHomePageViewController
-            destination?.defaultCaption = captionTextField.text
-            destination?.savedImage = savedImageReference
-        }
-        
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +27,22 @@ class SavingPhotoViewController: UIViewController {
     }
 
     
+    @IBAction func savePhotoPressed(sender: UIBarButtonItem) {
+        
+        
+        
+//        let destination = segue.destinationViewController as? NewHomePageViewController
+//        destination?.defaultCaption = captionTextField.text
+//        destination?.savedImage = savedImageReference
+        
+        // Save photo to database
+        
+        // Set user to "photo submitted" for topic
+        
+        // Perform segue
+        
+        performSegueWithIdentifier("savedPhoto", sender: self)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

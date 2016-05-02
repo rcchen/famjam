@@ -663,9 +663,11 @@
                                                 <state key="normal" title="Save"/>
                                                 <connections>
                                                     <action selector="savingPhoto:" destination="0HZ-aQ-Tbc" eventType="touchUpInside" id="gDV-dU-FqA"/>
-                                                    <segue destination="FFj-t9-xr6" kind="unwind" identifier="unwindFromSavingPhotos" unwindAction="unwindFromSavingPhotosToThemeOfDay:" id="dqt-aK-rcN"/>
                                                 </connections>
                                             </button>
+                                            <connections>
+                                                <action selector="savePhotoPressed:" destination="0HZ-aQ-Tbc" id="hf1-OE-VbW"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -686,6 +688,7 @@
                     <connections>
                         <outlet property="captionTextField" destination="WBC-8E-c1k" id="NgG-79-2vg"/>
                         <outlet property="savedImage" destination="ZAY-hi-7Hy" id="Btb-Kz-CcQ"/>
+                        <segue destination="FFj-t9-xr6" kind="unwind" identifier="savedPhoto" unwindAction="unwindFromSavingPhotosToThemeOfDay:" id="cEi-EI-Hwm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jD6-yw-1IM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -711,12 +714,12 @@
                                     <navigationItem title="Creating a New Topic" id="ddq-wG-BcL">
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="HB9-tB-P74">
                                             <connections>
-                                                <segue destination="fLD-RG-wgu" kind="unwind" unwindAction="unwindFromNewTopicViewCancel:" id="83f-E3-DCd"/>
+                                                <segue destination="fLD-RG-wgu" kind="unwind" unwindAction="unwindFromNewTopicViewCancel:" id="peJ-Bl-0pO"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Save" id="l8r-Qo-f1G">
                                             <connections>
-                                                <segue destination="fLD-RG-wgu" kind="unwind" identifier="savedTopic" unwindAction="unwindFromNewTopicViewSave:" id="qhg-Kt-h3V"/>
+                                                <action selector="saveTopicPressed:" destination="5wy-Ys-W9J" id="i7q-qG-MQn"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -750,6 +753,7 @@
                     </view>
                     <connections>
                         <outlet property="newTopicTextField" destination="1Rx-OR-pYK" id="ub6-9E-a1W"/>
+                        <segue destination="fLD-RG-wgu" kind="unwind" identifier="savedTopic" unwindAction="unwindFromNewTopicViewSave:" id="kVd-PN-Lc8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZSG-nu-l8c" userLabel="First Responder" sceneMemberID="firstResponder"/>

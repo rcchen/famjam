@@ -29,14 +29,24 @@ class NewTopicViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "savedTopic") {
-            print(newTopicTextField.text)
-        }
+//        if (segue.identifier == "savedTopic") {
+//            print(newTopicTextField.text)
+//        }
     }
     
     var keyBoardShowing = false
     
     @IBOutlet weak var newTopicTextField: UITextField!
+    
+    @IBAction func saveTopicPressed(sender: UIBarButtonItem) {
+        
+        AuthenticatedApiService.sharedInstance.createTopic(newTopicTextField.text!)
+            .onSuccess(callback: {
+                topic in
+                AppData.ACTIVE_TOPIC = topic
+                self.performSegueWithIdentifier("savedTopic", sender: self)
+            })
+    }
     
     // Will show the keyboard
     func keyboardWillShow(notification: NSNotification) {

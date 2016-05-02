@@ -42,11 +42,10 @@ class ThemeOfDayConstants {
 }
 
 class AppData {
-//    static var ACTIVE_USER = ""
-    static var ACTIVE_THEME = "Random"
-    //static var ACTIVE_FAMILY = "CS 377U Fam"
+    static var ACTIVE_TOPIC: Topic?
     static var ACTIVE_USER: User?
     static var ACTIVE_FAMILY: Family?
+    static var ACTIVE_FAMILY_MEMBERS: [User]?
 }
 
 class TabItemLabels {
