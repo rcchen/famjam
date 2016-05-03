@@ -55,6 +55,7 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
     }
     
     @IBAction func unwindFromNewTopicViewSave(segue: UIStoryboardSegue) {
+        print("Unwinded from new topic view")
         collectionView.reloadData()
     }
     
@@ -177,7 +178,7 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
         
         savedImage = image!
         
-        let library = ALAssetsLibrary()
+        //let library = ALAssetsLibrary()
         
 //        library.writeImageToSavedPhotosAlbum(image?.CGImage, metadata: info[UIImagePickerControllerMediaMetadata] as! [String : AnyObject], completionBlock: {(path: NSURL, error: NSError) -> Void in
 //            

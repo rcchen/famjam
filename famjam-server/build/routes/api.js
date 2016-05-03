@@ -222,6 +222,8 @@ const upload = multer({
     })
 });
 exports.api.post("/topics/:id", middleware_1.authorizeToken, upload.single("photo"), (req, res) => {
+    console.log(req.file);
+    console.log(req.files);
     new models_1.Image({
         _creator: req.authenticatedUser._id,
         _topic: req.params["id"],

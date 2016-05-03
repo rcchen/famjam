@@ -35,16 +35,11 @@ class SavingPhotoViewController: UIViewController {
         
         // Save photo to database
         AuthenticatedApiService.sharedInstance.addPhotoToTopic((AppData.ACTIVE_TOPIC?._id)!, photo: savedImageReference!, description: captionTextField.text, cb: {success in
-            // TODO: Set user to "photo submitted" for topic
             
             // Performs segue after saving
-            // TODO: UNCOMMENT!!!
-            //self.performSegueWithIdentifier("savedPhoto", sender: self)
+            self.performSegueWithIdentifier("savedPhoto", sender: self)
         })
         
-        
-        
-        // Perform segue
     }
     
 

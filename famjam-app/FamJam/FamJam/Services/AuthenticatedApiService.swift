@@ -255,8 +255,8 @@ class AuthenticatedApiService: BaseApiService {
             url,
             headers: self.headers,
             multipartFormData: { multipartFormData in
-                if let imageData = UIImageJPEGRepresentation(photo, 0.8) {
-                    multipartFormData.appendBodyPart(data: imageData, name: "photo", mimeType: "image/jpeg")
+                if let _photoData = UIImageJPEGRepresentation(photo, 0.7) {
+                    multipartFormData.appendBodyPart(data: _photoData, name: "photo", fileName: "photo.jpg", mimeType: "image/jpeg")
                 }
             },
             encodingCompletion: { encodingResult in

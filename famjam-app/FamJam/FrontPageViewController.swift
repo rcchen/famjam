@@ -96,12 +96,20 @@ class FrontPageViewController: UIViewController {
                         authenticatedService.getFamily(user.families![0]._id!)
                             .onSuccess { family in
                                 AppData.ACTIVE_FAMILY = family
-                                // TODO: NEED TO GET RID OF THIS!!!
-                                authenticatedService.createTopic("Time Flies")
+                                print("set active family")
+                                authenticatedService.getTopics(true)
                                     .onSuccess(callback: {
-                                        topic in
-                                        AppData.ACTIVE_TOPIC = topic
+                                        topics in
+                                        print("success in getting topic")
+                                        AppData.ACTIVE_TOPIC = topics[0]
+                                        print("success in getting topic 2")
+                                        print(AppData.ACTIVE_TOPIC)
                                         self.performSegueWithIdentifier("loginUser", sender: self)
+                                        })
+                                    .onFailure(callback: {
+                                        error in
+                                        print("Error: ")
+                                        print(error)
                                     })
                                 
                         }

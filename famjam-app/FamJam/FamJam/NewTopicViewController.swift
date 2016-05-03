@@ -49,12 +49,15 @@ class NewTopicViewController: UIViewController {
                         topics in
                         for topic in topics {
                             var copyTopic = topic
-                            copyTopic.active = false
-                            AuthenticatedApiService.sharedInstance.updateTopic(copyTopic)
-                                .onSuccess(callback: {
-                                    topic in
-                                    self.performSegueWithIdentifier("savedTopic", sender: self)
-                                })
+                            if copyTopic._id != AppData.ACTIVE_TOPIC?._id {
+                                copyTopic.active = false
+                                AuthenticatedApiService.sharedInstance.updateTopic(copyTopic)
+                                    .onSuccess(callback: {
+                                        topic in
+                                        self.performSegueWithIdentifier("savedTopic", sender: self)
+                                    })
+                            }
+
                         }
                        
                     })
