@@ -260,13 +260,16 @@ class AuthenticatedApiService: BaseApiService {
                 }
             },
             encodingCompletion: { encodingResult in
+                print(encodingResult)
                 switch encodingResult {
                 case .Success(let upload, _, _):
+                    print(upload)
                     upload.responseJSON { response in
                         let statusCode = (response.response)!.statusCode
                         cb(statusCode == 200)
                     }
-                case .Failure(_):
+                case .Failure(let fail):
+                    print(fail)
                     cb(false)
                 }
             }

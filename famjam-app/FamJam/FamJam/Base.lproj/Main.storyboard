@@ -662,12 +662,9 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Save"/>
                                                 <connections>
-                                                    <action selector="savingPhoto:" destination="0HZ-aQ-Tbc" eventType="touchUpInside" id="gDV-dU-FqA"/>
+                                                    <action selector="savePhotoPressed:" destination="0HZ-aQ-Tbc" eventType="touchUpInside" id="oAY-Nf-nqm"/>
                                                 </connections>
                                             </button>
-                                            <connections>
-                                                <action selector="savePhotoPressed:" destination="0HZ-aQ-Tbc" id="hf1-OE-VbW"/>
-                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
