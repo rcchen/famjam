@@ -101,12 +101,19 @@ exports.api.post("/families", bodyParser.json(), middleware_1.authorizeToken, (r
 });
 exports.api.get("/families/:id", middleware_1.authorizeToken, (req, res) => {
     const uid = req.authenticatedUser._id;
-    models_1.Family.findById(req.params["id"])
-        .populate("members")
-        .exec((err, family) => {
+    models_1.Family.findById(req.params["id"]).exec((err, family) => {
         if (err)
             return res.status(500).json(err);
         return res.json(family);
+    });
+});
+exports.api.get("/families/:id/members", middleware_1.authorizeToken, (req, res) => {
+    models_1.User.find({
+        families: req.params["id"]
+    }).exec((err, users) => {
+        if (err)
+            return res.status(500).json(err);
+        return res.json(users);
     });
 });
 exports.api.post("/families/:id/join", bodyParser.json(), middleware_1.authorizeToken, (req, res) => {
