@@ -115,13 +115,24 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
 //            cell.photo.image = UIImage(named: UserData.USER_PHOTO_NAMES[indexPath.row])
 //        }
         
-        let currentUser = AppDataFunctions.getFamilyMemberFromIndexPath(indexPath)
-        let userName = currentUser.attributes!["displayName"]
-        
-        
-        
-//        cell.name.text = UserData.NAMES[indexPath.row]
+        // Rendering the user's displayname
+        let cellUser = AppDataFunctions.getFamilyMemberFromIndexPath(indexPath)
+        let userName = cellUser.attributes!["displayName"]
         cell.name.text = userName
+        
+        
+        // Rendering photo with caption
+        // TODO: UNCOMMENT THIS WHEN IT WORKS
+        /*
+        if let userPhoto = AppDataFunctions.getUserPhotoFromPhotosInTopic(AppData.ACTIVE_TOPIC!, user: cellUser) {
+            //cell.photo.image = userPhoto.image
+            cell.caption.text = userPhoto.description
+            print("photo found for user!!!")
+        } else {
+            cell.photo.image = UIImage(named: Constants.DEFAULT_LOCK_IMAGE_NAME)
+            cell.caption.text = "Not submitted yet"
+        }
+         */
         
         
         

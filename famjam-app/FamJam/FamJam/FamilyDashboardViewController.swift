@@ -59,7 +59,6 @@ class FamilyDashboardViewController: UIViewController, UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //return FamilyDashboardConstants.NUM_ROWS_IN_SECTION
-        print(AppData.ACTIVE_FAMILY)
         return AppDataFunctions.getNumFamilyMembersFromFamily(AppData.ACTIVE_FAMILY!)
     }
     

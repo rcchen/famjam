@@ -57,7 +57,17 @@ class NewUserViewController: UIViewController {
                                 authenticatedService.joinOrCreateFamily(displayName)
                                     .onSuccess { family in
                                         AppData.ACTIVE_FAMILY = family
-                                        self.performSegueWithIdentifier("newUserCreated", sender: self)
+                                        authenticatedService.getTopics(true)
+                                            .onSuccess(callback: {
+                                                topics in
+                                                AppDataFunctions.addTopicsToAllTopicsArray(topics)
+                                                authenticatedService.getTopics(false)
+                                                    .onSuccess(callback: {
+                                                        topics in
+                                                        AppDataFunctions.addTopicsToAllTopicsArray(topics)
+                                                            self.performSegueWithIdentifier("newUserCreated", sender: self)
+                                                    })
+                                            })
                                 }
                         }
                 }
