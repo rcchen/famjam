@@ -34,11 +34,12 @@ class SavingPhotoViewController: UIViewController {
         //        destination?.savedImage = savedImageReference
         
         // Save photo to database
-        AuthenticatedApiService.sharedInstance.addPhotoToTopic((AppData.ACTIVE_TOPIC?._id)!, photoUrl: savedImageURL!, description: captionTextField.text, cb: {success in
+        AuthenticatedApiService.sharedInstance.addPhotoToTopic((AppData.ACTIVE_TOPIC?._id)!, photo: savedImageReference!, description: captionTextField.text, cb: {success in
             // TODO: Set user to "photo submitted" for topic
             
             // Performs segue after saving
-            self.performSegueWithIdentifier("savedPhoto", sender: self)
+            // TODO: UNCOMMENT!!!
+            //self.performSegueWithIdentifier("savedPhoto", sender: self)
         })
         
         
@@ -57,6 +58,8 @@ class SavingPhotoViewController: UIViewController {
     @IBOutlet weak var savedImage: UIImageView!
     
     @IBOutlet weak var captionTextField: UITextView!
+    
+    var imageData: NSData?
     
     var savedImageURL:NSURL?
     

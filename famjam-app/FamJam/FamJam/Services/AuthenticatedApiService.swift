@@ -248,14 +248,16 @@ class AuthenticatedApiService: BaseApiService {
     }
     
     
-    func addPhotoToTopic(topicId: String, photoData: NSData, description: String, cb: (Bool) -> Void) {
+    func addPhotoToTopic(topicId: String, photo: UIImage, description: String, cb: (Bool) -> Void) {
         let url = "\(BaseApiService.SERVER_BASE_URL)/topics/\(topicId)"
         Alamofire.upload(
             .POST,
             url,
             headers: self.headers,
             multipartFormData: { multipartFormData in
-                multipartFormData.appendBodyPart(data: photoData, name: "photo")
+                if let imageData = UIImageJPEGRepresentation(photo, 0.8) {
+                    multipartFormData.appendBodyPart(data: imageData, name: "photo", mimeType: "image/jpeg")
+                }
             },
             encodingCompletion: { encodingResult in
                 print(encodingResult)

@@ -26,7 +26,8 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
             destination!.imageView.image = cell.photo.image!
         } else if segue.identifier == "savePhoto" {
             let destination = segue.destinationViewController as? SavingPhotoViewController
-            destination!.savedImageURL = imageURL
+            //destination!.savedImageURL = imageURL
+            destination!.imageData = imageData
             destination!.savedImageReference = savedImage
             //destination!.savedImage.image = savedImage
         }
@@ -63,7 +64,9 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
     var savedImage:UIImage?
     var pageIsLocked = true
     
-    var imageURL:NSURL?
+    //var imageURL:NSURL?
+    
+    var imageData:NSData?
     
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -170,7 +173,7 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
             image = info[UIImagePickerControllerOriginalImage] as? UIImage
         }
 
-        
+        imageData = UIImageJPEGRepresentation(image!, 0.7)
         
         savedImage = image!
         
@@ -181,19 +184,24 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
 //            
 //        })
         
+        /*
         library.writeImageToSavedPhotosAlbum(image?.CGImage, orientation: ALAssetOrientation(rawValue: image!.imageOrientation.rawValue)!, completionBlock: { (path:NSURL!, error:NSError!) -> Void in
             self.imageURL = path
             print("imageURL: ")
             print(self.imageURL)
             
         })
+ */
         
         //UIImageWriteToSavedPhotosAlbum(image!, self, #selector(NewHomePageViewController.image(_:didFinishSavingWithError:contextInfo:)), nil)
+        
+        
         
         
         dismissViewControllerAnimated(true, completion: {
             self.performSegueWithIdentifier("savePhoto", sender: self)
         })
+ 
         
 //        print("Image URL: ")
 //        print(imageURL)
@@ -206,23 +214,23 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
     }
 
     
-    func image(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo:UnsafePointer<Void>) {
-        guard error == nil else {
-            return
-        }
-        //imageURL = error?.userInfo[imageURL!] as? NSURL
-        imageURL = error?.userInfo[UIImagePickerControllerReferenceURL] as? NSURL
-        print("Image URL: ")
-        print(imageURL)
-        
-        error?.userInfo
-        
-//        dismissViewControllerAnimated(true, completion: {
-//            self.performSegueWithIdentifier("savePhoto", sender: self)
-//        })
-        
-        //self.performSegueWithIdentifier("savePhoto", sender: self)
-    }
+//    func image(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo:UnsafePointer<Void>) {
+//        guard error == nil else {
+//            return
+//        }
+//        //imageURL = error?.userInfo[imageURL!] as? NSURL
+//        imageURL = error?.userInfo[UIImagePickerControllerReferenceURL] as? NSURL
+//        print("Image URL: ")
+//        print(imageURL)
+//        
+//        error?.userInfo
+//        
+////        dismissViewControllerAnimated(true, completion: {
+////            self.performSegueWithIdentifier("savePhoto", sender: self)
+////        })
+//        
+//        //self.performSegueWithIdentifier("savePhoto", sender: self)
+//    }
     
     /*
     // MARK: - Navigation
