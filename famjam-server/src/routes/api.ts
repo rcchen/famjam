@@ -180,7 +180,18 @@ api.get("/topics/:id", authorizeToken, (req, res) => {
 });
 
 api.put("/topics/:id", bodyParser.json(), authorizeToken, (req, res) => {
-  Topic.findOneAndUpdate({ _id: req.params["id"] }, req.body, { new: true })
+  let setOptions = {};
+
+  if (req.body["active"] !== undefined) {
+    setOptions["active"] = req.body["active"];
+  }
+  if (req.body["locked"] !== undefined) {
+    setOptions["locked"] = req.body["locked"];
+  }
+
+  Topic.findOneAndUpdate({ _id: req.params["id"] }, {
+    $set: setOptions
+  }, { new: true })
     .exec((err, topic: ITopic) => {
       if (err) return res.status(500).json(err);
       res.json(topic);

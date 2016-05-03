@@ -162,7 +162,16 @@ exports.api.get("/topics/:id", middleware_1.authorizeToken, (req, res) => {
     });
 });
 exports.api.put("/topics/:id", bodyParser.json(), middleware_1.authorizeToken, (req, res) => {
-    models_1.Topic.findOneAndUpdate({ _id: req.params["id"] }, req.body, { new: true })
+    let setOptions = {};
+    if (req.body["active"] !== undefined) {
+        setOptions["active"] = req.body["active"];
+    }
+    if (req.body["locked"] !== undefined) {
+        setOptions["locked"] = req.body["locked"];
+    }
+    models_1.Topic.findOneAndUpdate({ _id: req.params["id"] }, {
+        $set: setOptions
+    }, { new: true })
         .exec((err, topic) => {
         if (err)
             return res.status(500).json(err);
