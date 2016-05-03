@@ -202,6 +202,33 @@ class AuthenticatedApiService: BaseApiService {
         return promise.future
     }
 
+    
+    func getParticipantsForTopic(topicId: String) -> Future<[String: [User]], AuthenticatedServiceError> {
+        let promise = Promise<[String: [User]], AuthenticatedServiceError>()
+        Queue.global.async {
+            Alamofire.request(
+                .GET,
+                "\(BaseApiService.SERVER_BASE_URL)/topics/\(topicId)/participants",
+                encoding: .JSON,
+                headers: self.headers
+                ).responseJSON { response in
+                    if let data = response.result.value {
+                        var submitted: [User]?
+                        var not_submitted: [User]?
+                        
+                        submitted <-- data["submitted"]
+                        not_submitted <-- data["not_submitted"]
+                        
+                        promise.success([
+                            "submitted": submitted!,
+                            "not_submitted": not_submitted!
+                        ])
+                    }
+            }
+        }
+        return promise.future
+    }
+    
     func createTopic(name: String) -> Future<Topic, AuthenticatedServiceError> {
         let promise = Promise<Topic, AuthenticatedServiceError>()
         Queue.global.async {
