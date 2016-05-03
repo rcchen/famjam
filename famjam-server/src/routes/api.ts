@@ -246,6 +246,8 @@ const upload = multer({
 });
 
 api.post("/topics/:id", authorizeToken, upload.single("photo"), (req, res) => {
+  console.log(req.file);
+  console.log(req.files);
   new Image({
     _creator: (req.authenticatedUser as IUser)._id,
     _topic: req.params["id"],
