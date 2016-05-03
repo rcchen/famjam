@@ -152,6 +152,13 @@ exports.api.get("/topics/:id", middleware_1.authorizeToken, function (req, res) 
         res.json(topic);
     });
 });
+exports.api.put("/topics/:id", middleware_1.authorizeToken, function (req, res) {
+    models_1.Topic.findOneAndUpdate(req.params["id"], req.body, function (err, topic) {
+        if (err)
+            return res.status(500).json(err);
+        res.json(topic);
+    });
+});
 var upload = multer({
     storage: multerS3({
         acl: "public-read",

@@ -165,6 +165,13 @@ api.get("/topics/:id", authorizeToken, (req, res) => {
     });
 });
 
+api.put("/topics/:id", authorizeToken, (req, res) => {
+  Topic.findOneAndUpdate(req.params["id"], req.body, (err, topic: ITopic) => {
+    if (err) return res.status(500).json(err);
+    res.json(topic);
+  });
+});
+
 const upload = multer({
   storage: multerS3({
     acl: "public-read",
