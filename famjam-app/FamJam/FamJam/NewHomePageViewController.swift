@@ -10,6 +10,7 @@ import UIKit
 import MobileCoreServices
 import CoreData
 import Social
+import AssetsLibrary
 
 
 // This is the viewcontroller for the "Theme of the Day" page
@@ -27,7 +28,7 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
             let destination = segue.destinationViewController as? SavingPhotoViewController
             destination!.savedImageURL = imageURL
             destination!.savedImageReference = savedImage
-            destination!.savedImage.image = savedImage
+            //destination!.savedImage.image = savedImage
         }
         
     }
@@ -164,24 +165,39 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
     // Take picture case
     // The imagePictureController will perform its task and return the result to this class
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        var image = info[UIImagePickerControllerEditedImage]
+        var image = info[UIImagePickerControllerEditedImage] as? UIImage
         if image == nil {
-            image = info[UIImagePickerControllerOriginalImage]
+            image = info[UIImagePickerControllerOriginalImage] as? UIImage
         }
+
         
-        // TODO: NEED TO SAVE IMAGE INTO URL HERE!
         
-        savedImage = image! as? UIImage
-        print("Printing Image URL values")
-        print(image)
-        print(image?.url)
-        print(image?.URL)
+        savedImage = image!
         
-        imageURL = image!.URL
+        let library = ALAssetsLibrary()
+        
+//        library.writeImageToSavedPhotosAlbum(image?.CGImage, metadata: info[UIImagePickerControllerMediaMetadata] as! [String : AnyObject], completionBlock: {(path: NSURL, error: NSError) -> Void in
+//            
+//            
+//        })
+        
+        library.writeImageToSavedPhotosAlbum(image?.CGImage, orientation: ALAssetOrientation(rawValue: image!.imageOrientation.rawValue)!, completionBlock: { (path:NSURL!, error:NSError!) -> Void in
+            self.imageURL = path
+            print("imageURL: ")
+            print(self.imageURL)
+            
+        })
+        
+        //UIImageWriteToSavedPhotosAlbum(image!, self, #selector(NewHomePageViewController.image(_:didFinishSavingWithError:contextInfo:)), nil)
+        
         
         dismissViewControllerAnimated(true, completion: {
-                self.performSegueWithIdentifier("savePhoto", sender: self)
-            })
+            self.performSegueWithIdentifier("savePhoto", sender: self)
+        })
+        
+//        print("Image URL: ")
+//        print(imageURL)
+        
         
     }
     // Cancel case
@@ -189,6 +205,24 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
         dismissViewControllerAnimated(true, completion: nil)
     }
 
+    
+    func image(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo:UnsafePointer<Void>) {
+        guard error == nil else {
+            return
+        }
+        //imageURL = error?.userInfo[imageURL!] as? NSURL
+        imageURL = error?.userInfo[UIImagePickerControllerReferenceURL] as? NSURL
+        print("Image URL: ")
+        print(imageURL)
+        
+        error?.userInfo
+        
+//        dismissViewControllerAnimated(true, completion: {
+//            self.performSegueWithIdentifier("savePhoto", sender: self)
+//        })
+        
+        //self.performSegueWithIdentifier("savePhoto", sender: self)
+    }
     
     /*
     // MARK: - Navigation

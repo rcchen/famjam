@@ -27,13 +27,11 @@ class SavingPhotoViewController: UIViewController {
     }
 
     
-    @IBAction func savePhotoPressed(sender: UIBarButtonItem) {
-        
-        
-        
-//        let destination = segue.destinationViewController as? NewHomePageViewController
-//        destination?.defaultCaption = captionTextField.text
-//        destination?.savedImage = savedImageReference
+
+    @IBAction func savePhotoPressed(sender: UIButton) {
+        //        let destination = segue.destinationViewController as? NewHomePageViewController
+        //        destination?.defaultCaption = captionTextField.text
+        //        destination?.savedImage = savedImageReference
         
         // Save photo to database
         AuthenticatedApiService.sharedInstance.addPhotoToTopic((AppData.ACTIVE_TOPIC?._id)!, photoUrl: savedImageURL!, description: captionTextField.text, cb: {success in
@@ -46,9 +44,8 @@ class SavingPhotoViewController: UIViewController {
         
         
         // Perform segue
-        
-        
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -84,11 +81,7 @@ class SavingPhotoViewController: UIViewController {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
-    
-    @IBAction func savingPhoto(sender: UIButton) {
-        print("Saving...")
-    }
-    
+
     /*
     // MARK: - Navigation
 
