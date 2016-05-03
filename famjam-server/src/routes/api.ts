@@ -74,11 +74,21 @@ api.get("/users/:id", authorizeToken, (req, res) => {
 api.get("/me", authorizeToken, (req, res) => {
   const uid = (req.authenticatedUser as IUser)._id;
   User.findById(uid)
-    .populate("families")
     .exec((err, user) => {
       if (err) return res.status(500).json(err);
       res.json(user);
     });
+});
+
+api.get("/me/families", authorizeToken, (req, res) => {
+  Family.find({
+    _id: {
+      $in: (req.authenticatedUser as IUser).families
+    }
+  }).exec((err, families) => {
+    if (err) return res.status(500).json(err);
+    res.json(families);
+  });
 });
 
 api.get("/families", authorizeToken, (req, res) => {

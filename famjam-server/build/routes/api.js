@@ -59,11 +59,21 @@ exports.api.get("/users/:id", middleware_1.authorizeToken, (req, res) => {
 exports.api.get("/me", middleware_1.authorizeToken, (req, res) => {
     const uid = req.authenticatedUser._id;
     models_1.User.findById(uid)
-        .populate("families")
         .exec((err, user) => {
         if (err)
             return res.status(500).json(err);
         res.json(user);
+    });
+});
+exports.api.get("/me/families", middleware_1.authorizeToken, (req, res) => {
+    models_1.Family.find({
+        _id: {
+            $in: req.authenticatedUser.families
+        }
+    }).exec((err, families) => {
+        if (err)
+            return res.status(500).json(err);
+        res.json(families);
     });
 });
 exports.api.get("/families", middleware_1.authorizeToken, (req, res) => {
