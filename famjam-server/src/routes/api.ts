@@ -102,10 +102,12 @@ api.post("/families", authorizeToken, (req, res) => {
 
 api.get("/families/:id", authorizeToken, (req, res) => {
   const uid = (req.authenticatedUser as IUser)._id;
-  Family.findById(req.params["id"], (err, family: IFamily) => {
-    if (err) return res.status(500).json(err);
-    return res.json(family)
-  });
+  Family.findById(req.params["id"])
+    .populate("_members")
+    .exec((err, family) => {
+      if (err) return res.status(500).json(err);
+      return res.json(family)
+    })
 });
 
 api.post("/families/:id/join", authorizeToken, (req, res) => {
