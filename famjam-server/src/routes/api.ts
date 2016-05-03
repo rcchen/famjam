@@ -65,6 +65,12 @@ api.get("/users", authorizeToken, (req, res) => {
   });
 });
 
+api.get("/users/:id", authorizeToken, (req, res) => {
+  User.findById(req.params["id"], (err, user) => {
+    res.json(user);
+  });
+});
+
 api.get("/me", authorizeToken, (req, res) => {
   const uid = (req.authenticatedUser as IUser)._id;
   User.findById(uid)

@@ -51,6 +51,11 @@ exports.api.get("/users", middleware_1.authorizeToken, (req, res) => {
         res.json(users);
     });
 });
+exports.api.get("/users/:id", middleware_1.authorizeToken, (req, res) => {
+    models_1.User.findById(req.params["id"], (err, user) => {
+        res.json(user);
+    });
+});
 exports.api.get("/me", middleware_1.authorizeToken, (req, res) => {
     const uid = req.authenticatedUser._id;
     models_1.User.findById(uid)
