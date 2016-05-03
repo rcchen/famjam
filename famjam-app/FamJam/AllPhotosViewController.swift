@@ -35,14 +35,16 @@ class AllPhotosViewController: UIViewController, UICollectionViewDataSource {
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return UserData.NAMES.count
+        //return UserData.NAMES.count
+        return AppDataFunctions.getNumFamilyMembersFromFamily(AppData.ACTIVE_FAMILY!)
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("allPhotosCell", forIndexPath: indexPath) as! AllPhotosCollectionViewCell
         
-        cell.name.text = UserData.NAMES[indexPath.row]
+        //cell.name.text = UserData.NAMES[indexPath.row]
+        
         cell.photo.image = UIImage(named: Constants.DEFAULT_LOCK_IMAGE_NAME)
         cell.caption.text = Constants.DEFAULT_LOCK_TEXT
         

@@ -99,21 +99,28 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
         
         
         // TODO: Need to actually render family members here
-        if (AppDataFunctions.getActiveUsername(AppData.ACTIVE_USER!) == UserData.NAMES[indexPath.row]) {
-            cell.photo.image = savedImage
-            //cell.caption.text = defaultCaption
-        } else if (pageIsLocked) {
-            cell.photo.image = UIImage(named: Constants.DEFAULT_LOCK_IMAGE_NAME)
-            cell.caption.text = Constants.DEFAULT_LOCK_TEXT
-        } else {
-            cell.caption.text = UserData.USER_PHOTO_CAPTIONS[indexPath.row]
-            cell.photo.image = UIImage(named: UserData.USER_PHOTO_NAMES[indexPath.row])
-        }
+//        if (AppDataFunctions.getActiveUsername(AppData.ACTIVE_USER!) == UserData.NAMES[indexPath.row]) {
+//            cell.photo.image = savedImage
+//            //cell.caption.text = defaultCaption
+//        } else if (pageIsLocked) {
+//            cell.photo.image = UIImage(named: Constants.DEFAULT_LOCK_IMAGE_NAME)
+//            cell.caption.text = Constants.DEFAULT_LOCK_TEXT
+//        } else {
+//            cell.caption.text = UserData.USER_PHOTO_CAPTIONS[indexPath.row]
+//            cell.photo.image = UIImage(named: UserData.USER_PHOTO_NAMES[indexPath.row])
+//        }
+        
+        let currentUser = AppDataFunctions.getFamilyMemberFromIndexPath(indexPath)
+        let userName = currentUser.attributes!["displayName"]
         
         
         
+//        cell.name.text = UserData.NAMES[indexPath.row]
+        cell.name.text = userName
         
-        cell.name.text = UserData.NAMES[indexPath.row]
+        
+        
+        // Formatting cell properties
         cell.caption.font = Constants.FAMJAM_FONT
         cell.name.font = Constants.FAMJAM_SUBHEADER_FONT
         cell.name.textColor = Constants.FAMJAM_WHITE_COLOR
