@@ -183,19 +183,23 @@ class AuthenticatedApiService: BaseApiService {
     }
 
     // Retrieve a topic
-    func getTopic(topicId: String, cb: (Topic) -> Void) {
-        Alamofire.request(
-            .GET,
-            "\(BaseApiService.SERVER_BASE_URL)/topics/\(topicId)",
-            encoding: .JSON,
-            headers: self.headers
-        ).responseJSON { response in
-            if let data = response.result.value {
-                var topic: Topic?
-                topic <-- data
-                cb(topic!)
+    func getTopic(topicId: String) -> Future<Topic, AuthenticatedServiceError> {
+        let promise = Promise<Topic, AuthenticatedServiceError>()
+        Queue.global.async {
+            Alamofire.request(
+                .GET,
+                "\(BaseApiService.SERVER_BASE_URL)/topics/\(topicId)",
+                encoding: .JSON,
+                headers: self.headers
+            ).responseJSON { response in
+                if let data = response.result.value {
+                    var topic: Topic?
+                    topic <-- data
+                    promise.success(topic!)
+                }
             }
         }
+        return promise.future
     }
 
     func createTopic(name: String) -> Future<Topic, AuthenticatedServiceError> {
