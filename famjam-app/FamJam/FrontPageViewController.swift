@@ -93,15 +93,38 @@ class FrontPageViewController: UIViewController {
                 authenticatedService.getMe()
                     .onSuccess { user in
                         AppData.ACTIVE_USER = user
+                        print("Setting active user when logging in: ")
+                        print(AppData.ACTIVE_USER)
                         authenticatedService.getFamily(user.families![0]._id!)
                             .onSuccess { family in
                                 AppData.ACTIVE_FAMILY = family
-                                // TODO: NEED TO GET RID OF THIS!!!
-                                authenticatedService.createTopic("Time Flies")
+                                print("Setting active family when logging in: ")
+                                print(AppData.ACTIVE_FAMILY)
+                                authenticatedService.getTopics(true)
                                     .onSuccess(callback: {
-                                        topic in
-                                        AppData.ACTIVE_TOPIC = topic
-                                        self.performSegueWithIdentifier("loginUser", sender: self)
+                                        topics in
+                                        AppData.ACTIVE_TOPIC = topics[0]
+                                        print("Setting active topic when logging in: ")
+                                        print(AppData.ACTIVE_TOPIC)
+                                        print("Adding these ACTIVE topics when logging in: ")
+                                        print(topics)
+                                        AppDataFunctions.addTopicsToAllTopicsArray(topics)
+                                        
+                                        authenticatedService.getTopics(false)
+                                            .onSuccess(callback: {
+                                                topics in
+                                                print("Adding these INACTIVE topics when logging in: ")
+                                                print(topics)
+                                                AppDataFunctions.addTopicsToAllTopicsArray(topics)
+                                                print("All active topics when logging in: ")
+                                                print(AppData.ALL_TOPICS)
+                                                self.performSegueWithIdentifier("loginUser", sender: self)
+                                            })
+                                        })
+                                    .onFailure(callback: {
+                                        error in
+                                        print("Error: ")
+                                        print(error)
                                     })
                                 
                         }

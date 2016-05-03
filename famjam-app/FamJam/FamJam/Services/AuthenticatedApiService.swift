@@ -24,7 +24,6 @@ class AuthenticatedApiService: BaseApiService {
         self.headers = [
             "Authorization": defaults.stringForKey(BaseApiService.TOKEN_KEY)!
         ]
-        print("Setting headers")
     }
     
     func getMe() -> Future<User, AuthenticatedServiceError> {

@@ -31,12 +31,22 @@ class AllPhotosViewController: UIViewController, UICollectionViewDataSource {
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return AllPhotosConstants.THEMES.count
+        //return AllPhotosConstants.THEMES.count
+        print("All Topics in AllPhotosVC: ")
+        print(AppData.ALL_TOPICS)
+        return (AppData.ALL_TOPICS.count)
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //return UserData.NAMES.count
-        return AppDataFunctions.getNumFamilyMembersFromFamily(AppData.ACTIVE_FAMILY!)
+        //return AppDataFunctions.getNumFamilyMembersFromFamily(AppData.ACTIVE_FAMILY!)
+        
+        print("Topic in ALLPHOTOSVC: ")
+        print(AppData.ALL_TOPICS[section])
+        
+        print("All images for topic in AllPhotosVC: ")
+        print(AppData.ALL_TOPICS[section].images)
+        return (AppData.ALL_TOPICS[section].images!.count)
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -44,6 +54,8 @@ class AllPhotosViewController: UIViewController, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("allPhotosCell", forIndexPath: indexPath) as! AllPhotosCollectionViewCell
         
         //cell.name.text = UserData.NAMES[indexPath.row]
+        
+        cell.name.text = AppData.ALL_TOPICS[indexPath.section].images![indexPath.row]._creator
         
         cell.photo.image = UIImage(named: Constants.DEFAULT_LOCK_IMAGE_NAME)
         cell.caption.text = Constants.DEFAULT_LOCK_TEXT
@@ -60,7 +72,8 @@ class AllPhotosViewController: UIViewController, UICollectionViewDataSource {
         switch kind {
         case UICollectionElementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "header", forIndexPath: indexPath) as? AlbumHeaderCollectionReusableView
-            headerView!.changeLabelTitle(AllPhotosConstants.THEMES[indexPath.section])
+            //headerView!.changeLabelTitle(AllPhotosConstants.THEMES[indexPath.section])
+            headerView!.changeLabelTitle((AppData.ALL_TOPICS[indexPath.section].images![indexPath.row]._creator)!)
             return headerView!
             
             

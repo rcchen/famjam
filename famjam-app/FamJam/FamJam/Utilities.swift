@@ -46,6 +46,7 @@ class AppData {
     static var ACTIVE_USER: User?
     static var ACTIVE_FAMILY: Family?
     //static var ACTIVE_FAMILY_MEMBERS: [User]?
+    static var ALL_TOPICS = [Topic]()
 }
 
 class TabItemLabels {
@@ -55,7 +56,7 @@ class TabItemLabels {
 }
 
 class AllPhotosConstants {
-    static let THEMES = ["Random", "Lunch", "Winning", "Cute Animals", "Dessert", "Night-Out"]
+    //static let THEMES = ["Random", "Lunch", "Winning", "Cute Animals", "Dessert", "Night-Out"]
 }
 
 class AppDataFunctions {
@@ -81,13 +82,6 @@ class AppDataFunctions {
     }
     
     static func getFamilyMemberNameFromIndexPath(indexPath: NSIndexPath) -> String {
-        
-//        print("Members: ")
-//        print(AppData.ACTIVE_FAMILY_MEMBERS!)
-//        print("Member: ")
-//        print(AppData.ACTIVE_FAMILY_MEMBERS![indexPath.row])
-//        print("Attributes: ")
-//        print(AppData.ACTIVE_FAMILY_MEMBERS![indexPath.row].attributes!)
         return (AppData.ACTIVE_FAMILY?.members![indexPath.row].attributes!["displayName"]!)!
     }
     
@@ -99,6 +93,40 @@ class AppDataFunctions {
 //    static func hasUserSubmittedPhotoForTopic(user: User, topic: Topic) -> Bool {
 //        let usersWhoSubmittedPhotoToTopic =
 //    }
+    
+    
+//    static func hasUserSubmittedPhotoForTopic(user: User, topic: Topic) -> Bool {
+//        AuthenticatedApiService.sharedInstance.getParticipantsForTopic(topic._id!)
+//            .onSuccess(callback: { infoMap in
+//                let submittedUsersArray = infoMap["submitted"]
+//                for currUser in submittedUsersArray! {
+//                    if (user._id == currUser._id) {
+//                        return true
+//                    }
+//                }
+//                return false
+//            })
+//    }
+    
+    static func getUserPhotoFromPhotosInTopic(topic: Topic, user: User) -> Image? {
+        let userPhotos = topic.images
+        for userPhoto in userPhotos! {
+            if(userPhoto._creator == user._id) {
+                return userPhoto
+            }
+        }
+        return nil
+    }
+    
+    static func addTopicsToAllTopicsArray(topics: [Topic]) {
+        for topic in topics {
+//            print("NOW ADDING TOPIC TO ALL TOPICS ARRAY: ")
+//            print(topic)
+            AppData.ALL_TOPICS.append(topic)
+//            print("TOTAL ELEMENTS IN ALL TOPICS ARRAY: ")
+//            print(AppData.ALL_TOPICS.count)
+        }
+    }
     
 }
 
