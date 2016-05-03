@@ -87,7 +87,9 @@ exports.api.post("/families", middleware_1.authorizeToken, function (req, res) {
 });
 exports.api.get("/families/:id", middleware_1.authorizeToken, function (req, res) {
     var uid = req.authenticatedUser._id;
-    models_1.Family.findById(req.params["id"], function (err, family) {
+    models_1.Family.findById(req.params["id"])
+        .populate("_members")
+        .exec(function (err, family) {
         if (err)
             return res.status(500).json(err);
         return res.json(family);
