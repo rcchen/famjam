@@ -157,35 +157,49 @@ class AuthenticatedApiService: BaseApiService {
         return promise.future
     }
     
-    func getFeed(cb: ([Topic]) -> Void) {
-        Alamofire.request(
-            .GET,
-            "\(BaseApiService.SERVER_BASE_URL)/topics",
-            encoding: .JSON,
-            headers: self.headers
-        ).responseJSON { response in
-            if let data = response.result.value {
-                var topics: [Topic]?
-                topics <-- data
-                cb(topics!)
+    // Retrieve topics
+    func getTopics(active: Bool?) -> Future<[Topic], AuthenticatedServiceError> {
+        let promise = Promise<[Topic], AuthenticatedServiceError>()
+        Queue.global.async {
+            var url = "\(BaseApiService.SERVER_BASE_URL)/topics"
+            if let isActive = active {
+                url += "?active=\(isActive)"
+            }
+
+            Alamofire.request(
+                .GET,
+                url,
+                encoding: .JSON,
+                headers: self.headers
+            ).responseJSON { response in
+                if let data = response.result.value {
+                    var topics: [Topic]?
+                    topics <-- data
+                    promise.success(topics!)
+                }
             }
         }
+        return promise.future
     }
 
     // Retrieve a topic
-    func getTopic(topicId: String, cb: (Topic) -> Void) {
-        Alamofire.request(
-            .GET,
-            "\(BaseApiService.SERVER_BASE_URL)/topics/\(topicId)",
-            encoding: .JSON,
-            headers: self.headers
-        ).responseJSON { response in
-            if let data = response.result.value {
-                var topic: Topic?
-                topic <-- data
-                cb(topic!)
+    func getTopic(topicId: String) -> Future<Topic, AuthenticatedServiceError> {
+        let promise = Promise<Topic, AuthenticatedServiceError>()
+        Queue.global.async {
+            Alamofire.request(
+                .GET,
+                "\(BaseApiService.SERVER_BASE_URL)/topics/\(topicId)",
+                encoding: .JSON,
+                headers: self.headers
+            ).responseJSON { response in
+                if let data = response.result.value {
+                    var topic: Topic?
+                    topic <-- data
+                    promise.success(topic!)
+                }
             }
         }
+        return promise.future
     }
 
     func createTopic(name: String) -> Future<Topic, AuthenticatedServiceError> {
@@ -209,16 +223,39 @@ class AuthenticatedApiService: BaseApiService {
         }
         return promise.future
     }
+
+    func updateTopic(topic: Topic) -> Future<Topic, AuthenticatedServiceError> {
+        let promise = Promise<Topic, AuthenticatedServiceError>()
+        Queue.global.async {
+            Alamofire.request(
+                .PUT,
+                "\(BaseApiService.SERVER_BASE_URL)/topics/\(topic._id!)",
+                parameters: [
+                    "_id": topic._id!,
+                    "active": topic.active!
+                ],
+                encoding: .JSON,
+                headers: self.headers
+                ).responseJSON { response in
+                    if let data = response.result.value {
+                        var topic: Topic?
+                        topic <-- data
+                        promise.success(topic!)
+                    }
+            }
+        }
+        return promise.future
+    }
     
     
-    func addPhotoToTopic(topicId: String, photoUrl: NSURL, description: String, cb: (Bool) -> Void) {
+    func addPhotoToTopic(topicId: String, photoData: NSData, description: String, cb: (Bool) -> Void) {
         let url = "\(BaseApiService.SERVER_BASE_URL)/topics/\(topicId)"
         Alamofire.upload(
             .POST,
             url,
             headers: self.headers,
             multipartFormData: { multipartFormData in
-                multipartFormData.appendBodyPart(fileURL: photoUrl, name: "photo")
+                multipartFormData.appendBodyPart(data: photoData, name: "photo")
             },
             encodingCompletion: { encodingResult in
                 print(encodingResult)

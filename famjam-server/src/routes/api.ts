@@ -17,7 +17,7 @@ import { Family, Image, Topic, User } from "../models";
 export const api = express();
 
 // load JSON parsing middleware
-api.use(bodyParser.json());
+// api.use(bodyParser.json());
 
 // set AWS region
 aws.config.region = "us-west-2";
@@ -41,7 +41,7 @@ api.post("/users", (req, res) => {
   });
 });
 
-api.post("/authenticate", (req, res) => {
+api.post("/authenticate", bodyParser.json(), (req, res) => {
   const username = req.body.username;
   User.findOne({ username }, "password", (err, user: IUser) => {
     if (user !== null) {
@@ -65,6 +65,12 @@ api.get("/users", authorizeToken, (req, res) => {
   });
 });
 
+api.get("/users/:id", authorizeToken, (req, res) => {
+  User.findById(req.params["id"], (err, user) => {
+    res.json(user);
+  });
+});
+
 api.get("/me", authorizeToken, (req, res) => {
   const uid = (req.authenticatedUser as IUser)._id;
   User.findById(uid)
@@ -85,7 +91,7 @@ api.get("/families", authorizeToken, (req, res) => {
   });
 });
 
-api.post("/families", authorizeToken, (req, res) => {
+api.post("/families", bodyParser.json(), authorizeToken, (req, res) => {
   const uid = (req.authenticatedUser as IUser)._id;
   new Family({
     attributes: {
@@ -110,7 +116,7 @@ api.get("/families/:id", authorizeToken, (req, res) => {
     })
 });
 
-api.post("/families/:id/join", authorizeToken, (req, res) => {
+api.post("/families/:id/join", bodyParser.json(), authorizeToken, (req, res) => {
   const uid = (req.authenticatedUser as IUser)._id;
   Family.findById(req.params["id"], (err, family: IFamily) => {
     if (err) return res.status(500).json(err);
@@ -128,17 +134,25 @@ api.post("/families/:id/join", authorizeToken, (req, res) => {
 
 api.get("/topics", authorizeToken, (req, res) => {
   const user = req.authenticatedUser as IUser;
-  Topic.find({
+  console.log(req.query["active"]);
+
+  let filter = {
     _family: {
       $in: user.families
     }
-  }, (err, topics) => {
+  };
+
+  if (req.query["active"] !== undefined) {
+    filter["active"] = req.query["active"] == "true";
+  }
+
+  Topic.find(filter, (err, topics) => {
     if (err) res.status(500).json(err);
     res.json(topics);
   });
 });
 
-api.post("/topics", authorizeToken, (req, res) => {
+api.post("/topics", bodyParser.json(), authorizeToken, (req, res) => {
   const user = req.authenticatedUser as IUser;
   new Topic({
     _creator: user._id,
@@ -165,15 +179,59 @@ api.get("/topics/:id", authorizeToken, (req, res) => {
     });
 });
 
-api.put("/topics/:id", authorizeToken, (req, res) => {
-  Topic.findOneAndUpdate({ _id: req.params["id"] }, req.body, { new: true })
+api.put("/topics/:id", bodyParser.json(), authorizeToken, (req, res) => {
+  let setOptions = {};
+
+  if (req.body["active"] !== undefined) {
+    setOptions["active"] = req.body["active"];
+  }
+  if (req.body["locked"] !== undefined) {
+    setOptions["locked"] = req.body["locked"];
+  }
+
+  Topic.findOneAndUpdate({ _id: req.params["id"] }, {
+    $set: setOptions
+  }, { new: true })
     .exec((err, topic: ITopic) => {
       if (err) return res.status(500).json(err);
       res.json(topic);
     });
 });
 
+api.get("/topics/:id/participants", authorizeToken, (req, res) => {
+  const topicId = req.params["id"];
+  Topic.findById(topicId)
+    .exec((err, topic: ITopic) => {
+      Family.findById(topic._family)
+        .exec((err, family: IFamily) => {
+          const userIds = family.members;
+          Image.find({ _topic: topicId })
+            .exec((err, images: IImage[]) => {
+              const submittedUserIds = images.map((image) => image._creator.toString());
+              const unsubmittedUserIds = userIds.filter((userId) => {
+                return submittedUserIds.indexOf(userId.toString()) < 0;
+              });
+
+              const submittedUsers = User.find({ _id: { $in: submittedUserIds }}).exec();
+              const unsubmittedUsers = User.find({ _id: { $in: unsubmittedUserIds }}).exec();
+
+              Promise.all([
+                submittedUsers, unsubmittedUsers
+              ]).then((responses) => {
+                res.json({
+                  submitted: responses[0],
+                  not_submitted: responses[1]
+                });
+              });
+            });
+        });
+    });
+});
+
 const upload = multer({
+  limits: {
+    fileSize: 1000000
+  },
   storage: multerS3({
     acl: "public-read",
     bucket: "famjam",
@@ -187,12 +245,12 @@ const upload = multer({
   })
 });
 
-api.post("/topics/:id", authorizeToken, upload.array("photo", 1), (req, res) => {
+api.post("/topics/:id", authorizeToken, upload.single("photo"), (req, res) => {
   new Image({
     _creator: (req.authenticatedUser as IUser)._id,
     _topic: req.params["id"],
     description: req.body["description"],
-    url: (req.files[0] as any).location
+    url: (req.file as any).location
   }).save((err, image: IImage) => {
     Topic.findById(req.params["id"], (err, topic: ITopic) => {
       topic.images.push(image._id);
