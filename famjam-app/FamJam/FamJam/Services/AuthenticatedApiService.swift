@@ -223,6 +223,29 @@ class AuthenticatedApiService: BaseApiService {
         }
         return promise.future
     }
+
+    func updateTopic(topic: Topic) -> Future<Topic, AuthenticatedServiceError> {
+        let promise = Promise<Topic, AuthenticatedServiceError>()
+        Queue.global.async {
+            Alamofire.request(
+                .PUT,
+                "\(BaseApiService.SERVER_BASE_URL)/topics/\(topic._id)",
+                parameters: [
+                    "_id": topic._id!,
+                    "active": topic.active!
+                ],
+                encoding: .JSON,
+                headers: self.headers
+                ).responseJSON { response in
+                    if let data = response.result.value {
+                        var topic: Topic?
+                        topic <-- data
+                        promise.success(topic!)
+                    }
+            }
+        }
+        return promise.future
+    }
     
     
     func addPhotoToTopic(topicId: String, photoUrl: NSURL, description: String, cb: (Bool) -> Void) {
