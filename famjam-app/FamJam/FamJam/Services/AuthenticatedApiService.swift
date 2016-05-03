@@ -26,6 +26,15 @@ class AuthenticatedApiService: BaseApiService {
         ]
     }
     
+    /**
+         ### Description
+         
+         Retrieves the current user.
+         
+         ### Endpoint
+         
+         /api/me
+     */
     func getMe() -> Future<User, AuthenticatedServiceError> {
         let promise = Promise<User, AuthenticatedServiceError>()
         Queue.global.async {
@@ -39,6 +48,34 @@ class AuthenticatedApiService: BaseApiService {
                         var user: User?
                         user <-- data
                         promise.success(user!)
+                    }
+            }
+        }
+        return promise.future
+    }
+
+    /**
+        ### Description
+     
+        Retrieves the current user's families.
+     
+        ### Endpoint
+        
+        /api/me/families
+    */
+    func getMeFamilies() -> Future<[Family], AuthenticatedServiceError> {
+        let promise = Promise<[Family], AuthenticatedServiceError>()
+        Queue.global.async {
+            Alamofire.request(
+                .GET,
+                "\(BaseApiService.SERVER_BASE_URL)/me/families",
+                encoding: .JSON,
+                headers: self.headers
+                ).responseJSON { response in
+                    if let data = response.result.value {
+                        var families: [Family]?
+                        families <-- data
+                        promise.success(families!)
                     }
             }
         }

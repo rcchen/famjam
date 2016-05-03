@@ -59,7 +59,7 @@ struct Family: Deserializable {
 struct User: Deserializable {
     var _id: String?
     var attributes: [String: String]?
-    var families: [Family]?
+    var families: [String]?
     var username: String?
 
     init(data: [String: AnyObject]) {

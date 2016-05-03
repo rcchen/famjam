@@ -95,9 +95,9 @@ class FrontPageViewController: UIViewController {
                         AppData.ACTIVE_USER = user
                         print("Setting active user when logging in: ")
                         print(AppData.ACTIVE_USER)
-                        authenticatedService.getFamily(user.families![0]._id!)
-                            .onSuccess { family in
-                                AppData.ACTIVE_FAMILY = family
+                        authenticatedService.getMeFamilies()
+                            .onSuccess { families in
+                                AppData.ACTIVE_FAMILY = families[0]
                                 print("Setting active family when logging in: ")
                                 print(AppData.ACTIVE_FAMILY)
                                 authenticatedService.getTopics(true)
