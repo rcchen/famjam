@@ -229,7 +229,7 @@ class AuthenticatedApiService: BaseApiService {
         Queue.global.async {
             Alamofire.request(
                 .PUT,
-                "\(BaseApiService.SERVER_BASE_URL)/topics/\(topic._id)",
+                "\(BaseApiService.SERVER_BASE_URL)/topics/\(topic._id!)",
                 parameters: [
                     "_id": topic._id!,
                     "active": topic.active!
