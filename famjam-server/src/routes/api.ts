@@ -128,11 +128,19 @@ api.post("/families/:id/join", bodyParser.json(), authorizeToken, (req, res) => 
 
 api.get("/topics", authorizeToken, (req, res) => {
   const user = req.authenticatedUser as IUser;
-  Topic.find({
+  console.log(req.query["active"]);
+
+  let filter = {
     _family: {
       $in: user.families
     }
-  }, (err, topics) => {
+  };
+
+  if (req.query["active"] !== undefined) {
+    filter["active"] = req.query["active"] == "true";
+  }
+
+  Topic.find(filter, (err, topics) => {
     if (err) res.status(500).json(err);
     res.json(topics);
   });

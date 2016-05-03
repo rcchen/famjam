@@ -114,11 +114,16 @@ exports.api.post("/families/:id/join", bodyParser.json(), middleware_1.authorize
 });
 exports.api.get("/topics", middleware_1.authorizeToken, (req, res) => {
     const user = req.authenticatedUser;
-    models_1.Topic.find({
+    console.log(req.query["active"]);
+    let filter = {
         _family: {
             $in: user.families
         }
-    }, (err, topics) => {
+    };
+    if (req.query["active"] !== undefined) {
+        filter["active"] = req.query["active"] == "true";
+    }
+    models_1.Topic.find(filter, (err, topics) => {
         if (err)
             res.status(500).json(err);
         res.json(topics);
