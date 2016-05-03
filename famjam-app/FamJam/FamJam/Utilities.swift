@@ -26,7 +26,7 @@ class Constants {
 }
 
 class UserData {
-    static let NAMES = ["Lucio", "Stephen", "Roger", "Emma"]
+    //static let NAMES = ["Lucio", "Stephen", "Roger", "Emma"]
     static let USER_PHOTO_NAMES = ["lucioImage", "stephenImage", "rogerImage", "emmaImage"]
     static let USER_PHOTO_CAPTIONS = ["Excited to be doing this project!", "Om nom nom", "Looking good!", "Should I use this as my LinkedIn profile pic?"]
 }
@@ -45,7 +45,7 @@ class AppData {
     static var ACTIVE_TOPIC: Topic?
     static var ACTIVE_USER: User?
     static var ACTIVE_FAMILY: Family?
-    static var ACTIVE_FAMILY_MEMBERS: [User]?
+    //static var ACTIVE_FAMILY_MEMBERS: [User]?
 }
 
 class TabItemLabels {
@@ -79,6 +79,26 @@ class AppDataFunctions {
     static func getNumFamilyMembersFromFamily(family: Family) -> Int {
         return family.members!.count
     }
+    
+    static func getFamilyMemberNameFromIndexPath(indexPath: NSIndexPath) -> String {
+        
+//        print("Members: ")
+//        print(AppData.ACTIVE_FAMILY_MEMBERS!)
+//        print("Member: ")
+//        print(AppData.ACTIVE_FAMILY_MEMBERS![indexPath.row])
+//        print("Attributes: ")
+//        print(AppData.ACTIVE_FAMILY_MEMBERS![indexPath.row].attributes!)
+        return (AppData.ACTIVE_FAMILY?.members![indexPath.row].attributes!["displayName"]!)!
+    }
+    
+    static func getFamilyMemberFromIndexPath(indexPath: NSIndexPath) -> User {
+        return (AppData.ACTIVE_FAMILY?.members![indexPath.row])!
+    }
+    
+    
+//    static func hasUserSubmittedPhotoForTopic(user: User, topic: Topic) -> Bool {
+//        let usersWhoSubmittedPhotoToTopic =
+//    }
     
 }
 
