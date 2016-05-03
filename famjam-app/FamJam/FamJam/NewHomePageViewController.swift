@@ -25,22 +25,24 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
             destination!.imageView.image = cell.photo.image!
         } else if segue.identifier == "savePhoto" {
             let destination = segue.destinationViewController as? SavingPhotoViewController
+            destination!.savedImageURL = imageURL
             destination!.savedImageReference = savedImage
-            //destination!.savedImage.image = savedImage
+            destination!.savedImage.image = savedImage
         }
         
     }
     
     @IBAction func unwindFromSavingPhotosToThemeOfDay(segue: UIStoryboardSegue) {
         
-        if segue.identifier == "unwindFromSavingPhotos" {
-            let source = segue.sourceViewController as? SavingPhotoViewController
-            defaultCaption = (source?.captionTextField.text)!
-            savedImage = source?.savedImageReference
-            pageIsLocked = false
-            photoCollectionView.reloadData()
-        }
+//        if segue.identifier == "savedPhoto" {
+//            let source = segue.sourceViewController as? SavingPhotoViewController
+//            defaultCaption = (source?.captionTextField.text)!
+//            savedImage = source?.savedImageReference
+//            pageIsLocked = false
+//            photoCollectionView.reloadData()
+//        }
         
+        photoCollectionView.reloadData()
     }
     
     @IBAction func unwindFromPhotoDetailView(segue: UIStoryboardSegue) {
@@ -56,9 +58,11 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
     
     
     // Variables for this controller
-    var defaultCaption = ""
-    var savedImage:UIImage? = nil
+    //var defaultCaption = ""
+    var savedImage:UIImage?
     var pageIsLocked = true
+    
+    var imageURL:NSURL?
     
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -93,9 +97,11 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PhotoCell", forIndexPath: indexPath) as! PhotoCollectionViewCell
         
+        
+        // TODO: Need to actually render family members here
         if (AppDataFunctions.getActiveUsername(AppData.ACTIVE_USER!) == UserData.NAMES[indexPath.row]) {
             cell.photo.image = savedImage
-            cell.caption.text = defaultCaption
+            //cell.caption.text = defaultCaption
         } else if (pageIsLocked) {
             cell.photo.image = UIImage(named: Constants.DEFAULT_LOCK_IMAGE_NAME)
             cell.caption.text = Constants.DEFAULT_LOCK_TEXT
@@ -151,13 +157,21 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
     // Take picture case
     // The imagePictureController will perform its task and return the result to this class
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        var image = info[UIImagePickerControllerEditedImage] as? UIImage
+        var image = info[UIImagePickerControllerEditedImage]
         if image == nil {
-            image = info[UIImagePickerControllerOriginalImage] as? UIImage
+            image = info[UIImagePickerControllerOriginalImage]
         }
-        savedImage = image!
         
-
+        // TODO: NEED TO SAVE IMAGE INTO URL HERE!
+        
+        savedImage = image! as? UIImage
+        print("Printing Image URL values")
+        print(image)
+        print(image?.url)
+        print(image?.URL)
+        
+        imageURL = image!.URL
+        
         dismissViewControllerAnimated(true, completion: {
                 self.performSegueWithIdentifier("savePhoto", sender: self)
             })

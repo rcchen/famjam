@@ -36,12 +36,18 @@ class SavingPhotoViewController: UIViewController {
 //        destination?.savedImage = savedImageReference
         
         // Save photo to database
+        AuthenticatedApiService.sharedInstance.addPhotoToTopic((AppData.ACTIVE_TOPIC?._id)!, photoUrl: savedImageURL!, description: captionTextField.text, cb: {success in
+            // TODO: Set user to "photo submitted" for topic
+            
+            // Performs segue after saving
+            self.performSegueWithIdentifier("savedPhoto", sender: self)
+        })
         
-        // Set user to "photo submitted" for topic
+        
         
         // Perform segue
         
-        performSegueWithIdentifier("savedPhoto", sender: self)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,11 +55,13 @@ class SavingPhotoViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    var savedImageReference:UIImage? = nil
+    var savedImageReference:UIImage?
     
     @IBOutlet weak var savedImage: UIImageView!
     
     @IBOutlet weak var captionTextField: UITextView!
+    
+    var savedImageURL:NSURL?
     
     // Will show the keyboard
     func keyboardWillShow(notification: NSNotification) {
