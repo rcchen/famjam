@@ -2,6 +2,7 @@ use_frameworks!
 
 target 'FamJam' do
   pod 'Alamofire'
-  pod 'BrightFutures'
-  pod 'JSONHelper'
+  pod 'AlamofireObjectMapper'
+  pod 'ObjectMapper'
+  pod 'PromiseKit'
 end

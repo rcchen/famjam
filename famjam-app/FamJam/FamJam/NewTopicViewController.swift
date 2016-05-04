@@ -6,6 +6,7 @@
 //  Copyright © 2016 Accord.io. All rights reserved.
 //
 
+import PromiseKit
 import UIKit
 
 class NewTopicViewController: UIViewController {
@@ -39,29 +40,26 @@ class NewTopicViewController: UIViewController {
     @IBOutlet weak var newTopicTextField: UITextField!
     
     @IBAction func saveTopicPressed(sender: UIBarButtonItem) {
-        
-        AuthenticatedApiService.sharedInstance.createTopic(newTopicTextField.text!)
-            .onSuccess(callback: {
-                topic in
-                AppData.ACTIVE_TOPIC = topic
-                AuthenticatedApiService.sharedInstance.getTopics(true)
-                    .onSuccess(callback: {
-                        topics in
-                        for topic in topics {
-                            var copyTopic = topic
-                            if copyTopic._id != AppData.ACTIVE_TOPIC?._id {
-                                copyTopic.active = false
-                                AuthenticatedApiService.sharedInstance.updateTopic(copyTopic)
-                                    .onSuccess(callback: {
-                                        topic in
-                                        self.performSegueWithIdentifier("savedTopic", sender: self)
-                                    })
-                            }
 
-                        }
-                       
-                    })
-            })
+        let authenticatedService = AuthenticatedApiService.sharedInstance
+        firstly { () -> Promise<Topic> in
+            authenticatedService.createTopic(newTopicTextField.text!)
+        }.then { topic -> Promise<[Topic]> in
+            AppData.ACTIVE_TOPIC = topic
+            return authenticatedService.getTopics(true)
+        }.then { topics -> Void in
+            for topic in topics {
+                let topicCopy = topic
+                if (topicCopy._id != AppData.ACTIVE_TOPIC?._id) {
+                    topicCopy.active = false
+                    authenticatedService.updateTopic(topicCopy)
+                    .then { topic -> Void in
+                        self.performSegueWithIdentifier("savedTopic", sender: self)
+                    }
+                }
+            }
+        }
+
     }
     
     // Will show the keyboard

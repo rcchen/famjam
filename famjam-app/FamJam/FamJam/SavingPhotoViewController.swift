@@ -36,17 +36,13 @@ class SavingPhotoViewController: UIViewController {
         // Save photo to database
         AuthenticatedApiService.sharedInstance.addPhotoToTopic((AppData.ACTIVE_TOPIC?._id)!, photo: savedImageReference!, description: captionTextField.text, cb: {success in
             
-            
             // Reloading topic here (so that the new photo will be included)
-            AuthenticatedApiService.sharedInstance.getTopic((AppData.ACTIVE_TOPIC?._id)!)
-                .onSuccess(callback: {
-                    topic in
-                    AppData.ACTIVE_TOPIC = topic
-                    print("NEW TOPIC AFTER SAVE: ")
-                    print(AppData.ACTIVE_TOPIC)
-                    // Performs segue after saving
-                    self.performSegueWithIdentifier("savedPhoto", sender: self)
-                })
+            AuthenticatedApiService.sharedInstance.getTopic(AppData.ACTIVE_TOPIC!._id!)
+            .then { topic -> Void in
+                AppData.ACTIVE_TOPIC = topic
+                print("Topic after save: " + topic.name!)
+                self.performSegueWithIdentifier("savedPhoto", sender: self)
+            }
         })
     }
     

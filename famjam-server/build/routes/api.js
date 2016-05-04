@@ -59,11 +59,21 @@ exports.api.get("/users/:id", middleware_1.authorizeToken, (req, res) => {
 exports.api.get("/me", middleware_1.authorizeToken, (req, res) => {
     const uid = req.authenticatedUser._id;
     models_1.User.findById(uid)
-        .populate("families")
         .exec((err, user) => {
         if (err)
             return res.status(500).json(err);
         res.json(user);
+    });
+});
+exports.api.get("/me/families", middleware_1.authorizeToken, (req, res) => {
+    models_1.Family.find({
+        _id: {
+            $in: req.authenticatedUser.families
+        }
+    }).exec((err, families) => {
+        if (err)
+            return res.status(500).json(err);
+        res.json(families);
     });
 });
 exports.api.get("/families", middleware_1.authorizeToken, (req, res) => {
@@ -91,12 +101,19 @@ exports.api.post("/families", bodyParser.json(), middleware_1.authorizeToken, (r
 });
 exports.api.get("/families/:id", middleware_1.authorizeToken, (req, res) => {
     const uid = req.authenticatedUser._id;
-    models_1.Family.findById(req.params["id"])
-        .populate("members")
-        .exec((err, family) => {
+    models_1.Family.findById(req.params["id"]).exec((err, family) => {
         if (err)
             return res.status(500).json(err);
         return res.json(family);
+    });
+});
+exports.api.get("/families/:id/members", middleware_1.authorizeToken, (req, res) => {
+    models_1.User.find({
+        families: req.params["id"]
+    }).exec((err, users) => {
+        if (err)
+            return res.status(500).json(err);
+        return res.json(users);
     });
 });
 exports.api.post("/families/:id/join", bodyParser.json(), middleware_1.authorizeToken, (req, res) => {
@@ -128,7 +145,10 @@ exports.api.get("/topics", middleware_1.authorizeToken, (req, res) => {
     if (req.query["active"] !== undefined) {
         filter["active"] = req.query["active"] == "true";
     }
-    models_1.Topic.find(filter, (err, topics) => {
+    models_1.Topic.find(filter)
+        .populate("_creator")
+        .populate("_family")
+        .exec((err, topics) => {
         if (err)
             res.status(500).json(err);
         res.json(topics);
@@ -159,6 +179,15 @@ exports.api.get("/topics/:id", middleware_1.authorizeToken, (req, res) => {
         if (err)
             return res.status(500).json(err);
         res.json(topic);
+    });
+});
+exports.api.get("/topics/:id/images", middleware_1.authorizeToken, (req, res) => {
+    models_1.Image.find({
+        _topic: req.params["id"]
+    }).exec((err, images) => {
+        if (err)
+            return res.status(500).json(err);
+        res.json(images);
     });
 });
 exports.api.put("/topics/:id", bodyParser.json(), middleware_1.authorizeToken, (req, res) => {

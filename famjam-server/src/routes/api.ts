@@ -74,11 +74,21 @@ api.get("/users/:id", authorizeToken, (req, res) => {
 api.get("/me", authorizeToken, (req, res) => {
   const uid = (req.authenticatedUser as IUser)._id;
   User.findById(uid)
-    .populate("families")
     .exec((err, user) => {
       if (err) return res.status(500).json(err);
       res.json(user);
     });
+});
+
+api.get("/me/families", authorizeToken, (req, res) => {
+  Family.find({
+    _id: {
+      $in: (req.authenticatedUser as IUser).families
+    }
+  }).exec((err, families) => {
+    if (err) return res.status(500).json(err);
+    res.json(families);
+  });
 });
 
 api.get("/families", authorizeToken, (req, res) => {
@@ -108,12 +118,21 @@ api.post("/families", bodyParser.json(), authorizeToken, (req, res) => {
 
 api.get("/families/:id", authorizeToken, (req, res) => {
   const uid = (req.authenticatedUser as IUser)._id;
-  Family.findById(req.params["id"])
-    .populate("members")
-    .exec((err, family) => {
-      if (err) return res.status(500).json(err);
-      return res.json(family)
-    })
+  Family.findById(
+    req.params["id"]
+  ).exec((err, family) => {
+    if (err) return res.status(500).json(err);
+    return res.json(family)
+  });
+});
+
+api.get("/families/:id/members", authorizeToken, (req, res) => {
+  User.find({
+    families: req.params["id"]
+  }).exec((err, users: IUser[]) => {
+    if (err) return res.status(500).json(err);
+    return res.json(users);
+  });
 });
 
 api.post("/families/:id/join", bodyParser.json(), authorizeToken, (req, res) => {
@@ -146,10 +165,13 @@ api.get("/topics", authorizeToken, (req, res) => {
     filter["active"] = req.query["active"] == "true";
   }
 
-  Topic.find(filter, (err, topics) => {
-    if (err) res.status(500).json(err);
-    res.json(topics);
-  });
+  Topic.find(filter)
+    .populate("_creator")
+    .populate("_family")
+    .exec((err, topics) => {
+      if (err) res.status(500).json(err);
+      res.json(topics);
+    });
 });
 
 api.post("/topics", bodyParser.json(), authorizeToken, (req, res) => {
@@ -177,6 +199,15 @@ api.get("/topics/:id", authorizeToken, (req, res) => {
       if (err) return res.status(500).json(err);
       res.json(topic);
     });
+});
+
+api.get("/topics/:id/images", authorizeToken, (req, res) => {
+  Image.find({
+    _topic: req.params["id"]
+  }).exec((err, images) => {
+    if (err) return res.status(500).json(err);
+    res.json(images);
+  });
 });
 
 api.put("/topics/:id", bodyParser.json(), authorizeToken, (req, res) => {

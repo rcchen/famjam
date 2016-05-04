@@ -1,21 +1,42 @@
 PODS:
   - Alamofire (3.3.1)
-  - BrightFutures (4.0.0):
-    - Result (~> 2.0)
-  - JSONHelper (1.7.0)
-  - Result (2.0.0)
+  - AlamofireObjectMapper (3.0.0):
+    - Alamofire (~> 3.2)
+    - ObjectMapper (~> 1.0)
+  - ObjectMapper (1.2.0)
+  - OMGHTTPURLRQ (3.1.1):
+    - OMGHTTPURLRQ/RQ (= 3.1.1)
+  - OMGHTTPURLRQ/FormURLEncode (3.1.1)
+  - OMGHTTPURLRQ/RQ (3.1.1):
+    - OMGHTTPURLRQ/FormURLEncode
+    - OMGHTTPURLRQ/UserAgent
+  - OMGHTTPURLRQ/UserAgent (3.1.1)
+  - PromiseKit (3.1.1):
+    - PromiseKit/Foundation (= 3.1.1)
+    - PromiseKit/QuartzCore (= 3.1.1)
+    - PromiseKit/UIKit (= 3.1.1)
+  - PromiseKit/CorePromise (3.1.1)
+  - PromiseKit/Foundation (3.1.1):
+    - OMGHTTPURLRQ (~> 3.1.0)
+    - PromiseKit/CorePromise
+  - PromiseKit/QuartzCore (3.1.1):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (3.1.1):
+    - PromiseKit/CorePromise
 
 DEPENDENCIES:
   - Alamofire
-  - BrightFutures
-  - JSONHelper
+  - AlamofireObjectMapper
+  - ObjectMapper
+  - PromiseKit
 
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
-  BrightFutures: ddeb9a2747c101914d7b2cf5094acfd5fb67395c
-  JSONHelper: b71808273ac60fb9e1878eb115370b0faac14a81
-  Result: 9e75e1111c774c6ac594e14907b15057053a7959
+  AlamofireObjectMapper: 2d16585d06177be0116d76de73497e77437798af
+  ObjectMapper: b1e9c7c8a9f6400b72690c80072c131504caa66f
+  OMGHTTPURLRQ: 633f98ee745aeda02345935a52eec1784cddb589
+  PromiseKit: 4e8127c22a9b29d1b44958ab2ec762ea6115cbfb
 
-PODFILE CHECKSUM: 1dea89d07f302280f836ca4f1eeca61a2f628776
+PODFILE CHECKSUM: ce22d450a4a325b2ec27feeba5ce8896343b49d0
 
 COCOAPODS: 1.0.0.beta.8
