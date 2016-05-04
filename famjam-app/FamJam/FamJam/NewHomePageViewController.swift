@@ -126,7 +126,10 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
         // Rendering photo with caption
         
         if let userPhoto = AppDataFunctions.getUserPhotoFromPhotosInTopic(AppData.ACTIVE_TOPIC!, user: cellUser) {
-            //cell.photo.image = userPhoto.image
+            //TODO: UNCOMMENT WHEN THIS WORKS!!
+//            let imageURL = NSURL(fileURLWithPath: userPhoto.url!)
+//            let imageData = NSData(contentsOfURL: imageURL)
+//            cell.photo.image = UIImage(data: imageData!)
             cell.caption.text = userPhoto.description
             print("photo found for user!!!")
         } else {

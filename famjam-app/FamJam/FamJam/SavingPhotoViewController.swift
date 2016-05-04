@@ -36,6 +36,9 @@ class SavingPhotoViewController: UIViewController {
         // Save photo to database
         AuthenticatedApiService.sharedInstance.addPhotoToTopic((AppData.ACTIVE_TOPIC?._id)!, photo: savedImageReference!, description: captionTextField.text, cb: {success in
             
+            print("caption saved: ")
+            print(self.captionTextField.text)
+            
             // Reloading topic here (so that the new photo will be included)
             AuthenticatedApiService.sharedInstance.getTopic(AppData.ACTIVE_TOPIC!._id!)
             .then { topic -> Void in

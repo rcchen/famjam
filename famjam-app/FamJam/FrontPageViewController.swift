@@ -98,7 +98,7 @@ class FrontPageViewController: UIViewController {
         } .then { familyMembers -> Promise<[Topic]> in
             AppData.ACTIVE_FAMILY_MEMBERS = familyMembers
             return authenticatedService.getTopics(true)
-        }.then { topics -> Promise<[Topic]> in
+        }.then { topics -> Promise<Topic> in
             AppData.ACTIVE_TOPIC = topics[0]
             
             // Debug statements
@@ -107,9 +107,19 @@ class FrontPageViewController: UIViewController {
             print("Active family members: " + (AppData.ACTIVE_FAMILY?.attributes!["displayName"])!)
             
             print("Active topic: " + (AppData.ACTIVE_TOPIC?.name)!)
+            print("Active topic (old) images: ")
+            print((AppData.ACTIVE_TOPIC?.images))
 
-            return authenticatedService.getTopics(nil)
-            
+            return authenticatedService.getTopic((AppData.ACTIVE_TOPIC?._id)!)
+            }.then { topic -> Promise<[Topic]> in
+                
+                // Refetching topic because of bug (TODO: UNDO THIS WHEN IT WORKS!)
+                AppData.ACTIVE_TOPIC = topic
+                
+                return authenticatedService.getTopics(nil)
+        
+        
+        
         }.then { topics -> Void in
             AppData.ALL_TOPICS = topics
             
