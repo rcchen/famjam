@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PromiseKit
 
 class FamilyDashboardViewController: UIViewController, UITableViewDataSource {
     
@@ -59,12 +60,12 @@ class FamilyDashboardViewController: UIViewController, UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //return FamilyDashboardConstants.NUM_ROWS_IN_SECTION
-        //return AppDataFunctions.getNumFamilyMembersFromFamily(AppData.ACTIVE_FAMILY!)
-        firstly { () -> Promise<{User]>
-            
-        }
-        AuthenticatedApiService.sharedInstance.getFamilyMembers(AppData.ACTIVE_FAMILY)
-        //return 1
+        return AppDataFunctions.getNumFamilyMembersFromFamily(AppData.ACTIVE_FAMILY!)
+//        firstly { () -> Promise<[User]> in
+//            AuthenticatedApiService.sharedInstance.getFamilyMembers((AppData.ACTIVE_FAMILY?._id)!)
+//            }.then { familyMembers -> Int in
+//                return familyMembers.count
+//            }
     }
     
     
