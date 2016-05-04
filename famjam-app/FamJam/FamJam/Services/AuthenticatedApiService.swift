@@ -106,6 +106,15 @@ class AuthenticatedApiService: BaseApiService {
         return promise.future
     }
 
+    /**
+         ### Description
+         
+         Retrieves a family by ID.
+         
+         ### Endpoint
+         
+         /api/families/:id
+     */
     func getFamily(id: String) -> Future<Family, AuthenticatedServiceError> {
         let promise = Promise<Family, AuthenticatedServiceError>()
         Queue.global.async {
@@ -121,6 +130,35 @@ class AuthenticatedApiService: BaseApiService {
                     promise.success(family!)
                 }
 
+            }
+        }
+        return promise.future
+    }
+
+    /**
+         ### Description
+         
+         Retrieves members of a family.
+         
+         ### Endpoint
+         
+         /api/families/:id/members
+     */
+    func getFamilyMembers(id: String) -> Future<[User], AuthenticatedServiceError> {
+        let promise = Promise<[User], AuthenticatedServiceError>()
+        Queue.global.async {
+            Alamofire.request(
+                .GET,
+                "\(BaseApiService.SERVER_BASE_URL)/families/\(id)/members",
+                encoding: .JSON,
+                headers: self.headers
+                ).responseJSON { response in
+                    if let data = response.result.value {
+                        var users: [User]?
+                        users <-- data
+                        promise.success(users!)
+                    }
+                    
             }
         }
         return promise.future

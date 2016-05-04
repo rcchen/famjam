@@ -47,7 +47,7 @@ struct Image: Deserializable {
 struct Family: Deserializable {
     var _id: String?
     var attributes: [String: String]?
-    var members: [User]?
+    var members: [String]?
 
     init(data: [String: AnyObject]) {
         _id <-- data["_id"]
