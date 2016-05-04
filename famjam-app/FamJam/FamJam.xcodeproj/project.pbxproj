@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		330772101CD301B30035821B /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3307720F1CD301B30035821B /* Models.swift */; };
 		33153E191CD6CBFF0012AEF7 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33153E181CD6CBFF0012AEF7 /* Colors.swift */; };
+		3382A0AA1CD9B09D00C2A3F3 /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3382A0A91CD9B09D00C2A3F3 /* Family.swift */; };
+		3382A0AC1CD9B0AD00C2A3F3 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3382A0AB1CD9B0AD00C2A3F3 /* Topic.swift */; };
+		3382A0AE1CD9B0EC00C2A3F3 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3382A0AD1CD9B0EC00C2A3F3 /* Image.swift */; };
+		3382A0B01CD9B11900C2A3F3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3382A0AF1CD9B11900C2A3F3 /* User.swift */; };
 		339538A21CD0C7380094AB46 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 339538A01CD0C6AB0094AB46 /* libART.a */; };
 		339538AC1CD135EA0094AB46 /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 339538AB1CD135DC0094AB46 /* libRCTCamera.a */; };
 		339538B71CD13E470094AB46 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 339538B61CD13E3B0094AB46 /* libRNImagePicker.a */; };
@@ -96,8 +99,11 @@
 
 /* Begin PBXFileReference section */
 		24FADB32D4772F8C0FC94045 /* Pods-FamJam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FamJam.release.xcconfig"; path = "Pods/Target Support Files/Pods-FamJam/Pods-FamJam.release.xcconfig"; sourceTree = "<group>"; };
-		3307720F1CD301B30035821B /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Models.swift; path = Services/Models/Models.swift; sourceTree = "<group>"; };
 		33153E181CD6CBFF0012AEF7 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		3382A0A91CD9B09D00C2A3F3 /* Family.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Family.swift; path = Services/Models/Family.swift; sourceTree = "<group>"; };
+		3382A0AB1CD9B0AD00C2A3F3 /* Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Topic.swift; path = Services/Models/Topic.swift; sourceTree = "<group>"; };
+		3382A0AD1CD9B0EC00C2A3F3 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Image.swift; path = Services/Models/Image.swift; sourceTree = "<group>"; };
+		3382A0AF1CD9B11900C2A3F3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Services/Models/User.swift; sourceTree = "<group>"; };
 		339538961CD0BCAB0094AB46 /* android */ = {isa = PBXFileReference; lastKnownFileType = folder; name = android; path = "node_modules/react-native/android"; sourceTree = "<group>"; };
 		3395389B1CD0C6AB0094AB46 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		339538A51CD135DB0094AB46 /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCamera.xcodeproj; path = "node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = SOURCE_ROOT; };
@@ -178,6 +184,17 @@
 				24FADB32D4772F8C0FC94045 /* Pods-FamJam.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		3382A0A81CD9B08800C2A3F3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3382A0A91CD9B09D00C2A3F3 /* Family.swift */,
+				3382A0AB1CD9B0AD00C2A3F3 /* Topic.swift */,
+				3382A0AD1CD9B0EC00C2A3F3 /* Image.swift */,
+				3382A0AF1CD9B11900C2A3F3 /* User.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		3395389A1CD0C6870094AB46 /* Libraries */ = {
@@ -318,10 +335,10 @@
 		651D908D1CD2E5C6006E8CBB /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				3382A0A81CD9B08800C2A3F3 /* Models */,
 				651D90821CD2E5BB006E8CBB /* AnonymousApiService.swift */,
 				651D90831CD2E5BB006E8CBB /* AuthenticatedApiService.swift */,
 				651D90841CD2E5BB006E8CBB /* BaseApiService.swift */,
-				3307720F1CD301B30035821B /* Models.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -569,11 +586,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3382A0AC1CD9B0AD00C2A3F3 /* Topic.swift in Sources */,
 				6546CB071CCD90E400BEEA54 /* HomePageTabBarViewController.swift in Sources */,
 				65434D251CCEC3C500B73C60 /* FamilyDashboardViewController.swift in Sources */,
 				65FD563D1CD338CC009C9E98 /* NewUserViewController.swift in Sources */,
 				650E1C821CCC2F28002C69DC /* FamJam.xcdatamodeld in Sources */,
+				3382A0B01CD9B11900C2A3F3 /* User.swift in Sources */,
 				6546CB0B1CCD9BB800BEEA54 /* Utilities.swift in Sources */,
+				3382A0AE1CD9B0EC00C2A3F3 /* Image.swift in Sources */,
 				651D90861CD2E5BB006E8CBB /* AuthenticatedApiService.swift in Sources */,
 				6546CB091CCD970100BEEA54 /* AlbumHeaderCollectionReusableView.swift in Sources */,
 				65173BE71CCF1AF800F5A028 /* AllPhotosCollectionViewCell.swift in Sources */,
@@ -582,9 +602,9 @@
 				650E1CB71CCC4615002C69DC /* NewHomePageViewController.swift in Sources */,
 				650E1CAD1CCC3109002C69DC /* FrontPageViewController.swift in Sources */,
 				65FD56441CD338E7009C9E98 /* EditUserViewController.swift in Sources */,
+				3382A0AA1CD9B09D00C2A3F3 /* Family.swift in Sources */,
 				33153E191CD6CBFF0012AEF7 /* Colors.swift in Sources */,
 				65C4D5671CD46B0000ED8DBC /* NewTopicViewController.swift in Sources */,
-				330772101CD301B30035821B /* Models.swift in Sources */,
 				6546CB111CCDAE1D00BEEA54 /* AllPhotosViewController.swift in Sources */,
 				650E1C7C1CCC2F28002C69DC /* ViewController.swift in Sources */,
 				650E1CB51CCC3AF6002C69DC /* PhotoDetailViewController.swift in Sources */,

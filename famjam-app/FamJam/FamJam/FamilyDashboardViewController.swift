@@ -59,7 +59,8 @@ class FamilyDashboardViewController: UIViewController, UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //return FamilyDashboardConstants.NUM_ROWS_IN_SECTION
-        return AppDataFunctions.getNumFamilyMembersFromFamily(AppData.ACTIVE_FAMILY!)
+//        return AppDataFunctions.getNumFamilyMembersFromFamily(AppData.ACTIVE_FAMILY!)
+        return 1
     }
     
     
@@ -70,7 +71,8 @@ class FamilyDashboardViewController: UIViewController, UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("familyCell", forIndexPath: indexPath) as! FamilyTableViewCell
         //let nameString = UserData.NAMES[indexPath.row]
-        let nameString = AppDataFunctions.getFamilyMemberNameFromIndexPath(indexPath)
+//        let nameString = AppDataFunctions.getFamilyMemberNameFromIndexPath(indexPath)
+        let nameString = "adF"
         cell.name.text = nameString
         cell.name.font = Constants.FAMJAM_SUBHEADER_FONT
         if (nameString == AppDataFunctions.getActiveUserDisplayname(AppData.ACTIVE_USER!)) {
