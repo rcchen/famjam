@@ -12,10 +12,6 @@
 		3382A0AC1CD9B0AD00C2A3F3 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3382A0AB1CD9B0AD00C2A3F3 /* Topic.swift */; };
 		3382A0AE1CD9B0EC00C2A3F3 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3382A0AD1CD9B0EC00C2A3F3 /* Image.swift */; };
 		3382A0B01CD9B11900C2A3F3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3382A0AF1CD9B11900C2A3F3 /* User.swift */; };
-		339538A21CD0C7380094AB46 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 339538A01CD0C6AB0094AB46 /* libART.a */; };
-		339538AC1CD135EA0094AB46 /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 339538AB1CD135DC0094AB46 /* libRCTCamera.a */; };
-		339538B71CD13E470094AB46 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 339538B61CD13E3B0094AB46 /* libRNImagePicker.a */; };
-		339538C01CD151960094AB46 /* libRNUploader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 339538BF1CD151830094AB46 /* libRNUploader.a */; };
 		650E1C7A1CCC2F28002C69DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650E1C791CCC2F28002C69DC /* AppDelegate.swift */; };
 		650E1C7C1CCC2F28002C69DC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650E1C7B1CCC2F28002C69DC /* ViewController.swift */; };
 		650E1C7F1CCC2F28002C69DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 650E1C7D1CCC2F28002C69DC /* Main.storyboard */; };
@@ -152,10 +148,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				339538C01CD151960094AB46 /* libRNUploader.a in Frameworks */,
-				339538B71CD13E470094AB46 /* libRNImagePicker.a in Frameworks */,
-				339538AC1CD135EA0094AB46 /* libRCTCamera.a in Frameworks */,
-				339538A21CD0C7380094AB46 /* libART.a in Frameworks */,
 				9B336C4EE24947E8776D17AB /* Pods_FamJam.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -758,10 +750,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/../node_modules/react-native/React/**",
-					"${SRCROOT)/../node_modules/react-native-code-push/**",
-				);
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = FamJam/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -771,7 +760,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.accord.io.lctan21.FamJam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/FamJam/BridgingHeader.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Debug;
 		};
@@ -782,10 +771,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/../node_modules/react-native/React/**",
-					"${SRCROOT)/../node_modules/react-native-code-push/**",
-				);
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = FamJam/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -795,7 +781,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.accord.io.lctan21.FamJam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/FamJam/BridgingHeader.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;
 		};
