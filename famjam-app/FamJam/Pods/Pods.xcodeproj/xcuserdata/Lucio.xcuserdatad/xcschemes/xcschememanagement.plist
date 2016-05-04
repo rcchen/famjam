@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>AlamofireObjectMapper.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
+		</dict>
 		<key>BrightFutures.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -24,10 +29,25 @@
 			<key>orderHint</key>
 			<integer>8</integer>
 		</dict>
+		<key>OMGHTTPURLRQ.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>13</integer>
+		</dict>
+		<key>ObjectMapper.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>12</integer>
+		</dict>
 		<key>Pods-FamJam.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>2</integer>
+		</dict>
+		<key>PromiseKit.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>14</integer>
 		</dict>
 		<key>React.xcscheme_^#shared#^_</key>
 		<dict>
@@ -42,7 +62,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>190ACD3A51BC90B85EADB13E9CDD207B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>24FB1BB0AB4B68388EB65B09AB3B9A67</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>29D3FAED70E9D0A75AC4D5C6D5FC31EA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -67,6 +97,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>7E274FFDD1163DF5F04EBF413FE20251</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>8036AE92866BC812BC8CCF09CF19B78F</key>
 		<dict>
 			<key>primary</key>
@@ -82,7 +117,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>C5CBCAA97E951CC882334464FBDF983D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>DCB45C0AF8651B0CC72E303D3F242439</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FBD082A0D35F7917EAB9DD9D3CCA9976</key>
 		<dict>
 			<key>primary</key>
 			<true/>

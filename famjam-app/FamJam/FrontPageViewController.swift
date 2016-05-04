@@ -99,9 +99,16 @@ class FrontPageViewController: UIViewController {
             AppData.ACTIVE_TOPIC = topics[0]
             
             // Debug statements
-            print("Active user: " + AppData.ACTIVE_USER!.username!)
-            print("Active family: " + AppData.ACTIVE_FAMILY!.attributes!["displayName"]!)
-            print("Active topic: " + AppData.ACTIVE_TOPIC!.name!)
+            print("Active user: ")
+            print(AppData.ACTIVE_USER)
+            
+            print("Active family members: ")
+            print(AppData.ACTIVE_FAMILY?.members)
+            
+            print("Active topic: ")
+            print(AppData.ACTIVE_TOPIC)
+            
+            self.performSegueWithIdentifier("loginUser", sender: self)
         }
 
         

@@ -58,7 +58,7 @@ class NewUserViewController: UIViewController {
             return authenticatedService.getMeFamilies()
         }.then { families -> Promise<[Topic]> in
             AppData.ACTIVE_FAMILY = families[0]
-            return authenticatedService.getTopics()
+            return authenticatedService.getTopics(nil)
         }.then { topics -> Void in
             AppDataFunctions.addTopicsToAllTopicsArray(topics)
             self.performSegueWithIdentifier("newUserCreated", sender: self)
@@ -66,6 +66,8 @@ class NewUserViewController: UIViewController {
 
     }
     
+    
+    }
     
     var keyBoardShowing = false
     
