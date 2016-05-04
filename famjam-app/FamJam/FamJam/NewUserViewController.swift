@@ -46,32 +46,33 @@ class NewUserViewController: UIViewController {
         
         let authenticatedService = AuthenticatedApiService.sharedInstance;
 
-        AnonymousApiService.createUser(username, password: password, displayName: displayName)
-            .onSuccess { _ in
-                AnonymousApiService.authenticateUser(username, password: password)
-                    .onSuccess { _ in
-                        authenticatedService.setHeaders()
-                        authenticatedService.getMe()
-                            .onSuccess { user in
-                                AppData.ACTIVE_USER = user
-                                authenticatedService.joinOrCreateFamily(displayName)
-                                    .onSuccess { family in
-                                        AppData.ACTIVE_FAMILY = family
-                                        authenticatedService.getTopics(true)
-                                            .onSuccess(callback: {
-                                                topics in
-                                                AppDataFunctions.addTopicsToAllTopicsArray(topics)
-                                                authenticatedService.getTopics(false)
-                                                    .onSuccess(callback: {
-                                                        topics in
-                                                        AppDataFunctions.addTopicsToAllTopicsArray(topics)
-                                                            self.performSegueWithIdentifier("newUserCreated", sender: self)
-                                                    })
-                                            })
-                                }
-                        }
-                }
-        }
+// HACKHACK
+//        AnonymousApiService.createUser(username, password: password, displayName: displayName)
+//            .onSuccess { _ in
+//                AnonymousApiService.authenticateUser(username, password: password)
+//                    .onSuccess { _ in
+//                        authenticatedService.setHeaders()
+//                        authenticatedService.getMe()
+//                            .onSuccess { user in
+//                                AppData.ACTIVE_USER = user
+//                                authenticatedService.joinOrCreateFamily(displayName)
+//                                    .onSuccess { family in
+//                                        AppData.ACTIVE_FAMILY = family
+//                                        authenticatedService.getTopics(true)
+//                                            .onSuccess(callback: {
+//                                                topics in
+//                                                AppDataFunctions.addTopicsToAllTopicsArray(topics)
+//                                                authenticatedService.getTopics(false)
+//                                                    .onSuccess(callback: {
+//                                                        topics in
+//                                                        AppDataFunctions.addTopicsToAllTopicsArray(topics)
+//                                                            self.performSegueWithIdentifier("newUserCreated", sender: self)
+//                                                    })
+//                                            })
+//                                }
+//                        }
+//                }
+//        }
     }
     
     

@@ -73,21 +73,21 @@ class AppDataFunctions {
         return family.attributes!["displayName"]!
     }
     
-    static func getFamilyMembersFromFamily(family: Family) -> [User] {
-        return family.members!
-    }
+//    static func getFamilyMembersFromFamily(family: Family) -> [User] {
+//        return family.members!
+//    }
     
-    static func getNumFamilyMembersFromFamily(family: Family) -> Int {
-        return family.members!.count
-    }
+//    static func getNumFamilyMembersFromFamily(family: Family) -> Int {
+//        return family.members!.count
+//    }
     
-    static func getFamilyMemberNameFromIndexPath(indexPath: NSIndexPath) -> String {
-        return (AppData.ACTIVE_FAMILY?.members![indexPath.row].attributes!["displayName"]!)!
-    }
+//    static func getFamilyMemberNameFromIndexPath(indexPath: NSIndexPath) -> String {
+//        return (AppData.ACTIVE_FAMILY?.members![indexPath.row].attributes!["displayName"]!)!
+//    }
     
-    static func getFamilyMemberFromIndexPath(indexPath: NSIndexPath) -> User {
-        return (AppData.ACTIVE_FAMILY?.members![indexPath.row])!
-    }
+//    static func getFamilyMemberFromIndexPath(indexPath: NSIndexPath) -> User {
+//        return (AppData.ACTIVE_FAMILY?.members![indexPath.row])!
+//    }
     
     
 //    static func hasUserSubmittedPhotoForTopic(user: User, topic: Topic) -> Bool {

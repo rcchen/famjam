@@ -81,55 +81,55 @@ class FrontPageViewController: UIViewController {
         
         let username = usernameTextField.text!
         let password = passwordTextField.text!
-        
-        AnonymousApiService.authenticateUser(username, password: password)
-            .onSuccess { valid in
-                print("Is valid")
-                
-                let authenticatedService = AuthenticatedApiService.sharedInstance
-                
-                authenticatedService.setHeaders()
-                
-                authenticatedService.getMe()
-                    .onSuccess { user in
-                        AppData.ACTIVE_USER = user
-                        print("Setting active user when logging in: ")
-                        print(AppData.ACTIVE_USER)
-                        authenticatedService.getMeFamilies()
-                            .onSuccess { families in
-                                AppData.ACTIVE_FAMILY = families[0]
-                                print("Setting active family when logging in: ")
-                                print(AppData.ACTIVE_FAMILY)
-                                authenticatedService.getTopics(true)
-                                    .onSuccess(callback: {
-                                        topics in
-                                        AppData.ACTIVE_TOPIC = topics[0]
-                                        print("Setting active topic when logging in: ")
-                                        print(AppData.ACTIVE_TOPIC)
-                                        print("Adding these ACTIVE topics when logging in: ")
-                                        print(topics)
-                                        AppDataFunctions.addTopicsToAllTopicsArray(topics)
-                                        
-                                        authenticatedService.getTopics(false)
-                                            .onSuccess(callback: {
-                                                topics in
-                                                print("Adding these INACTIVE topics when logging in: ")
-                                                print(topics)
-                                                AppDataFunctions.addTopicsToAllTopicsArray(topics)
-                                                print("All active topics when logging in: ")
-                                                print(AppData.ALL_TOPICS)
-                                                self.performSegueWithIdentifier("loginUser", sender: self)
-                                            })
-                                        })
-                                    .onFailure(callback: {
-                                        error in
-                                        print("Error: ")
-                                        print(error)
-                                    })
-                                
-                        }
-                }
-        }
+// HACKHACK
+//        AnonymousApiService.authenticateUser(username, password: password)
+//            .onSuccess { valid in
+//                print("Is valid")
+//                
+//                let authenticatedService = AuthenticatedApiService.sharedInstance
+//                
+//                authenticatedService.setHeaders()
+//                
+//                authenticatedService.getMe()
+//                    .onSuccess { user in
+//                        AppData.ACTIVE_USER = user
+//                        print("Setting active user when logging in: ")
+//                        print(AppData.ACTIVE_USER)
+//                        authenticatedService.getMeFamilies()
+//                            .onSuccess { families in
+//                                AppData.ACTIVE_FAMILY = families[0]
+//                                print("Setting active family when logging in: ")
+//                                print(AppData.ACTIVE_FAMILY)
+//                                authenticatedService.getTopics(true)
+//                                    .onSuccess(callback: {
+//                                        topics in
+//                                        AppData.ACTIVE_TOPIC = topics[0]
+//                                        print("Setting active topic when logging in: ")
+//                                        print(AppData.ACTIVE_TOPIC)
+//                                        print("Adding these ACTIVE topics when logging in: ")
+//                                        print(topics)
+//                                        AppDataFunctions.addTopicsToAllTopicsArray(topics)
+//                                        
+//                                        authenticatedService.getTopics(false)
+//                                            .onSuccess(callback: {
+//                                                topics in
+//                                                print("Adding these INACTIVE topics when logging in: ")
+//                                                print(topics)
+//                                                AppDataFunctions.addTopicsToAllTopicsArray(topics)
+//                                                print("All active topics when logging in: ")
+//                                                print(AppData.ALL_TOPICS)
+//                                                self.performSegueWithIdentifier("loginUser", sender: self)
+//                                            })
+//                                        })
+//                                    .onFailure(callback: {
+//                                        error in
+//                                        print("Error: ")
+//                                        print(error)
+//                                    })
+//                                
+//                        }
+//                }
+//        }
         
 //        AnonymousApiService.authenticateUser(usernameTextField.text!, password: passwordTextField.text!, cb: {(valid:Bool) in
 //            if (valid) {

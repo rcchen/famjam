@@ -6,8 +6,8 @@
 //
 
 import Alamofire
-import BrightFutures
 import Foundation
+import PromiseKit
 
 class AnonymousApiService: BaseApiService {
 
@@ -15,9 +15,8 @@ class AnonymousApiService: BaseApiService {
         case RequestFailed
     }
 
-    static func createUser(username: String, password: String, displayName: String) -> Future<Bool, AnonymousApiServiceError> {
-        let promise = Promise<Bool, AnonymousApiServiceError>()
-        Queue.global.async {
+    static func createUser(username: String, password: String, displayName: String) -> Promise<Void> {
+        return Promise { fulfill, reject in
             Alamofire.request(
                 .POST,
                 "\(BaseApiService.SERVER_BASE_URL)/users",
@@ -26,20 +25,21 @@ class AnonymousApiService: BaseApiService {
                     "password": password,
                     "displayName": displayName,
                 ],
-                encoding: .JSON)
-                .responseJSON { response in
-                    let statusCode = (response.response)!.statusCode
-                    if (statusCode == 200) {
-                        promise.success(true)
-                    }
+                encoding: .JSON
+            ).responseJSON { data in
+                let response = data.response!
+                let statusCode = response.statusCode
+                if (statusCode == 200) {
+                    fulfill()
+                } else {
+                    reject(data.result.error!)
+                }
             }
         }
-        return promise.future
     }
 
-    static func authenticateUser(username: String, password: String) -> Future<Bool, AnonymousApiServiceError> {
-        let promise = Promise<Bool, AnonymousApiServiceError>()
-        Queue.global.async {
+    static func authenticateUser(username: String, password: String) -> Promise<Void> {
+        return Promise { fulfill, reject in
             Alamofire.request(
                 .POST,
                 "\(BaseApiService.SERVER_BASE_URL)/authenticate",
@@ -47,20 +47,19 @@ class AnonymousApiService: BaseApiService {
                     "username": username,
                     "password": password
                 ],
-                encoding: .JSON)
-                .responseJSON { response in
-                    let statusCode = (response.response)!.statusCode
-                    if statusCode == 401 {
-                        promise.success(false)
-                    } else {
-                        let defaults = NSUserDefaults.standardUserDefaults()
-                        defaults.setValue("Bearer \(response.result.value!)", forKey: BaseApiService.TOKEN_KEY)
-                        defaults.synchronize()
-                        promise.success(true)
-                    }
+                encoding: .JSON
+            ).responseJSON { data in
+                let statusCode = (data.response)!.statusCode
+                if statusCode == 401 {
+                    reject(data.result.error!)
+                } else {
+                    let defaults = NSUserDefaults.standardUserDefaults()
+                    defaults.setValue("Bearer \(data.result.value!)", forKey: BaseApiService.TOKEN_KEY)
+                    defaults.synchronize()
+                    fulfill()
+                }
             }
         }
-        return promise.future
     }
     
 }

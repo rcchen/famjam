@@ -116,9 +116,9 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
 //        }
         
         // Rendering the user's displayname
-        let cellUser = AppDataFunctions.getFamilyMemberFromIndexPath(indexPath)
-        let userName = cellUser.attributes!["displayName"]
-        cell.name.text = userName
+//        let cellUser = AppDataFunctions.getFamilyMemberFromIndexPath(indexPath)
+//        let userName = cellUser.attributes!["displayName"]
+//        cell.name.text = userName
         
         
         // Rendering photo with caption

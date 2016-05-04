@@ -6,9 +6,9 @@
 //
 
 import Alamofire
-import BrightFutures
+import AlamofireObjectMapper
 import Foundation
-import JSONHelper
+import PromiseKit
 
 class AuthenticatedApiService: BaseApiService {
     var headers: [String: String] = [:];
@@ -35,23 +35,18 @@ class AuthenticatedApiService: BaseApiService {
          
          /api/me
      */
-    func getMe() -> Future<User, AuthenticatedServiceError> {
-        let promise = Promise<User, AuthenticatedServiceError>()
-        Queue.global.async {
+    func getMe() -> Promise<User> {
+        return Promise { fulfill, reject in
             Alamofire.request(
                 .GET,
                 "\(BaseApiService.SERVER_BASE_URL)/me",
                 encoding: .JSON,
                 headers: self.headers
-                ).responseJSON { response in
-                    if let data = response.result.value {
-                        var user: User?
-                        user <-- data
-                        promise.success(user!)
-                    }
+            ).responseObject { (response: Response<User, NSError>) in
+                let user = response.result.value
+                fulfill(user!)
             }
         }
-        return promise.future
     }
 
     /**
@@ -63,30 +58,24 @@ class AuthenticatedApiService: BaseApiService {
         
         /api/me/families
     */
-    func getMeFamilies() -> Future<[Family], AuthenticatedServiceError> {
-        let promise = Promise<[Family], AuthenticatedServiceError>()
-        Queue.global.async {
+    func getMeFamilies() -> Promise<[Family]> {
+        return Promise { fulfill, reject in
             Alamofire.request(
                 .GET,
                 "\(BaseApiService.SERVER_BASE_URL)/me/families",
                 encoding: .JSON,
                 headers: self.headers
-                ).responseJSON { response in
-                    if let data = response.result.value {
-                        var families: [Family]?
-                        families <-- data
-                        promise.success(families!)
-                    }
+            ).responseArray { (response: Response<[Family], NSError>) in
+                let families = response.result.value
+                fulfill(families!)
             }
         }
-        return promise.future
     }
     
     // Creates a new family with the given display name.
     // Will add the authenticated user to the family automatically.
-    func createFamily(displayName: String) -> Future<Family, AuthenticatedServiceError> {
-        let promise = Promise<Family, AuthenticatedServiceError>()
-        Queue.global.async {
+    func createFamily(displayName: String) -> Promise<Family> {
+        return Promise { fulfill, reject in
             Alamofire.request(
                 .POST,
                 "\(BaseApiService.SERVER_BASE_URL)/families",
@@ -95,15 +84,11 @@ class AuthenticatedApiService: BaseApiService {
                 ],
                 encoding: .JSON,
                 headers: self.headers
-            ).responseJSON { response in
-                if let data = response.result.value {
-                    var family: Family?
-                    family <-- data
-                    promise.success(family!)
-                }
+            ).responseObject { (response: Response<Family, NSError>) in
+                let family = response.result.value
+                fulfill(family!)
             }
         }
-        return promise.future
     }
 
     /**
@@ -115,24 +100,18 @@ class AuthenticatedApiService: BaseApiService {
          
          /api/families/:id
      */
-    func getFamily(id: String) -> Future<Family, AuthenticatedServiceError> {
-        let promise = Promise<Family, AuthenticatedServiceError>()
-        Queue.global.async {
+    func getFamily(id: String) -> Promise<Family> {
+        return Promise { fulfill, reject in
             Alamofire.request(
                 .GET,
                 "\(BaseApiService.SERVER_BASE_URL)/families/\(id)",
                 encoding: .JSON,
                 headers: self.headers
-            ).responseJSON { response in
-                if let data = response.result.value {
-                    var family: Family?
-                    family <-- data
-                    promise.success(family!)
-                }
-
+            ).responseObject { (response: Response<Family, NSError>) in
+                let family = response.result.value
+                fulfill(family!)
             }
         }
-        return promise.future
     }
 
     /**
@@ -144,80 +123,65 @@ class AuthenticatedApiService: BaseApiService {
          
          /api/families/:id/members
      */
-    func getFamilyMembers(id: String) -> Future<[User], AuthenticatedServiceError> {
-        let promise = Promise<[User], AuthenticatedServiceError>()
-        Queue.global.async {
+    func getFamilyMembers(id: String) -> Promise<[User]> {
+        return Promise { fulfill, reject in
             Alamofire.request(
                 .GET,
                 "\(BaseApiService.SERVER_BASE_URL)/families/\(id)/members",
                 encoding: .JSON,
                 headers: self.headers
-                ).responseJSON { response in
-                    if let data = response.result.value {
-                        var users: [User]?
-                        users <-- data
-                        promise.success(users!)
-                    }
-                    
+            ).responseArray { (response: Response<[User], NSError>) in
+                let users = response.result.value
+                fulfill(users!)
             }
         }
-        return promise.future
     }
     
     // Search for the family with the given display name.
-    func getFamilyByDisplayName(displayName: String) -> Future<Family?, AuthenticatedServiceError> {
-        let promise = Promise<Family?, AuthenticatedServiceError>()
-        Queue.global.async {
-
+    func getFamilyByDisplayName(displayName: String) -> Promise<Family?> {
+        return Promise { fulfill, reject in
             Alamofire.request(
                 .GET,
                 "\(BaseApiService.SERVER_BASE_URL)/families?displayName=\(displayName)",
                 encoding: .JSON,
                 headers: self.headers
-            ).responseJSON { response in
-                print(response)
-                if let data = response.result.value {
-                    var families: [Family]?
-                    families <-- data
-                    if (families?.count > 0) {
-                        promise.success(families![0])
+            ).responseArray { (response: Response<[Family], NSError>) in
+                if let families = response.result.value {
+                    if (families.count > 0) {
+                        fulfill(families[0])
                     } else {
-                        promise.success(nil)
+                        fulfill(nil)
                     }
                 }
             }
         }
-        return promise.future
     }
 
-    func joinOrCreateFamily(displayName: String) -> Future<Family, AuthenticatedServiceError> {
-        let promise = Promise<Family, AuthenticatedServiceError>()
-        Queue.global.async {
-            self.getFamilyByDisplayName(displayName)
-                .onSuccess { family in
-                    if let existingFamily = family {
-                        self.joinFamily(existingFamily._id!)
-                            .onSuccess { _ in
-                                self.getFamily(existingFamily._id!)
-                                    .onSuccess { updatedFamily in
-                                        promise.success(updatedFamily)
-                                    }
-                            }
-                    } else {
-                        self.createFamily(displayName)
-                            .onSuccess { createdFamily in
-                                promise.success(createdFamily)
-                        }
-                    }
-                }
-        }
-        return promise.future
-    }
+//    func joinOrCreateFamily(displayName: String) -> Promise<Family> {
+//        return Promise { fulfill, reject in
+//            self.getFamilyByDisplayName(displayName)
+//                .onSuccess { family in
+//                    if let existingFamily = family {
+//                        self.joinFamily(existingFamily._id!)
+//                            .onSuccess { _ in
+//                                self.getFamily(existingFamily._id!)
+//                                    .onSuccess { updatedFamily in
+//                                        promise.success(updatedFamily)
+//                                    }
+//                            }
+//                    } else {
+//                        self.createFamily(displayName)
+//                            .onSuccess { createdFamily in
+//                                promise.success(createdFamily)
+//                        }
+//                    }
+//                }
+//        }
+//    }
     
     // Join the family with the given ID
-    func joinFamily(id: String) -> Future<Bool, AuthenticatedServiceError> {
-        let promise = Promise<Bool, AuthenticatedServiceError>()
-        Queue.global.async {
+    func joinFamily(id: String) -> Promise<Bool> {
+        return Promise { fulfill, reject in
             Alamofire.request(
                 .POST,
                 "\(BaseApiService.SERVER_BASE_URL)/families/\(id)/join",
@@ -225,16 +189,14 @@ class AuthenticatedApiService: BaseApiService {
                 headers: self.headers
                 ).responseJSON { response in
                     let statusCode = (response.response)!.statusCode
-                    promise.success(statusCode == 200)
+                    fulfill(statusCode == 200)
             }
         }
-        return promise.future
     }
     
     // Retrieve topics
-    func getTopics(active: Bool?) -> Future<[Topic], AuthenticatedServiceError> {
-        let promise = Promise<[Topic], AuthenticatedServiceError>()
-        Queue.global.async {
+    func getTopics(active: Bool?) -> Promise<[Topic]> {
+        return Promise { fulfill, reject in
             var url = "\(BaseApiService.SERVER_BASE_URL)/topics"
             if let isActive = active {
                 url += "?active=\(isActive)"
@@ -245,67 +207,45 @@ class AuthenticatedApiService: BaseApiService {
                 url,
                 encoding: .JSON,
                 headers: self.headers
-            ).responseJSON { response in
-                if let data = response.result.value {
-                    var topics: [Topic]?
-                    topics <-- data
-                    promise.success(topics!)
-                }
+            ).responseArray { (response: Response<[Topic], NSError>) in
+                let topics = response.result.value
+                fulfill(topics!)
             }
         }
-        return promise.future
     }
 
     // Retrieve a topic
-    func getTopic(topicId: String) -> Future<Topic, AuthenticatedServiceError> {
-        let promise = Promise<Topic, AuthenticatedServiceError>()
-        Queue.global.async {
+    func getTopic(topicId: String) -> Promise<Topic> {
+        return Promise { fulfill, reject in
             Alamofire.request(
                 .GET,
                 "\(BaseApiService.SERVER_BASE_URL)/topics/\(topicId)",
                 encoding: .JSON,
                 headers: self.headers
-            ).responseJSON { response in
-                if let data = response.result.value {
-                    var topic: Topic?
-                    topic <-- data
-                    promise.success(topic!)
-                }
+            ).responseObject { (response: Response<Topic, NSError>) in
+                let topic = response.result.value
+                fulfill(topic!)
             }
         }
-        return promise.future
     }
 
     
-    func getParticipantsForTopic(topicId: String) -> Future<[String: [User]], AuthenticatedServiceError> {
-        let promise = Promise<[String: [User]], AuthenticatedServiceError>()
-        Queue.global.async {
+    func getParticipantsForTopic(topicId: String) -> Promise<ParticipantResponse> {
+        return Promise { fulfill, reject in
             Alamofire.request(
                 .GET,
                 "\(BaseApiService.SERVER_BASE_URL)/topics/\(topicId)/participants",
                 encoding: .JSON,
                 headers: self.headers
-                ).responseJSON { response in
-                    if let data = response.result.value {
-                        var submitted: [User]?
-                        var not_submitted: [User]?
-                        
-                        submitted <-- data["submitted"]
-                        not_submitted <-- data["not_submitted"]
-                        
-                        promise.success([
-                            "submitted": submitted!,
-                            "not_submitted": not_submitted!
-                        ])
-                    }
+            ).responseObject { (response: Response<ParticipantResponse, NSError>) in
+                let participantResponse = response.result.value
+                fulfill(participantResponse!)
             }
         }
-        return promise.future
     }
     
-    func createTopic(name: String) -> Future<Topic, AuthenticatedServiceError> {
-        let promise = Promise<Topic, AuthenticatedServiceError>()
-        Queue.global.async {
+    func createTopic(name: String) -> Promise<Topic> {
+        return Promise { fulfill, reject in
             Alamofire.request(
                 .POST,
                 "\(BaseApiService.SERVER_BASE_URL)/topics",
@@ -314,20 +254,15 @@ class AuthenticatedApiService: BaseApiService {
                 ],
                 encoding: .JSON,
                 headers: self.headers
-                ).responseJSON { response in
-                    if let data = response.result.value {
-                        var topic: Topic?
-                        topic <-- data
-                        promise.success(topic!)
-                    }
+            ).responseObject { (response: Response<Topic, NSError>) in
+                let topic = response.result.value
+                fulfill(topic!)
             }
         }
-        return promise.future
     }
 
-    func updateTopic(topic: Topic) -> Future<Topic, AuthenticatedServiceError> {
-        let promise = Promise<Topic, AuthenticatedServiceError>()
-        Queue.global.async {
+    func updateTopic(topic: Topic) -> Promise<Topic> {
+        return Promise { fulfill, reject in
             Alamofire.request(
                 .PUT,
                 "\(BaseApiService.SERVER_BASE_URL)/topics/\(topic._id!)",
@@ -337,15 +272,11 @@ class AuthenticatedApiService: BaseApiService {
                 ],
                 encoding: .JSON,
                 headers: self.headers
-                ).responseJSON { response in
-                    if let data = response.result.value {
-                        var topic: Topic?
-                        topic <-- data
-                        promise.success(topic!)
-                    }
+            ).responseObject { (response: Response<Topic, NSError>) in
+                let topic = response.result.value
+                fulfill(topic!)
             }
         }
-        return promise.future
     }
     
     

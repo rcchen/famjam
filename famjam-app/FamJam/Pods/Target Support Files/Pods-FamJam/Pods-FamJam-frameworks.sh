@@ -85,13 +85,15 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/BrightFutures/BrightFutures.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/JSONHelper/JSONHelper.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Result/Result.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/AlamofireObjectMapper/AlamofireObjectMapper.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/OMGHTTPURLRQ/OMGHTTPURLRQ.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ObjectMapper/ObjectMapper.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/PromiseKit/PromiseKit.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/BrightFutures/BrightFutures.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/JSONHelper/JSONHelper.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Result/Result.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/AlamofireObjectMapper/AlamofireObjectMapper.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/OMGHTTPURLRQ/OMGHTTPURLRQ.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ObjectMapper/ObjectMapper.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/PromiseKit/PromiseKit.framework"
 fi
