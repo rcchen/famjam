@@ -6,6 +6,7 @@
 //  Copyright © 2016 Accord.io. All rights reserved.
 //
 
+import PromiseKit
 import UIKit
 
 class NewUserViewController: UIViewController {
@@ -43,36 +44,26 @@ class NewUserViewController: UIViewController {
         let username = usernameTextField.text!
         let password = passwordTextField.text!
         let displayName = displaynameTextField.text!
-        
-        let authenticatedService = AuthenticatedApiService.sharedInstance;
 
-// HACKHACK
-//        AnonymousApiService.createUser(username, password: password, displayName: displayName)
-//            .onSuccess { _ in
-//                AnonymousApiService.authenticateUser(username, password: password)
-//                    .onSuccess { _ in
-//                        authenticatedService.setHeaders()
-//                        authenticatedService.getMe()
-//                            .onSuccess { user in
-//                                AppData.ACTIVE_USER = user
-//                                authenticatedService.joinOrCreateFamily(displayName)
-//                                    .onSuccess { family in
-//                                        AppData.ACTIVE_FAMILY = family
-//                                        authenticatedService.getTopics(true)
-//                                            .onSuccess(callback: {
-//                                                topics in
-//                                                AppDataFunctions.addTopicsToAllTopicsArray(topics)
-//                                                authenticatedService.getTopics(false)
-//                                                    .onSuccess(callback: {
-//                                                        topics in
-//                                                        AppDataFunctions.addTopicsToAllTopicsArray(topics)
-//                                                            self.performSegueWithIdentifier("newUserCreated", sender: self)
-//                                                    })
-//                                            })
-//                                }
-//                        }
-//                }
-//        }
+        let authenticatedService = AuthenticatedApiService.sharedInstance
+        firstly { () -> Promise<Void> in
+            AnonymousApiService.createUser(username, password: password, displayName: displayName)
+        }.then { () -> Promise<Void> in
+            return AnonymousApiService.authenticateUser(username, password: password)
+        .then { () -> Promise<User> in
+            authenticatedService.setHeaders()
+            return authenticatedService.getMe()
+        }.then { user -> Promise<[Family]> in
+            AppData.ACTIVE_USER = user
+            return authenticatedService.getMeFamilies()
+        }.then { families -> Promise<[Topic]> in
+            AppData.ACTIVE_FAMILY = families[0]
+            return authenticatedService.getTopics()
+        }.then { topics -> Void in
+            AppDataFunctions.addTopicsToAllTopicsArray(topics)
+            self.performSegueWithIdentifier("newUserCreated", sender: self)
+        }
+
     }
     
     
