@@ -47,6 +47,7 @@ class AppData {
     static var ACTIVE_FAMILY: Family?
     //static var ACTIVE_FAMILY_MEMBERS: [User]?
     static var ALL_TOPICS = [Topic]()
+    static var ACTIVE_FAMILY_MEMBERS = [User]()
 }
 
 class TabItemLabels {
@@ -85,11 +86,18 @@ class AppDataFunctions {
 //    static func getFamilyMemberNameFromIndexPath(indexPath: NSIndexPath) -> String {
 //        return (AppData.ACTIVE_FAMILY?.members![indexPath.row].attributes!["displayName"]!)!
 //    }
-    
+//    
 //    static func getFamilyMemberFromIndexPath(indexPath: NSIndexPath) -> User {
 //        return (AppData.ACTIVE_FAMILY?.members![indexPath.row])!
 //    }
     
+    static func getFamilyMemberFromIndexPath(indexPath: NSIndexPath) -> User {
+        return AppData.ACTIVE_FAMILY_MEMBERS[indexPath.row]
+    }
+    
+    static func getFamilyMemberNameFromIndexPath(indexPath: NSIndexPath) -> String {
+        return (AppData.ACTIVE_FAMILY_MEMBERS[indexPath.row]).attributes!["displayName"]!
+    }
     
 //    static func hasUserSubmittedPhotoForTopic(user: User, topic: Topic) -> Bool {
 //        let usersWhoSubmittedPhotoToTopic =
@@ -111,6 +119,7 @@ class AppDataFunctions {
     
     static func getUserPhotoFromPhotosInTopic(topic: Topic, user: User) -> Image? {
         let userPhotos = topic.images
+        print(topic.images)
         for userPhoto in userPhotos! {
             if(userPhoto._creator == user._id) {
                 return userPhoto

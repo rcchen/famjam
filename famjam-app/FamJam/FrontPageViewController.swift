@@ -92,21 +92,26 @@ class FrontPageViewController: UIViewController {
         }.then { user -> Promise<[Family]> in
             AppData.ACTIVE_USER = user
             return authenticatedService.getMeFamilies()
-        }.then { families -> Promise<[Topic]> in
+        }.then { families -> Promise<[User]> in
             AppData.ACTIVE_FAMILY = families[0]
+            return authenticatedService.getFamilyMembers(AppData.ACTIVE_FAMILY!._id!)
+        } .then { familyMembers -> Promise<[Topic]> in
+            AppData.ACTIVE_FAMILY_MEMBERS = familyMembers
             return authenticatedService.getTopics(true)
-        }.then { topics -> Void in
+        }.then { topics -> Promise<[Topic]> in
             AppData.ACTIVE_TOPIC = topics[0]
             
             // Debug statements
-            print("Active user: ")
-            print(AppData.ACTIVE_USER)
+            print("Active user: " + (AppData.ACTIVE_USER?.username)!)
             
-            print("Active family members: ")
-            print(AppData.ACTIVE_FAMILY?.members)
+            print("Active family members: " + (AppData.ACTIVE_FAMILY?.attributes!["displayName"])!)
             
-            print("Active topic: ")
-            print(AppData.ACTIVE_TOPIC)
+            print("Active topic: " + (AppData.ACTIVE_TOPIC?.name)!)
+
+            return authenticatedService.getTopics(nil)
+            
+        }.then { topics -> Void in
+            AppData.ALL_TOPICS = topics
             
             self.performSegueWithIdentifier("loginUser", sender: self)
         }

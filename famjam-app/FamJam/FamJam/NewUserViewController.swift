@@ -59,11 +59,13 @@ class NewUserViewController: UIViewController {
         }.then { families -> Promise<[Topic]> in
             AppData.ACTIVE_FAMILY = families[0]
             return authenticatedService.getTopics(nil)
-        }.then { topics -> Void in
+        }.then { topics -> Promise<[User]> in
             AppDataFunctions.addTopicsToAllTopicsArray(topics)
+            return authenticatedService.getFamilyMembers((AppData.ACTIVE_FAMILY?._id)!)
+        }.then { familyMembers -> Void in
+            AppData.ACTIVE_FAMILY_MEMBERS = familyMembers
             self.performSegueWithIdentifier("newUserCreated", sender: self)
         }
-
     }
     
     

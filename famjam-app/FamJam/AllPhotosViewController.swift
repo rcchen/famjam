@@ -34,6 +34,8 @@ class AllPhotosViewController: UIViewController, UICollectionViewDataSource {
         //return AllPhotosConstants.THEMES.count
         print("All Topics in AllPhotosVC: ")
         print(AppData.ALL_TOPICS)
+        print("Total Sections: ")
+        print(AppData.ALL_TOPICS.count)
         return (AppData.ALL_TOPICS.count)
     }
     
@@ -41,12 +43,21 @@ class AllPhotosViewController: UIViewController, UICollectionViewDataSource {
         //return UserData.NAMES.count
         //return AppDataFunctions.getNumFamilyMembersFromFamily(AppData.ACTIVE_FAMILY!)
         
+        print("Section #: ")
+        print(section)
+        
         print("Topic in ALLPHOTOSVC: ")
-        print(AppData.ALL_TOPICS[section])
+        print(AppData.ALL_TOPICS[section].name)
+    
         
         print("All images for topic in AllPhotosVC: ")
         print(AppData.ALL_TOPICS[section].images)
-        return (AppData.ALL_TOPICS[section].images!.count)
+        if let imagesForSection = AppData.ALL_TOPICS[section].images {
+            return imagesForSection.count
+        } else {
+            return 0
+        }
+        
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -73,7 +84,12 @@ class AllPhotosViewController: UIViewController, UICollectionViewDataSource {
         case UICollectionElementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "header", forIndexPath: indexPath) as? AlbumHeaderCollectionReusableView
             //headerView!.changeLabelTitle(AllPhotosConstants.THEMES[indexPath.section])
-            headerView!.changeLabelTitle((AppData.ALL_TOPICS[indexPath.section].images![indexPath.row]._creator)!)
+//            print("SECTION # IN COLLECTION VIEW: ")
+//            print(indexPath.section)
+//            print(indexPath.row)
+//            print(AppData.ALL_TOPICS[indexPath.section].images!)
+//            print((AppData.ALL_TOPICS[indexPath.section].images![indexPath.row]._creator)!)
+//            headerView!.changeLabelTitle((AppData.ALL_TOPICS[indexPath.section].images![indexPath.row]._creator)!)
             return headerView!
             
             
