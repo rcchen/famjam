@@ -6,6 +6,7 @@
 //  Copyright © 2016 Accord.io. All rights reserved.
 //
 
+import PromiseKit
 import UIKit
 
 class FrontPageViewController: UIViewController {
@@ -79,9 +80,34 @@ class FrontPageViewController: UIViewController {
         
         print("login pressed")
         
+        let authenticatedService = AuthenticatedApiService.sharedInstance
         let username = usernameTextField.text!
         let password = passwordTextField.text!
-// HACKHACK
+
+        firstly { () -> Promise<Void> in
+            AnonymousApiService.authenticateUser(username, password: password)
+        }.then { () -> Promise<User> in
+            authenticatedService.setHeaders()
+            return authenticatedService.getMe()
+        }.then { user -> Promise<[Family]> in
+            AppData.ACTIVE_USER = user
+            return authenticatedService.getMeFamilies()
+        }.then { families -> Promise<[Topic]> in
+            AppData.ACTIVE_FAMILY = families[0]
+            return authenticatedService.getTopics(true)
+        }.then { topics -> Void in
+            AppData.ACTIVE_TOPIC = topics[0]
+            
+            // Debug statements
+            print("Active user: " + AppData.ACTIVE_USER!.username!)
+            print("Active family: " + AppData.ACTIVE_FAMILY!.attributes!["displayName"]!)
+            print("Active topic: " + AppData.ACTIVE_TOPIC!.name!)
+        }
+
+        
+        
+        
+        // HACKHACK
 //        AnonymousApiService.authenticateUser(username, password: password)
 //            .onSuccess { valid in
 //                print("Is valid")

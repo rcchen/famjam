@@ -17,23 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
-        let authenticatedService = AuthenticatedApiService.sharedInstance
-        firstly { () -> Promise<Void> in
-            AnonymousApiService.authenticateUser("roger", password: "roger")
-        }.then { () -> Promise<User> in
-            authenticatedService.setHeaders()
-            return authenticatedService.getMe()
-        }.then { user -> Promise<[Family]> in
-            print(user)
-            return authenticatedService.getMeFamilies()
-        }.then { families -> Promise<[Topic]> in
-            print(families)
-            return authenticatedService.getTopics(true)
-        }.then { topics -> Void in
-            print(topics[0])
-        }
-        
         return true
     }
     
