@@ -165,10 +165,13 @@ api.get("/topics", authorizeToken, (req, res) => {
     filter["active"] = req.query["active"] == "true";
   }
 
-  Topic.find(filter, (err, topics) => {
-    if (err) res.status(500).json(err);
-    res.json(topics);
-  });
+  Topic.find(filter)
+    .populate("_creator")
+    .populate("_family")
+    .exec((err, topics) => {
+      if (err) res.status(500).json(err);
+      res.json(topics);
+    });
 });
 
 api.post("/topics", bodyParser.json(), authorizeToken, (req, res) => {
@@ -196,6 +199,15 @@ api.get("/topics/:id", authorizeToken, (req, res) => {
       if (err) return res.status(500).json(err);
       res.json(topic);
     });
+});
+
+api.get("/topics/:id/images", authorizeToken, (req, res) => {
+  Image.find({
+    _topic: req.params["id"]
+  }).exec((err, images) => {
+    if (err) return res.status(500).json(err);
+    res.json(images);
+  });
 });
 
 api.put("/topics/:id", bodyParser.json(), authorizeToken, (req, res) => {

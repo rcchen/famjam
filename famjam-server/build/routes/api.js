@@ -145,7 +145,10 @@ exports.api.get("/topics", middleware_1.authorizeToken, (req, res) => {
     if (req.query["active"] !== undefined) {
         filter["active"] = req.query["active"] == "true";
     }
-    models_1.Topic.find(filter, (err, topics) => {
+    models_1.Topic.find(filter)
+        .populate("_creator")
+        .populate("_family")
+        .exec((err, topics) => {
         if (err)
             res.status(500).json(err);
         res.json(topics);
@@ -176,6 +179,15 @@ exports.api.get("/topics/:id", middleware_1.authorizeToken, (req, res) => {
         if (err)
             return res.status(500).json(err);
         res.json(topic);
+    });
+});
+exports.api.get("/topics/:id/images", middleware_1.authorizeToken, (req, res) => {
+    models_1.Image.find({
+        _topic: req.params["id"]
+    }).exec((err, images) => {
+        if (err)
+            return res.status(500).json(err);
+        res.json(images);
     });
 });
 exports.api.put("/topics/:id", bodyParser.json(), middleware_1.authorizeToken, (req, res) => {
