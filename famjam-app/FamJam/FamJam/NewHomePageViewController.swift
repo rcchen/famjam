@@ -127,11 +127,10 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
         
         if let userPhoto = AppDataFunctions.getUserPhotoFromPhotosInTopic(AppData.ACTIVE_TOPIC!, user: cellUser) {
             //TODO: UNCOMMENT WHEN THIS WORKS!!
-//            let imageURL = NSURL(fileURLWithPath: userPhoto.url!)
-//            let imageData = NSData(contentsOfURL: imageURL)
-//            cell.photo.image = UIImage(data: imageData!)
+            let imageURL = NSURL(string: userPhoto.url!)
+            let imageData = NSData(contentsOfURL: imageURL!)
+            cell.photo.image = UIImage(data: imageData!)
             cell.caption.text = userPhoto.description
-            print("photo found for user!!!")
         } else {
             cell.photo.image = UIImage(named: Constants.DEFAULT_LOCK_IMAGE_NAME)
             cell.caption.text = "Not submitted yet"
