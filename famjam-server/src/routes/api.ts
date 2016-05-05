@@ -168,6 +168,7 @@ api.get("/topics", authorizeToken, (req, res) => {
   Topic.find(filter)
     .populate("_creator")
     .populate("_family")
+    .populate("images")
     .exec((err, topics) => {
       if (err) res.status(500).json(err);
       res.json(topics);
