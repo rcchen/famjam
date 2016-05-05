@@ -157,27 +157,21 @@ class AuthenticatedApiService: BaseApiService {
         }
     }
 
-//    func joinOrCreateFamily(displayName: String) -> Promise<Family> {
-//        return Promise { fulfill, reject in
-//            self.getFamilyByDisplayName(displayName)
-//                .onSuccess { family in
-//                    if let existingFamily = family {
-//                        self.joinFamily(existingFamily._id!)
-//                            .onSuccess { _ in
-//                                self.getFamily(existingFamily._id!)
-//                                    .onSuccess { updatedFamily in
-//                                        promise.success(updatedFamily)
-//                                    }
-//                            }
-//                    } else {
-//                        self.createFamily(displayName)
-//                            .onSuccess { createdFamily in
-//                                promise.success(createdFamily)
-//                        }
-//                    }
-//                }
-//        }
-//    }
+    func joinOrCreateFamily(displayName: String) -> Promise<Family> {
+        return Promise { fulfill, reject in
+            self.getFamilyByDisplayName(displayName)
+            .then { family -> Promise<Family> in
+                if let existingFamily = family {
+                    return self.joinFamily(existingFamily._id!)
+                    .then { Bool -> Promise<Family> in
+                        return self.getFamily(existingFamily._id!)
+                    }
+                } else {
+                    return self.createFamily(displayName)
+                }
+            }
+        }
+    }
     
     // Join the family with the given ID
     func joinFamily(id: String) -> Promise<Bool> {
