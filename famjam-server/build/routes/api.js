@@ -1,4 +1,5 @@
 "use strict";
+const async = require("async");
 const aws = require("aws-sdk");
 const bcrypt = require("bcrypt");
 const bodyParser = require("body-parser");
@@ -152,7 +153,17 @@ exports.api.get("/topics", middleware_1.authorizeToken, (req, res) => {
         .exec((err, topics) => {
         if (err)
             res.status(500).json(err);
-        res.json(topics);
+        topics.forEach((topic, i, arr) => {
+            async.each(topic.images, (image, cb) => {
+                models_1.Image.populate(image, { "path": "_creator" }, (err, output) => {
+                    if (err)
+                        throw err;
+                    cb();
+                });
+            });
+        }, (err) => {
+            res.json(topics);
+        });
     });
 });
 exports.api.post("/topics", bodyParser.json(), middleware_1.authorizeToken, (req, res) => {

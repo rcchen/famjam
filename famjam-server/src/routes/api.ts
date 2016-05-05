@@ -1,3 +1,4 @@
+import * as async from "async";
 import * as aws from "aws-sdk";
 import * as bcrypt from "bcrypt";
 import * as bodyParser from "body-parser";
@@ -169,9 +170,18 @@ api.get("/topics", authorizeToken, (req, res) => {
     .populate("_creator")
     .populate("_family")
     .populate("images")
-    .exec((err, topics) => {
+    .exec((err, topics: ITopic[]) => {
       if (err) res.status(500).json(err);
-      res.json(topics);
+      topics.forEach((topic: ITopic, i: number, arr: ITopic[]) => {
+        async.each(topic.images, (image, cb) => {
+          Image.populate(image, { "path": "_creator" }, (err, output) => {
+            if (err) throw err;
+            cb();
+          });
+        });
+      }, (err) => {
+        res.json(topics);
+      });
     });
 });
 
