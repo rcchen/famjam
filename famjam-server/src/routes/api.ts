@@ -172,16 +172,7 @@ api.get("/topics", authorizeToken, (req, res) => {
     .populate("images")
     .exec((err, topics: ITopic[]) => {
       if (err) res.status(500).json(err);
-      topics.forEach((topic: ITopic, i: number, arr: ITopic[]) => {
-        async.each(topic.images, (image, cb) => {
-          Image.populate(image, { "path": "_creator" }, (err, output) => {
-            if (err) throw err;
-            cb();
-          });
-        });
-      }, (err) => {
-        res.json(topics);
-      });
+      res.json(topics);
     });
 });
 
