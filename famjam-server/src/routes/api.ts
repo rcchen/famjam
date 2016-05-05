@@ -26,7 +26,7 @@ aws.config.region = "us-west-2";
 // Initialize S3 object
 const s3 = new aws.S3();
 
-api.post("/users", (req, res) => {
+api.post("/users", bodyParser.json(), (req, res) => {
   const username = req.body.username;
   const attributes = {
     displayName: req.body.displayName

@@ -13,7 +13,7 @@ const models_1 = require("../models");
 exports.api = express();
 aws.config.region = "us-west-2";
 const s3 = new aws.S3();
-exports.api.post("/users", (req, res) => {
+exports.api.post("/users", bodyParser.json(), (req, res) => {
     const username = req.body.username;
     const attributes = {
         displayName: req.body.displayName
