@@ -290,6 +290,7 @@ class AuthenticatedApiService: BaseApiService {
                 if let _photoData = UIImageJPEGRepresentation(photo, 0.7) {
                     multipartFormData.appendBodyPart(data: _photoData, name: "photo", fileName: "photo.jpg", mimeType: "image/jpeg")
                 }
+                multipartFormData.appendBodyPart(data: description.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "description")
             },
             encodingCompletion: { encodingResult in
                 print(encodingResult)
