@@ -117,17 +117,19 @@ class AppDataFunctions {
 //            })
 //    }
     
+    // Used to get a user's photo from topic
     static func getUserPhotoFromPhotosInTopic(topic: Topic, user: User) -> Image? {
         let userPhotos = topic.images
         print(topic.images)
         for userPhoto in userPhotos! {
-            if(userPhoto._creator == user._id) {
+            if(userPhoto._creator?._id == user._id) {
                 return userPhoto
             }
         }
         return nil
     }
     
+    // Used to populate a collection view cell given an index path
     static func getUserPhotoForAllPhotosVCForIndexPath(indexPath: NSIndexPath) -> Image {
         return AppData.ALL_TOPICS[indexPath.section].images![indexPath.row]
     }

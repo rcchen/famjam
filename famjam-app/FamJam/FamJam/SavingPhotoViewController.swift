@@ -6,6 +6,7 @@
 //  Copyright © 2016 Accord.io. All rights reserved.
 //
 
+import PromiseKit
 import UIKit
 
 class SavingPhotoViewController: UIViewController {
@@ -38,15 +39,19 @@ class SavingPhotoViewController: UIViewController {
             
             // Reloading topic here (so that the new photo will be included)
             AuthenticatedApiService.sharedInstance.getTopic(AppData.ACTIVE_TOPIC!._id!)
-            .then { topic -> Void in
+            .then { topic -> Promise<[Topic]> in
                 AppData.ACTIVE_TOPIC = topic
                 print("Topic after save: " + topic.name!)
+                
+                return AuthenticatedApiService.sharedInstance.getTopics(nil)
+                }
+            .then { topics -> Void in
+                AppData.ALL_TOPICS = topics
                 self.performSegueWithIdentifier("savedPhoto", sender: self)
-            }
+        }
         })
     }
     
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

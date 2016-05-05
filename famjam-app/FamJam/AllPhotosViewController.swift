@@ -30,6 +30,10 @@ class AllPhotosViewController: UIViewController, UICollectionViewDataSource {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidAppear(animated: Bool) {
+        allPhotosCollectionView.reloadData()
+    }
+    
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         //return AllPhotosConstants.THEMES.count
         print("All Topics in AllPhotosVC: ")
@@ -69,7 +73,14 @@ class AllPhotosViewController: UIViewController, UICollectionViewDataSource {
         let cellImage = AppDataFunctions.getUserPhotoForAllPhotosVCForIndexPath(indexPath)
         
 //        cell.name.text = AppData.ALL_TOPICS[indexPath.section].images![indexPath.row]._creator
-        cell.name.text = cellImage._creator
+        print("CELLIMAGE")
+        print(cellImage)
+        if (cellImage._creator?.attributes != nil) {
+            cell.name.text = cellImage._creator?.attributes!["displayName"]
+        } else {
+            cell.name.text = cellImage._creator?.username
+        }
+        
         
         //cell.photo.image = UIImage(named: Constants.DEFAULT_LOCK_IMAGE_NAME)
 //        let imageURL = NSURL(string: AppData.ALL_TOPICS[indexPath.section].images![indexPath.row].url!)

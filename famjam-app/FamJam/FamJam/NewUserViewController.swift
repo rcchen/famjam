@@ -44,6 +44,7 @@ class NewUserViewController: UIViewController {
         let username = usernameTextField.text!
         let password = passwordTextField.text!
         let displayName = displaynameTextField.text!
+        let familyName = familyTextField.text!
 
         let authenticatedService = AuthenticatedApiService.sharedInstance
         firstly { () -> Promise<Void> in
