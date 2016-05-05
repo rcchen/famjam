@@ -30,9 +30,6 @@ class NewTopicViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if (segue.identifier == "savedTopic") {
-//            print(newTopicTextField.text)
-//        }
     }
     
     var keyBoardShowing = false
@@ -53,7 +50,10 @@ class NewTopicViewController: UIViewController {
                 if (topicCopy._id != AppData.ACTIVE_TOPIC?._id) {
                     topicCopy.active = false
                     authenticatedService.updateTopic(topicCopy)
-                    .then { topic -> Void in
+                    .then { topic -> Promise<[Topic]> in
+                        return authenticatedService.getTopics(nil)
+                    }.then { topics -> Void in
+                        AppData.ALL_TOPICS = topics
                         self.performSegueWithIdentifier("savedTopic", sender: self)
                     }
                 }
