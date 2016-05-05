@@ -10,7 +10,7 @@ import ObjectMapper
 
 class Image: Mappable {
     var _id: String?
-    var _creator: String?
+    var _creator: User?
     var _topic: String?
     var description: String?
     var url: String?

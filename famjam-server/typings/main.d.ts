@@ -1,3 +1,4 @@
+/// <reference path="main/ambient/async/index.d.ts" />
 /// <reference path="main/ambient/aws-sdk/index.d.ts" />
 /// <reference path="main/ambient/bcrypt/index.d.ts" />
 /// <reference path="main/ambient/body-parser/index.d.ts" />
