@@ -96,7 +96,8 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return ThemeOfDayConstants.NUM_ROWS_IN_SECTION
+        //return ThemeOfDayConstants.NUM_ROWS_IN_SECTION
+        return AppData.ACTIVE_FAMILY_MEMBERS.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -126,7 +127,6 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
         // Rendering photo with caption
         
         if let userPhoto = AppDataFunctions.getUserPhotoFromPhotosInTopic(AppData.ACTIVE_TOPIC!, user: cellUser) {
-            //TODO: UNCOMMENT WHEN THIS WORKS!!
             let imageURL = NSURL(string: userPhoto.url!)
             let imageData = NSData(contentsOfURL: imageURL!)
             cell.photo.image = UIImage(data: imageData!)

@@ -27,8 +27,8 @@ class Constants {
 
 class UserData {
     //static let NAMES = ["Lucio", "Stephen", "Roger", "Emma"]
-    static let USER_PHOTO_NAMES = ["lucioImage", "stephenImage", "rogerImage", "emmaImage"]
-    static let USER_PHOTO_CAPTIONS = ["Excited to be doing this project!", "Om nom nom", "Looking good!", "Should I use this as my LinkedIn profile pic?"]
+    //static let USER_PHOTO_NAMES = ["lucioImage", "stephenImage", "rogerImage", "emmaImage"]
+    //static let USER_PHOTO_CAPTIONS = ["Excited to be doing this project!", "Om nom nom", "Looking good!", "Should I use this as my LinkedIn profile pic?"]
 }
 
 class FamilyDashboardConstants {
@@ -38,7 +38,7 @@ class FamilyDashboardConstants {
 
 class ThemeOfDayConstants {
     static let NUM_SECTIONS = 1
-    static let NUM_ROWS_IN_SECTION = 4
+    //static let NUM_ROWS_IN_SECTION = 4
 }
 
 class AppData {
