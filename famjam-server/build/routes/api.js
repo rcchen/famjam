@@ -19,7 +19,7 @@ exports.api.post("/users", bodyParser.json(), (req, res) => {
         displayName: req.body.displayName
     };
     models_1.User.findOne({ username }, (err, user) => {
-        if (user)
+        if (user != null)
             return res.sendStatus(409);
         bcrypt.hash(req.body.password, 10, (err, password) => {
             new models_1.User({ username, password, attributes }).save((err, user) => {
