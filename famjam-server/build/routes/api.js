@@ -148,6 +148,7 @@ exports.api.get("/topics", middleware_1.authorizeToken, (req, res) => {
     models_1.Topic.find(filter)
         .populate("_creator")
         .populate("_family")
+        .populate("images")
         .exec((err, topics) => {
         if (err)
             res.status(500).json(err);
