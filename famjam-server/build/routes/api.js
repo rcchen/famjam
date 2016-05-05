@@ -13,13 +13,13 @@ const models_1 = require("../models");
 exports.api = express();
 aws.config.region = "us-west-2";
 const s3 = new aws.S3();
-exports.api.post("/users", (req, res) => {
+exports.api.post("/users", bodyParser.json(), (req, res) => {
     const username = req.body.username;
     const attributes = {
         displayName: req.body.displayName
     };
     models_1.User.findOne({ username }, (err, user) => {
-        if (user)
+        if (user != null)
             return res.sendStatus(409);
         bcrypt.hash(req.body.password, 10, (err, password) => {
             new models_1.User({ username, password, attributes }).save((err, user) => {

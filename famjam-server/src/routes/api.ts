@@ -26,14 +26,14 @@ aws.config.region = "us-west-2";
 // Initialize S3 object
 const s3 = new aws.S3();
 
-api.post("/users", (req, res) => {
+api.post("/users", bodyParser.json(), (req, res) => {
   const username = req.body.username;
   const attributes = {
     displayName: req.body.displayName
   };
 
   User.findOne({ username }, (err, user: IUser) => {
-    if (user) return res.sendStatus(409);
+    if (user != null) return res.sendStatus(409);
     bcrypt.hash(req.body.password, 10, (err, password) => {
       new User({ username, password, attributes }).save((err, user: IUser) => {
         res.json(user);
