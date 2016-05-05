@@ -66,10 +66,20 @@ class AllPhotosViewController: UIViewController, UICollectionViewDataSource {
         
         //cell.name.text = UserData.NAMES[indexPath.row]
         
-        cell.name.text = AppData.ALL_TOPICS[indexPath.section].images![indexPath.row]._creator
+        let cellImage = AppDataFunctions.getUserPhotoForAllPhotosVCForIndexPath(indexPath)
         
-        cell.photo.image = UIImage(named: Constants.DEFAULT_LOCK_IMAGE_NAME)
-        cell.caption.text = Constants.DEFAULT_LOCK_TEXT
+//        cell.name.text = AppData.ALL_TOPICS[indexPath.section].images![indexPath.row]._creator
+        cell.name.text = cellImage._creator
+        
+        //cell.photo.image = UIImage(named: Constants.DEFAULT_LOCK_IMAGE_NAME)
+//        let imageURL = NSURL(string: AppData.ALL_TOPICS[indexPath.section].images![indexPath.row].url!)
+        let imageURL = NSURL(string: cellImage.url!)
+        
+        let imageData = NSData(contentsOfURL: imageURL!)
+        
+        cell.photo.image = UIImage(data: imageData!)
+        
+        cell.caption.text = AppData.ALL_TOPICS[indexPath.section].images![indexPath.row].description
         
         cell.name.font = Constants.FAMJAM_SUBHEADER_FONT
         cell.caption.font = Constants.FAMJAM_FONT
@@ -89,7 +99,7 @@ class AllPhotosViewController: UIViewController, UICollectionViewDataSource {
 //            print(indexPath.row)
 //            print(AppData.ALL_TOPICS[indexPath.section].images!)
 //            print((AppData.ALL_TOPICS[indexPath.section].images![indexPath.row]._creator)!)
-//            headerView!.changeLabelTitle((AppData.ALL_TOPICS[indexPath.section].images![indexPath.row]._creator)!)
+            headerView!.changeLabelTitle((AppData.ALL_TOPICS[indexPath.section].name)!)
             return headerView!
             
             

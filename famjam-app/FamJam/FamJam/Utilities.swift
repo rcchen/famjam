@@ -33,7 +33,7 @@ class UserData {
 
 class FamilyDashboardConstants {
     static let NUM_SECTIONS = 1
-    static let NUM_ROWS_IN_SECTION = 4
+    //static let NUM_ROWS_IN_SECTION = 4
 }
 
 class ThemeOfDayConstants {
@@ -128,13 +128,13 @@ class AppDataFunctions {
         return nil
     }
     
+    static func getUserPhotoForAllPhotosVCForIndexPath(indexPath: NSIndexPath) -> Image {
+        return AppData.ALL_TOPICS[indexPath.section].images![indexPath.row]
+    }
+    
     static func addTopicsToAllTopicsArray(topics: [Topic]) {
         for topic in topics {
-//            print("NOW ADDING TOPIC TO ALL TOPICS ARRAY: ")
-//            print(topic)
             AppData.ALL_TOPICS.append(topic)
-//            print("TOTAL ELEMENTS IN ALL TOPICS ARRAY: ")
-//            print(AppData.ALL_TOPICS.count)
         }
     }
     
