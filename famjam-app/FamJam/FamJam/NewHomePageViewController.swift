@@ -59,6 +59,10 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
         collectionView.reloadData()
     }
     
+    func topicIsUnlocked(family: Family, topic: Topic) -> Bool {
+        return family.members?.count == topic.images?.count
+    }
+    
     
     // Variables for this controller
     //var defaultCaption = ""
@@ -108,19 +112,6 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PhotoCell", forIndexPath: indexPath) as! PhotoCollectionViewCell
         
         
-        // TODO: Need to actually render family members here
-//        if (AppDataFunctions.getActiveUsername(AppData.ACTIVE_USER!) == UserData.NAMES[indexPath.row]) {
-//            cell.photo.image = savedImage
-//            //cell.caption.text = defaultCaption
-//        } else if (pageIsLocked) {
-//            cell.photo.image = UIImage(named: Constants.DEFAULT_LOCK_IMAGE_NAME)
-//            cell.caption.text = Constants.DEFAULT_LOCK_TEXT
-//        } else {
-//            cell.caption.text = UserData.USER_PHOTO_CAPTIONS[indexPath.row]
-//            cell.photo.image = UIImage(named: UserData.USER_PHOTO_NAMES[indexPath.row])
-//        }
-        
-        
         
         // Rendering the user's displayname
         let cellUser = AppDataFunctions.getFamilyMemberFromIndexPath(indexPath)
@@ -130,14 +121,19 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
         
         // Rendering photo with caption
         
-        if let userPhoto = AppDataFunctions.getUserPhotoFromPhotosInTopic(AppData.ACTIVE_TOPIC!, user: cellUser) {
-            let imageURL = NSURL(string: userPhoto.url!)
-            let imageData = NSData(contentsOfURL: imageURL!)
-            cell.photo.image = UIImage(data: imageData!)
-            cell.caption.text = userPhoto.description
+        if (topicIsUnlocked(AppData.ACTIVE_FAMILY!, topic: AppData.ACTIVE_TOPIC!)) {
+            if let userPhoto = AppDataFunctions.getUserPhotoFromPhotosInTopic(AppData.ACTIVE_TOPIC!, user: cellUser) {
+                let imageURL = NSURL(string: userPhoto.url!)
+                let imageData = NSData(contentsOfURL: imageURL!)
+                cell.photo.image = UIImage(data: imageData!)
+                cell.caption.text = userPhoto.description
+            } else {
+                cell.photo.image = UIImage(named: Constants.DEFAULT_LOCK_IMAGE_NAME)
+                cell.caption.text = "Not submitted yet"
+            }
         } else {
             cell.photo.image = UIImage(named: Constants.DEFAULT_LOCK_IMAGE_NAME)
-            cell.caption.text = "Not submitted yet"
+            cell.caption.text = "Topic locked"
         }
         
         

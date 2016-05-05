@@ -26,6 +26,7 @@ class FamilyDashboardViewController: UIViewController, UITableViewDataSource {
     
     @IBOutlet weak var familyLabel: UILabel!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -75,15 +76,12 @@ class FamilyDashboardViewController: UIViewController, UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("familyCell", forIndexPath: indexPath) as! FamilyTableViewCell
-        //let nameString = UserData.NAMES[indexPath.row]
         let nameString = AppDataFunctions.getFamilyMemberNameFromIndexPath(indexPath)
-        //let nameString = "adF"
         cell.name.text = nameString
         cell.name.font = Constants.FAMJAM_SUBHEADER_FONT
         if (nameString == AppDataFunctions.getActiveUserDisplayname(AppData.ACTIVE_USER!)) {
             cell.remindButton.hidden = true
         }
-        //cell.profilePicture.image = UIImage(named: UserData.USER_PHOTO_NAMES[indexPath.row])
         cell.name.textColor = Constants.FAMJAM_WHITE_COLOR
         return cell
     }
