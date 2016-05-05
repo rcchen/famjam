@@ -92,7 +92,11 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
     
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return ThemeOfDayConstants.NUM_SECTIONS
+        if (AppData.ACTIVE_TOPIC == nil) {
+            return 0
+        } else {
+            return ThemeOfDayConstants.NUM_SECTIONS
+        }
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

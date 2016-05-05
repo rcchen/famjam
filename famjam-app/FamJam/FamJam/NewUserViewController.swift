@@ -51,8 +51,10 @@ class NewUserViewController: UIViewController {
             AnonymousApiService.createUser(username, password: password, displayName: displayName)
         }.then { () -> Promise<Void> in
             return AnonymousApiService.authenticateUser(username, password: password)
-        .then { () -> Promise<User> in
+        .then { () -> Promise<Family> in
             authenticatedService.setHeaders()
+            return AuthenticatedApiService.sharedInstance.joinOrCreateFamily(familyName)
+        }.then { family -> Promise<User> in
             return authenticatedService.getMe()
         }.then { user -> Promise<[Family]> in
             AppData.ACTIVE_USER = user
@@ -61,7 +63,8 @@ class NewUserViewController: UIViewController {
             AppData.ACTIVE_FAMILY = families[0]
             return authenticatedService.getTopics(nil)
         }.then { topics -> Promise<[User]> in
-            AppDataFunctions.addTopicsToAllTopicsArray(topics)
+            //AppDataFunctions.addTopicsToAllTopicsArray(topics)
+            AppData.ALL_TOPICS = topics
             return authenticatedService.getFamilyMembers((AppData.ACTIVE_FAMILY?._id)!)
         }.then { familyMembers -> Void in
             AppData.ACTIVE_FAMILY_MEMBERS = familyMembers

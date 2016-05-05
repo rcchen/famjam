@@ -169,6 +169,8 @@ class AuthenticatedApiService: BaseApiService {
                 } else {
                     return self.createFamily(displayName)
                 }
+            }.then { family -> Void in
+                fulfill(family)
             }
         }
     }
