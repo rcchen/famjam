@@ -61,6 +61,16 @@ class NewUserViewController: UIViewController {
             return authenticatedService.getMeFamilies()
         }.then { families -> Promise<[Topic]> in
             AppData.ACTIVE_FAMILY = families[0]
+            
+            return authenticatedService.getTopics(true)
+            
+        }.then { topics -> Promise<[Topic]> in
+            if (topics.count == 0) {
+                AppData.ACTIVE_TOPIC = nil
+            } else {
+                AppData.ACTIVE_TOPIC = topics[0]
+            }
+            
             return authenticatedService.getTopics(nil)
         }.then { topics -> Promise<[User]> in
             //AppDataFunctions.addTopicsToAllTopicsArray(topics)

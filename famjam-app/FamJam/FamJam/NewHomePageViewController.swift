@@ -60,7 +60,7 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
     }
     
     func topicIsUnlocked(family: Family, topic: Topic) -> Bool {
-        return family.members?.count == topic.images?.count
+        return family.members?.count <= topic.images?.count
     }
     
     
