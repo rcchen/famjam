@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import IQKeyboardManagerSwift
 import PromiseKit
 import UIKit
 
@@ -17,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        IQKeyboardManager.sharedManager().enable = true
         return true
     }
     

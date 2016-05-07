@@ -3,6 +3,8 @@ use_frameworks!
 target 'FamJam' do
   pod 'Alamofire'
   pod 'AlamofireObjectMapper'
+  pod 'IQKeyboardManagerSwift'
   pod 'ObjectMapper'
   pod 'PromiseKit'
+  pod 'TextFieldEffects'
 end

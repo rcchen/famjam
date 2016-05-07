@@ -3,6 +3,7 @@ PODS:
   - AlamofireObjectMapper (3.0.0):
     - Alamofire (~> 3.2)
     - ObjectMapper (~> 1.0)
+  - IQKeyboardManagerSwift (4.0.2)
   - ObjectMapper (1.2.0)
   - OMGHTTPURLRQ (3.1.1):
     - OMGHTTPURLRQ/RQ (= 3.1.1)
@@ -23,20 +24,25 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKit/UIKit (3.1.1):
     - PromiseKit/CorePromise
+  - TextFieldEffects (1.2.0)
 
 DEPENDENCIES:
   - Alamofire
   - AlamofireObjectMapper
+  - IQKeyboardManagerSwift
   - ObjectMapper
   - PromiseKit
+  - TextFieldEffects
 
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
   AlamofireObjectMapper: 2d16585d06177be0116d76de73497e77437798af
+  IQKeyboardManagerSwift: 2f2c19c509f67c4c0df2826db54033d3e090ce65
   ObjectMapper: b1e9c7c8a9f6400b72690c80072c131504caa66f
   OMGHTTPURLRQ: 633f98ee745aeda02345935a52eec1784cddb589
   PromiseKit: 4e8127c22a9b29d1b44958ab2ec762ea6115cbfb
+  TextFieldEffects: bc4fd3bd557321bd61a0762f3f50965477a36f62
 
-PODFILE CHECKSUM: ce22d450a4a325b2ec27feeba5ce8896343b49d0
+PODFILE CHECKSUM: 382f0a4b2facc5d6513f0fc629a5988adb8b5024
 
 COCOAPODS: 1.0.0.beta.8

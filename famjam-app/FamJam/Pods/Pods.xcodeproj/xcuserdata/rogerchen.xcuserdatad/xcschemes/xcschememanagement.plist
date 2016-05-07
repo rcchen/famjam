@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>IQKeyboardManagerSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>OMGHTTPURLRQ.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -34,20 +39,25 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>TextFieldEffects.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>1520003FEBEC114D6C84F832AFEDB994</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>190ACD3A51BC90B85EADB13E9CDD207B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>24FB1BB0AB4B68388EB65B09AB3B9A67</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>29D3FAED70E9D0A75AC4D5C6D5FC31EA</key>
+		<key>3E42639130DCEFF49573053D0D956FB3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,17 +67,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7BB17359068A26BB1EF61653A3E7C9A3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>7E274FFDD1163DF5F04EBF413FE20251</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B9B4DDC6AA4D85A16E085BD38240F789</key>
+		<key>C316F8F56789507E1A1690846A83554B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -77,7 +77,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DCB45C0AF8651B0CC72E303D3F242439</key>
+		<key>CDB278419C82E114107DA60711691C13</key>
 		<dict>
 			<key>primary</key>
 			<true/>
