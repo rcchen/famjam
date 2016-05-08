@@ -22,6 +22,9 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func unwindToLoginViewController(segue: UIStoryboardSegue) {
+    }
+    
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     

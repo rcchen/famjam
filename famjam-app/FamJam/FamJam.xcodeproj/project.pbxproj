@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		3315276B1CDF04F200CD60EF /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3315276A1CDF04F200CD60EF /* TopicViewController.swift */; };
+		3315277D1CDF06BD00CD60EF /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3315277C1CDF06BD00CD60EF /* State.swift */; };
+		3315277F1CDF06CA00CD60EF /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3315277E1CDF06C900CD60EF /* Actions.swift */; };
+		331527811CDF06D300CD60EF /* Reducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331527801CDF06D300CD60EF /* Reducers.swift */; };
+		331527831CDF1BD600CD60EF /* NewPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331527821CDF1BD600CD60EF /* NewPhotoViewController.swift */; };
 		33153E191CD6CBFF0012AEF7 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33153E181CD6CBFF0012AEF7 /* Colors.swift */; };
 		3382A0AA1CD9B09D00C2A3F3 /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3382A0A91CD9B09D00C2A3F3 /* Family.swift */; };
 		3382A0AC1CD9B0AD00C2A3F3 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3382A0AB1CD9B0AD00C2A3F3 /* Topic.swift */; };
@@ -97,6 +101,10 @@
 /* Begin PBXFileReference section */
 		24FADB32D4772F8C0FC94045 /* Pods-FamJam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FamJam.release.xcconfig"; path = "Pods/Target Support Files/Pods-FamJam/Pods-FamJam.release.xcconfig"; sourceTree = "<group>"; };
 		3315276A1CDF04F200CD60EF /* TopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopicViewController.swift; path = ViewControllers/TopicViewController.swift; sourceTree = "<group>"; };
+		3315277C1CDF06BD00CD60EF /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = State.swift; path = Redux/State.swift; sourceTree = "<group>"; };
+		3315277E1CDF06C900CD60EF /* Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Actions.swift; path = Redux/Actions.swift; sourceTree = "<group>"; };
+		331527801CDF06D300CD60EF /* Reducers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reducers.swift; path = Redux/Reducers.swift; sourceTree = "<group>"; };
+		331527821CDF1BD600CD60EF /* NewPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPhotoViewController.swift; sourceTree = "<group>"; };
 		33153E181CD6CBFF0012AEF7 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		3382A0A91CD9B09D00C2A3F3 /* Family.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Family.swift; path = Services/Models/Family.swift; sourceTree = "<group>"; };
 		3382A0AB1CD9B0AD00C2A3F3 /* Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Topic.swift; path = Services/Models/Topic.swift; sourceTree = "<group>"; };
@@ -180,12 +188,23 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		331527761CDF06A300CD60EF /* Redux */ = {
+			isa = PBXGroup;
+			children = (
+				3315277C1CDF06BD00CD60EF /* State.swift */,
+				3315277E1CDF06C900CD60EF /* Actions.swift */,
+				331527801CDF06D300CD60EF /* Reducers.swift */,
+			);
+			name = Redux;
+			sourceTree = "<group>";
+		};
 		331EBACE1CDECF5A004F89EA /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				650E1CAC1CCC3109002C69DC /* LoginViewController.swift */,
 				65FD563C1CD338CC009C9E98 /* NewUserViewController.swift */,
 				3315276A1CDF04F200CD60EF /* TopicViewController.swift */,
+				331527821CDF1BD600CD60EF /* NewPhotoViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -266,13 +285,13 @@
 		650E1C6D1CCC2F28002C69DC = {
 			isa = PBXGroup;
 			children = (
-				3395389A1CD0C6870094AB46 /* Libraries */,
 				650E1C781CCC2F28002C69DC /* FamJam */,
 				650E1C901CCC2F28002C69DC /* FamJamTests */,
 				650E1C9B1CCC2F28002C69DC /* FamJamUITests */,
-				650E1C771CCC2F28002C69DC /* Products */,
-				23DB5E7FDAE37D8B80274A76 /* Pods */,
 				3817A65E813B3B92CC1B063B /* Frameworks */,
+				3395389A1CD0C6870094AB46 /* Libraries */,
+				23DB5E7FDAE37D8B80274A76 /* Pods */,
+				650E1C771CCC2F28002C69DC /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -289,30 +308,31 @@
 		650E1C781CCC2F28002C69DC /* FamJam */ = {
 			isa = PBXGroup;
 			children = (
-				33153E181CD6CBFF0012AEF7 /* Colors.swift */,
-				651D908D1CD2E5C6006E8CBB /* Services */,
-				331EBACE1CDECF5A004F89EA /* ViewControllers */,
-				6546CB101CCDAE1D00BEEA54 /* AllPhotosViewController.swift */,
-				6546CB121CCDAE8600BEEA54 /* SavingPhotoViewController.swift */,
-				650E1C791CCC2F28002C69DC /* AppDelegate.swift */,
-				650E1C7B1CCC2F28002C69DC /* ViewController.swift */,
-				650E1C7D1CCC2F28002C69DC /* Main.storyboard */,
-				65C4D5661CD46B0000ED8DBC /* NewTopicViewController.swift */,
-				65FD56431CD338E7009C9E98 /* EditUserViewController.swift */,
+				6546CB081CCD970100BEEA54 /* AlbumHeaderCollectionReusableView.swift */,
 				65173BE61CCF1AF800F5A028 /* AllPhotosCollectionViewCell.swift */,
+				6546CB101CCDAE1D00BEEA54 /* AllPhotosViewController.swift */,
+				650E1C791CCC2F28002C69DC /* AppDelegate.swift */,
+				650E1C831CCC2F28002C69DC /* Assets.xcassets */,
+				33F3844D1CD210E700EF7C8D /* BridgingHeader.h */,
+				33153E181CD6CBFF0012AEF7 /* Colors.swift */,
+				65FD56431CD338E7009C9E98 /* EditUserViewController.swift */,
 				65434D241CCEC3C500B73C60 /* FamilyDashboardViewController.swift */,
 				65434D261CCEC6BB00B73C60 /* FamilyTableViewCell.swift */,
+				650E1C801CCC2F28002C69DC /* FamJam.xcdatamodeld */,
 				6546CB061CCD90E400BEEA54 /* HomePageTabBarViewController.swift */,
+				650E1C881CCC2F28002C69DC /* Info.plist */,
+				650E1C851CCC2F28002C69DC /* LaunchScreen.storyboard */,
+				650E1C7D1CCC2F28002C69DC /* Main.storyboard */,
 				650E1CB61CCC4615002C69DC /* NewHomePageViewController.swift */,
-				6546CB081CCD970100BEEA54 /* AlbumHeaderCollectionReusableView.swift */,
-				6546CB0A1CCD9BB800BEEA54 /* Utilities.swift */,
+				65C4D5661CD46B0000ED8DBC /* NewTopicViewController.swift */,
 				650E1CB21CCC360C002C69DC /* PhotoCollectionViewCell.swift */,
 				650E1CB41CCC3AF6002C69DC /* PhotoDetailViewController.swift */,
-				650E1C831CCC2F28002C69DC /* Assets.xcassets */,
-				650E1C851CCC2F28002C69DC /* LaunchScreen.storyboard */,
-				650E1C881CCC2F28002C69DC /* Info.plist */,
-				650E1C801CCC2F28002C69DC /* FamJam.xcdatamodeld */,
-				33F3844D1CD210E700EF7C8D /* BridgingHeader.h */,
+				331527761CDF06A300CD60EF /* Redux */,
+				6546CB121CCDAE8600BEEA54 /* SavingPhotoViewController.swift */,
+				651D908D1CD2E5C6006E8CBB /* Services */,
+				6546CB0A1CCD9BB800BEEA54 /* Utilities.swift */,
+				650E1C7B1CCC2F28002C69DC /* ViewController.swift */,
+				331EBACE1CDECF5A004F89EA /* ViewControllers */,
 			);
 			path = FamJam;
 			sourceTree = "<group>";
@@ -413,7 +433,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 730;
 				LastUpgradeCheck = 730;
-				ORGANIZATIONNAME = Accord.io;
+				ORGANIZATIONNAME = Famjam;
 				TargetAttributes = {
 					650E1C751CCC2F28002C69DC = {
 						CreatedOnToolsVersion = 7.3;
@@ -597,6 +617,7 @@
 				3382A0B01CD9B11900C2A3F3 /* User.swift in Sources */,
 				6546CB0B1CCD9BB800BEEA54 /* Utilities.swift in Sources */,
 				3382A0AE1CD9B0EC00C2A3F3 /* Image.swift in Sources */,
+				331527811CDF06D300CD60EF /* Reducers.swift in Sources */,
 				651D90861CD2E5BB006E8CBB /* AuthenticatedApiService.swift in Sources */,
 				6546CB091CCD970100BEEA54 /* AlbumHeaderCollectionReusableView.swift in Sources */,
 				65173BE71CCF1AF800F5A028 /* AllPhotosCollectionViewCell.swift in Sources */,
@@ -605,9 +626,12 @@
 				650E1CB71CCC4615002C69DC /* NewHomePageViewController.swift in Sources */,
 				650E1CAD1CCC3109002C69DC /* LoginViewController.swift in Sources */,
 				65FD56441CD338E7009C9E98 /* EditUserViewController.swift in Sources */,
+				3315277F1CDF06CA00CD60EF /* Actions.swift in Sources */,
 				3382A0AA1CD9B09D00C2A3F3 /* Family.swift in Sources */,
 				33153E191CD6CBFF0012AEF7 /* Colors.swift in Sources */,
+				331527831CDF1BD600CD60EF /* NewPhotoViewController.swift in Sources */,
 				65C4D5671CD46B0000ED8DBC /* NewTopicViewController.swift in Sources */,
+				3315277D1CDF06BD00CD60EF /* State.swift in Sources */,
 				6546CB111CCDAE1D00BEEA54 /* AllPhotosViewController.swift in Sources */,
 				650E1C7C1CCC2F28002C69DC /* ViewController.swift in Sources */,
 				650E1CB51CCC3AF6002C69DC /* PhotoDetailViewController.swift in Sources */,

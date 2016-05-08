@@ -9,13 +9,15 @@
 import CoreData
 import IQKeyboardManagerSwift
 import PromiseKit
+import ReSwift
 import UIKit
+
+var store = Store<AppState>(reducer: AppReducer(), state: nil)
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         IQKeyboardManager.sharedManager().enable = true

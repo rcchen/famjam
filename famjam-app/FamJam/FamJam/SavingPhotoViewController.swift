@@ -15,7 +15,7 @@ class SavingPhotoViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        savedImage.image = savedImageReference
+//        savedImage.image = savedImageReference
         
         // Makes it such that screen will adjust when keyboard goes on
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
@@ -35,33 +35,34 @@ class SavingPhotoViewController: UIViewController {
         //        destination?.savedImage = savedImageReference
         
         // Save photo to database
-        AuthenticatedApiService.sharedInstance.addPhotoToTopic((AppData.ACTIVE_TOPIC?._id)!, photo: savedImageReference!, description: captionTextField.text, cb: {success in
-            
-            // Reloading topic here (so that the new photo will be included)
-            AuthenticatedApiService.sharedInstance.getTopic(AppData.ACTIVE_TOPIC!._id!)
-            .then { topic -> Promise<[Topic]> in
-                AppData.ACTIVE_TOPIC = topic
-                print("Topic after save: " + topic.name!)
-                
-                return AuthenticatedApiService.sharedInstance.getTopics(nil)
-                }
-            .then { topics -> Void in
-                AppData.ALL_TOPICS = topics
-                self.performSegueWithIdentifier("savedPhoto", sender: self)
-        }
-        })
+
+        
+//        AuthenticatedApiService.sharedInstance.addPhotoToTopic((AppData.ACTIVE_TOPIC?._id)!, photo: savedImageReference!, description: captionTextField.text)
+//        .then { Bool -> Void in
+//            // Reloading topic here (so that the new photo will be included)
+//            AuthenticatedApiService.sharedInstance.getTopic(AppData.ACTIVE_TOPIC!._id!)
+//            .then { topic -> Promise<[Topic]> in
+//                AppData.ACTIVE_TOPIC = topic
+//                print("Topic after save: " + topic.name!)
+//                
+//                return AuthenticatedApiService.sharedInstance.getTopics(nil)
+//            }
+//            .then { topics -> Void in
+//                AppData.ALL_TOPICS = topics
+//                self.performSegueWithIdentifier("savedPhoto", sender: self)
+//        }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+//    override func didReceiveMemoryWarning() {
+//        super.didReceiveMemoryWarning()
+//        // Dispose of any resources that can be recreated.
+//    }
     
     var savedImageReference:UIImage?
     
-    @IBOutlet weak var savedImage: UIImageView!
-    
-    @IBOutlet weak var captionTextField: UITextView!
+//    @IBOutlet weak var savedImage: UIImageView!
+//    
+//    @IBOutlet weak var captionTextField: UITextView!
     
     var imageData: NSData?
     

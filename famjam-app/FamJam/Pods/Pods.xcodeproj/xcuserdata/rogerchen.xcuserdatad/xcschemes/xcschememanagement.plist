@@ -14,7 +14,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>FDTake-FDTake.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FDTake.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>IQKeyboardManagerSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>NextGrowingTextView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -39,6 +54,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ReSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>TextFieldEffects.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,7 +77,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3E42639130DCEFF49573053D0D956FB3</key>
+		<key>3B2E41D42ECBED28E1F40683AAE09CFF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6365D1196FB71360F1D9604997F2CED7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>63C2DFE48D3CE38D013CCB454DE1B6BF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -67,7 +97,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C316F8F56789507E1A1690846A83554B</key>
+		<key>A294E3DBE4AF2224A275B04EE9C7546F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -77,7 +107,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CDB278419C82E114107DA60711691C13</key>
+		<key>C69DAE50C95468ECF8DC9762A5ABD4A1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F1625E0013404B7B9C6349E5F8766797</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F3B87D093A49B3F7B4794037EC2B814E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

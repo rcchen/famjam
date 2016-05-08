@@ -275,34 +275,34 @@ class AuthenticatedApiService: BaseApiService {
         }
     }
     
-    
-    func addPhotoToTopic(topicId: String, photo: UIImage, description: String, cb: (Bool) -> Void) {
+    func addPhotoToTopic(topicId: String, photo: UIImage, description: String) -> Promise<Bool> {
         let url = "\(BaseApiService.SERVER_BASE_URL)/topics/\(topicId)"
-        Alamofire.upload(
-            .POST,
-            url,
-            headers: self.headers,
-            multipartFormData: { multipartFormData in
-                if let _photoData = UIImageJPEGRepresentation(photo, 0.7) {
-                    multipartFormData.appendBodyPart(data: _photoData, name: "photo", fileName: "photo.jpg", mimeType: "image/jpeg")
-                }
-                multipartFormData.appendBodyPart(data: description.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "description")
-            },
-            encodingCompletion: { encodingResult in
-                print(encodingResult)
-                switch encodingResult {
-                case .Success(let upload, _, _):
-                    print(upload)
-                    upload.responseJSON { response in
-                        let statusCode = (response.response)!.statusCode
-                        cb(statusCode == 200)
+        return Promise { fulfill, reject in
+            Alamofire.upload(
+                .POST,
+                url,
+                headers: self.headers,
+                multipartFormData: { multipartFormData in
+                    if let _photoData = UIImageJPEGRepresentation(photo, 0.7) {
+                        multipartFormData.appendBodyPart(data: _photoData, name: "photo", fileName: "photo.jpg", mimeType: "image/jpeg")
                     }
-                case .Failure(let fail):
-                    print(fail)
-                    cb(false)
+                    multipartFormData.appendBodyPart(data: description.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "description")
+                },
+                encodingCompletion: { encodingResult in
+                    print(encodingResult)
+                    switch encodingResult {
+                    case .Success(let upload, _, _):
+                        print(upload)
+                        upload.responseJSON { response in
+                            let statusCode = (response.response)!.statusCode
+                            fulfill(statusCode == 200)
+                        }
+                    case .Failure(let fail):
+                        reject(fail)
+                    }
                 }
-            }
-        )
+            )
+        }
     }
 }
 
