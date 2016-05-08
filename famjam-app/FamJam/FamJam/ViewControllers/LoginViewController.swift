@@ -9,7 +9,7 @@
 import PromiseKit
 import UIKit
 
-class FrontPageViewController: UIViewController {
+class LoginViewController: UIViewController {
 
     @IBOutlet weak var systemMessageLabel: UILabel!
     

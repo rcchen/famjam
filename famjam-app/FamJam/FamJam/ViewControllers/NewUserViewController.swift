@@ -6,7 +6,6 @@
 //  Copyright © 2016 Accord.io. All rights reserved.
 //
 
-import GoogleMaterialIconFont
 import PromiseKit
 import UIKit
 

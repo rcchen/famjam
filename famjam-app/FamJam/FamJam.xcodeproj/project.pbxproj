@@ -20,7 +20,7 @@
 		650E1C871CCC2F28002C69DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 650E1C851CCC2F28002C69DC /* LaunchScreen.storyboard */; };
 		650E1C921CCC2F28002C69DC /* FamJamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650E1C911CCC2F28002C69DC /* FamJamTests.swift */; };
 		650E1C9D1CCC2F28002C69DC /* FamJamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650E1C9C1CCC2F28002C69DC /* FamJamUITests.swift */; };
-		650E1CAD1CCC3109002C69DC /* FrontPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650E1CAC1CCC3109002C69DC /* FrontPageViewController.swift */; };
+		650E1CAD1CCC3109002C69DC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650E1CAC1CCC3109002C69DC /* LoginViewController.swift */; };
 		650E1CB31CCC360C002C69DC /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650E1CB21CCC360C002C69DC /* PhotoCollectionViewCell.swift */; };
 		650E1CB51CCC3AF6002C69DC /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650E1CB41CCC3AF6002C69DC /* PhotoDetailViewController.swift */; };
 		650E1CB71CCC4615002C69DC /* NewHomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650E1CB61CCC4615002C69DC /* NewHomePageViewController.swift */; };
@@ -122,7 +122,7 @@
 		650E1C981CCC2F28002C69DC /* FamJamUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FamJamUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		650E1C9C1CCC2F28002C69DC /* FamJamUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamJamUITests.swift; sourceTree = "<group>"; };
 		650E1C9E1CCC2F28002C69DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		650E1CAC1CCC3109002C69DC /* FrontPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FrontPageViewController.swift; path = ../FrontPageViewController.swift; sourceTree = "<group>"; };
+		650E1CAC1CCC3109002C69DC /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ViewControllers/LoginViewController.swift; sourceTree = "<group>"; };
 		650E1CB21CCC360C002C69DC /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		650E1CB41CCC3AF6002C69DC /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
 		650E1CB61CCC4615002C69DC /* NewHomePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewHomePageViewController.swift; sourceTree = "<group>"; };
@@ -138,7 +138,7 @@
 		6546CB101CCDAE1D00BEEA54 /* AllPhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AllPhotosViewController.swift; path = ../AllPhotosViewController.swift; sourceTree = "<group>"; };
 		6546CB121CCDAE8600BEEA54 /* SavingPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavingPhotoViewController.swift; sourceTree = "<group>"; };
 		65C4D5661CD46B0000ED8DBC /* NewTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTopicViewController.swift; sourceTree = "<group>"; };
-		65FD563C1CD338CC009C9E98 /* NewUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserViewController.swift; sourceTree = "<group>"; };
+		65FD563C1CD338CC009C9E98 /* NewUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewUserViewController.swift; path = ViewControllers/NewUserViewController.swift; sourceTree = "<group>"; };
 		65FD56431CD338E7009C9E98 /* EditUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditUserViewController.swift; sourceTree = "<group>"; };
 		8DB12F18EFB86D522592B570 /* Pods_FamJam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FamJam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -176,6 +176,15 @@
 				24FADB32D4772F8C0FC94045 /* Pods-FamJam.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		331EBACE1CDECF5A004F89EA /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				650E1CAC1CCC3109002C69DC /* LoginViewController.swift */,
+				65FD563C1CD338CC009C9E98 /* NewUserViewController.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		3382A0A81CD9B08800C2A3F3 /* Models */ = {
@@ -279,15 +288,14 @@
 			children = (
 				33153E181CD6CBFF0012AEF7 /* Colors.swift */,
 				651D908D1CD2E5C6006E8CBB /* Services */,
+				331EBACE1CDECF5A004F89EA /* ViewControllers */,
 				6546CB101CCDAE1D00BEEA54 /* AllPhotosViewController.swift */,
 				6546CB121CCDAE8600BEEA54 /* SavingPhotoViewController.swift */,
-				650E1CAC1CCC3109002C69DC /* FrontPageViewController.swift */,
 				650E1C791CCC2F28002C69DC /* AppDelegate.swift */,
 				650E1C7B1CCC2F28002C69DC /* ViewController.swift */,
 				650E1C7D1CCC2F28002C69DC /* Main.storyboard */,
 				65C4D5661CD46B0000ED8DBC /* NewTopicViewController.swift */,
 				65FD56431CD338E7009C9E98 /* EditUserViewController.swift */,
-				65FD563C1CD338CC009C9E98 /* NewUserViewController.swift */,
 				65173BE61CCF1AF800F5A028 /* AllPhotosCollectionViewCell.swift */,
 				65434D241CCEC3C500B73C60 /* FamilyDashboardViewController.swift */,
 				65434D261CCEC6BB00B73C60 /* FamilyTableViewCell.swift */,
@@ -592,7 +600,7 @@
 				651D90851CD2E5BB006E8CBB /* AnonymousApiService.swift in Sources */,
 				65434D271CCEC6BB00B73C60 /* FamilyTableViewCell.swift in Sources */,
 				650E1CB71CCC4615002C69DC /* NewHomePageViewController.swift in Sources */,
-				650E1CAD1CCC3109002C69DC /* FrontPageViewController.swift in Sources */,
+				650E1CAD1CCC3109002C69DC /* LoginViewController.swift in Sources */,
 				65FD56441CD338E7009C9E98 /* EditUserViewController.swift in Sources */,
 				3382A0AA1CD9B09D00C2A3F3 /* Family.swift in Sources */,
 				33153E191CD6CBFF0012AEF7 /* Colors.swift in Sources */,

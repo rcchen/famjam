@@ -145,10 +145,10 @@
             </objects>
             <point key="canvasLocation" x="-148" y="1258"/>
         </scene>
-        <!--Front Page View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="FrontPageViewController" customModule="FamJam" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="FamJam" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -904,6 +904,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="HW1-pq-1Ur"/>
+        <segue reference="P27-2E-1Es"/>
     </inferredMetricsTieBreakers>
 </document>
