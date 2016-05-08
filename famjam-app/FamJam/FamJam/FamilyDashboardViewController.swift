@@ -30,23 +30,23 @@ class FamilyDashboardViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        self.familyDashboardTableView.dataSource = self
-        welcomeLabel.text = welcomeLabel.text?.stringByAppendingString(AppDataFunctions.getActiveUserDisplayname(AppData.ACTIVE_USER!))
-        profilePicture.image = UIImage(named: "lucioImage")
-        topViewNameLabel.text = AppDataFunctions.getActiveUserDisplayname(AppData.ACTIVE_USER!)
-        familyLabel.text = "Family: " + AppDataFunctions.getActiveFamilyname(AppData.ACTIVE_FAMILY!)
-        
-        welcomeLabel.font = Constants.FAMJAM_SUBHEADER_FONT
-        welcomeLabel.textColor = Constants.FAMJAM_WHITE_COLOR
-        
-        topViewNameLabel.font = Constants.FAMJAM_HEADER_FONT
-        topViewNameLabel.textColor = Constants.FAMJAM_WHITE_COLOR
-        
-        familyLabel.font = Constants.FAMJAM_SUBHEADER_FONT
-        familyLabel.textColor = Constants.FAMJAM_WHITE_COLOR
-        
-        navigationBar.barTintColor = Constants.FAMJAM_ORANGE_COLOR
+//        // Do any additional setup after loading the view.
+//        self.familyDashboardTableView.dataSource = self
+//        welcomeLabel.text = welcomeLabel.text?.stringByAppendingString(AppDataFunctions.getActiveUserDisplayname(AppData.ACTIVE_USER!))
+//        profilePicture.image = UIImage(named: "lucioImage")
+//        topViewNameLabel.text = AppDataFunctions.getActiveUserDisplayname(AppData.ACTIVE_USER!)
+//        familyLabel.text = "Family: " + AppDataFunctions.getActiveFamilyname(AppData.ACTIVE_FAMILY!)
+//        
+//        welcomeLabel.font = Constants.FAMJAM_SUBHEADER_FONT
+//        welcomeLabel.textColor = Constants.FAMJAM_WHITE_COLOR
+//        
+//        topViewNameLabel.font = Constants.FAMJAM_HEADER_FONT
+//        topViewNameLabel.textColor = Constants.FAMJAM_WHITE_COLOR
+//        
+//        familyLabel.font = Constants.FAMJAM_SUBHEADER_FONT
+//        familyLabel.textColor = Constants.FAMJAM_WHITE_COLOR
+//        
+//        navigationBar.barTintColor = Constants.FAMJAM_ORANGE_COLOR
     }
 
     override func didReceiveMemoryWarning() {

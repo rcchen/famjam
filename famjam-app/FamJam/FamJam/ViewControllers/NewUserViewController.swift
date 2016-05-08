@@ -69,11 +69,21 @@ class NewUserViewController: UIViewController {
                 return authenticatedService.getFamilyMembers((AppData.ACTIVE_FAMILY?._id)!)
             }.then { familyMembers -> Void in
                 AppData.ACTIVE_FAMILY_MEMBERS = familyMembers
+
+                self.clearTextFieldsFromInputs()
+                
                 self.performSegueWithIdentifier("newUserCreated", sender: self)
             }
         }
     }
 
+    func clearTextFieldsFromInputs() {
+        usernameTextField.text = ""
+        passwordTextField.text = ""
+        displaynameTextField.text = ""
+        familyTextField.text = ""
+    }
+    
     /*
     // MARK: - Navigation
 

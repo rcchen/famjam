@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3315276B1CDF04F200CD60EF /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3315276A1CDF04F200CD60EF /* TopicViewController.swift */; };
 		33153E191CD6CBFF0012AEF7 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33153E181CD6CBFF0012AEF7 /* Colors.swift */; };
 		3382A0AA1CD9B09D00C2A3F3 /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3382A0A91CD9B09D00C2A3F3 /* Family.swift */; };
 		3382A0AC1CD9B0AD00C2A3F3 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3382A0AB1CD9B0AD00C2A3F3 /* Topic.swift */; };
@@ -95,6 +96,7 @@
 
 /* Begin PBXFileReference section */
 		24FADB32D4772F8C0FC94045 /* Pods-FamJam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FamJam.release.xcconfig"; path = "Pods/Target Support Files/Pods-FamJam/Pods-FamJam.release.xcconfig"; sourceTree = "<group>"; };
+		3315276A1CDF04F200CD60EF /* TopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopicViewController.swift; path = ViewControllers/TopicViewController.swift; sourceTree = "<group>"; };
 		33153E181CD6CBFF0012AEF7 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		3382A0A91CD9B09D00C2A3F3 /* Family.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Family.swift; path = Services/Models/Family.swift; sourceTree = "<group>"; };
 		3382A0AB1CD9B0AD00C2A3F3 /* Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Topic.swift; path = Services/Models/Topic.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			children = (
 				650E1CAC1CCC3109002C69DC /* LoginViewController.swift */,
 				65FD563C1CD338CC009C9E98 /* NewUserViewController.swift */,
+				3315276A1CDF04F200CD60EF /* TopicViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -612,6 +615,7 @@
 				650E1CB31CCC360C002C69DC /* PhotoCollectionViewCell.swift in Sources */,
 				651D90871CD2E5BB006E8CBB /* BaseApiService.swift in Sources */,
 				6546CB131CCDAE8600BEEA54 /* SavingPhotoViewController.swift in Sources */,
+				3315276B1CDF04F200CD60EF /* TopicViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

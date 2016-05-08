@@ -21,21 +21,8 @@ class LoginViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    @IBAction func unwindWithLogout(segue: UIStoryboardSegue) {
-        
-    }
-    
-    @IBAction func unwindWithCancelNewUser(segue: UIStoryboardSegue) {
-        
-    }
-    
-    @IBAction func unwindWithNewUserCreated(segue: UIStoryboardSegue) {
-        
-    }
 
     @IBOutlet weak var usernameTextField: UITextField!
-    
     @IBOutlet weak var passwordTextField: UITextField!
     
     @IBAction func loginPressed(sender: UIButton) {
@@ -73,11 +60,17 @@ class LoginViewController: UIViewController {
         
         }.then { topics -> Void in
             AppData.ALL_TOPICS = topics
+            self.clearTextFieldsFromInputs()
             self.performSegueWithIdentifier("loginUser", sender: self)
         }
 
     }
-    
+
+    func clearTextFieldsFromInputs() {
+        usernameTextField.text = ""
+        passwordTextField.text = ""
+    }
+
     /*
     // MARK: - Navigation
 
