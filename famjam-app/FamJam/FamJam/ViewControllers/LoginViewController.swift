@@ -13,8 +13,6 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var systemMessageLabel: UILabel!
     
-    var keyBoardShowing = false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -41,9 +39,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     
     @IBAction func loginPressed(sender: UIButton) {
-        
-        print("login pressed")
-        
+
         let authenticatedService = AuthenticatedApiService.sharedInstance
         let username = usernameTextField.text!
         let password = passwordTextField.text!
@@ -79,6 +75,7 @@ class LoginViewController: UIViewController {
             AppData.ALL_TOPICS = topics
             self.performSegueWithIdentifier("loginUser", sender: self)
         }
+
     }
     
     /*

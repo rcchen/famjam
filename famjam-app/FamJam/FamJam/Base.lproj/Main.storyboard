@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I1a-Hl-DRz">
-                                <rect key="frame" x="20" y="100" width="560" height="400"/>
+                                <rect key="frame" x="20" y="50" width="560" height="500"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3IY-ML-ZbJ" customClass="HoshiTextField" customModule="TextFieldEffects">
                                         <rect key="frame" x="20" y="100" width="520" height="60"/>
@@ -83,7 +83,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XlA-Uw-XXD">
-                                        <rect key="frame" x="20" y="350" width="520" height="30"/>
+                                        <rect key="frame" x="20" y="430" width="520" height="30"/>
                                         <size key="titleShadowOffset" width="0.0" height="2.2250738585072014e-308"/>
                                         <state key="normal" title="Cancel"/>
                                         <connections>
@@ -91,7 +91,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4P7-ge-fW5">
-                                        <rect key="frame" x="20" y="290" width="520" height="40"/>
+                                        <rect key="frame" x="20" y="370" width="520" height="40"/>
                                         <color key="backgroundColor" red="0.01176470588" green="0.66274509800000003" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="y1F-Z8-hpW"/>
@@ -104,16 +104,40 @@
                                             <action selector="doneButtonPressed:" destination="2gn-9a-Qky" eventType="touchUpInside" id="x6y-ga-p4f"/>
                                         </connections>
                                     </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Family ID" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xPi-U3-Qa9" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                        <rect key="frame" x="20" y="260" width="520" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="UpH-cp-1E4"/>
+                                        </constraints>
+                                        <color key="textColor" red="0.37647058820000001" green="0.49019607840000001" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="yes" spellCheckingType="no"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                <color key="value" red="0.3294117647" green="0.43137254899999999" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                                <real key="value" value="0.65000000000000002"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                                <color key="value" red="0.81176470590000005" green="0.84705882349999995" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="2aF-Mx-rVk"/>
+                                    <constraint firstAttribute="height" constant="500" id="2aF-Mx-rVk"/>
                                     <constraint firstItem="N7u-Q6-Gjr" firstAttribute="trailing" secondItem="blC-Df-zlm" secondAttribute="trailing" id="3oA-lN-qyD"/>
                                     <constraint firstItem="XlA-Uw-XXD" firstAttribute="trailing" secondItem="4P7-ge-fW5" secondAttribute="trailing" id="4FY-ro-yBg"/>
                                     <constraint firstItem="N7u-Q6-Gjr" firstAttribute="leading" secondItem="blC-Df-zlm" secondAttribute="leading" id="4aZ-UG-UlI"/>
+                                    <constraint firstItem="xPi-U3-Qa9" firstAttribute="leading" secondItem="N7u-Q6-Gjr" secondAttribute="leading" id="GPH-mw-7Qb"/>
+                                    <constraint firstItem="xPi-U3-Qa9" firstAttribute="trailing" secondItem="N7u-Q6-Gjr" secondAttribute="trailing" id="Ipp-ml-CE3"/>
                                     <constraint firstItem="3IY-ML-ZbJ" firstAttribute="top" secondItem="blC-Df-zlm" secondAttribute="bottom" constant="20" id="Iq3-4B-JHt"/>
+                                    <constraint firstItem="xPi-U3-Qa9" firstAttribute="top" secondItem="N7u-Q6-Gjr" secondAttribute="bottom" constant="20" id="NxW-6y-D31"/>
                                     <constraint firstItem="blC-Df-zlm" firstAttribute="leading" secondItem="I1a-Hl-DRz" secondAttribute="leading" constant="20" id="RjI-na-fmu"/>
                                     <constraint firstAttribute="trailing" secondItem="blC-Df-zlm" secondAttribute="trailing" constant="20" id="SMp-Ar-SRa"/>
                                     <constraint firstItem="XlA-Uw-XXD" firstAttribute="leading" secondItem="4P7-ge-fW5" secondAttribute="leading" id="SsX-eo-7l4"/>
+                                    <constraint firstItem="4P7-ge-fW5" firstAttribute="top" secondItem="xPi-U3-Qa9" secondAttribute="bottom" constant="50" id="a1x-f3-kfk"/>
                                     <constraint firstItem="N7u-Q6-Gjr" firstAttribute="top" secondItem="3IY-ML-ZbJ" secondAttribute="bottom" constant="20" id="chb-QP-I2o"/>
                                     <constraint firstItem="3IY-ML-ZbJ" firstAttribute="trailing" secondItem="blC-Df-zlm" secondAttribute="trailing" id="gsV-u1-x2E"/>
                                     <constraint firstItem="4P7-ge-fW5" firstAttribute="trailing" secondItem="N7u-Q6-Gjr" secondAttribute="trailing" id="hTe-Lh-eHe"/>
@@ -121,7 +145,6 @@
                                     <constraint firstItem="blC-Df-zlm" firstAttribute="top" secondItem="I1a-Hl-DRz" secondAttribute="top" constant="20" id="sRn-WJ-iuW"/>
                                     <constraint firstItem="XlA-Uw-XXD" firstAttribute="top" secondItem="4P7-ge-fW5" secondAttribute="bottom" constant="20" id="t9C-QA-d2J"/>
                                     <constraint firstItem="4P7-ge-fW5" firstAttribute="leading" secondItem="N7u-Q6-Gjr" secondAttribute="leading" id="uZD-pw-h2n"/>
-                                    <constraint firstItem="4P7-ge-fW5" firstAttribute="top" secondItem="N7u-Q6-Gjr" secondAttribute="bottom" constant="50" id="udW-7D-dcW"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -135,6 +158,7 @@
                     </view>
                     <connections>
                         <outlet property="displaynameTextField" destination="N7u-Q6-Gjr" id="d4W-RH-q5p"/>
+                        <outlet property="familyTextField" destination="xPi-U3-Qa9" id="npJ-Cj-TFh"/>
                         <outlet property="passwordTextField" destination="3IY-ML-ZbJ" id="ZIM-Ep-P8n"/>
                         <outlet property="usernameTextField" destination="blC-Df-zlm" id="KRB-By-L9F"/>
                         <segue destination="Ofl-u1-TH2" kind="show" identifier="newUserCreated" id="HW1-pq-1Ur"/>
@@ -904,6 +928,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="P27-2E-1Es"/>
+        <segue reference="HW1-pq-1Ur"/>
     </inferredMetricsTieBreakers>
 </document>

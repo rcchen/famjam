@@ -29,6 +29,7 @@ class NewUserViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var displaynameTextField: UITextField!
+    @IBOutlet weak var familyTextField: UITextField!
     
     @IBAction func doneButtonPressed(sender: UIButton) {
         let username = usernameTextField.text!
@@ -72,8 +73,6 @@ class NewUserViewController: UIViewController {
             }
         }
     }
-
-    weak var familyTextField: UITextField!
 
     /*
     // MARK: - Navigation
