@@ -29,6 +29,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Kingfisher.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>NextGrowingTextView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -64,6 +69,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>UIColor_Hex_Swift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -77,7 +87,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3B2E41D42ECBED28E1F40683AAE09CFF</key>
+		<key>1F9626FB65E12B5E381F8CB0034946A9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3AC328315BE7B89CA4A71BF521E8D168</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,7 +112,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A294E3DBE4AF2224A275B04EE9C7546F</key>
+		<key>9811D0852B8D0E101FA8852BCE23B369</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AD0EB41EEB1C16255A9B00D8ADBE39DE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -107,17 +127,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C69DAE50C95468ECF8DC9762A5ABD4A1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F1625E0013404B7B9C6349E5F8766797</key>
+		<key>E11F294C8822C4301BDDDCACCE147A14</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>F3B87D093A49B3F7B4794037EC2B814E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F91226101ECE8FCFD221A3EC54481F82</key>
 		<dict>
 			<key>primary</key>
 			<true/>

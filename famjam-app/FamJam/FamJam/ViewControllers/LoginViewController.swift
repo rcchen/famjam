@@ -7,14 +7,25 @@
 //
 
 import PromiseKit
+import ReSwift
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, StoreSubscriber {
 
     @IBOutlet weak var systemMessageLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        store.subscribe(self)
+    }
+
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        store.unsubscribe(self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,6 +52,7 @@ class LoginViewController: UIViewController {
             return authenticatedService.getMe()
         }.then { user -> Promise<[Family]> in
             AppData.ACTIVE_USER = user
+            store.dispatch(SetUser(user: user))
             return authenticatedService.getMeFamilies()
         }.then { families -> Promise<[User]> in
             AppData.ACTIVE_FAMILY = families[0]
@@ -72,6 +84,10 @@ class LoginViewController: UIViewController {
     func clearTextFieldsFromInputs() {
         usernameTextField.text = ""
         passwordTextField.text = ""
+    }
+
+    func newState(state: AppState) {
+        // no-op
     }
 
     /*

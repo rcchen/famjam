@@ -12,6 +12,7 @@
 		3315277F1CDF06CA00CD60EF /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3315277E1CDF06C900CD60EF /* Actions.swift */; };
 		331527811CDF06D300CD60EF /* Reducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331527801CDF06D300CD60EF /* Reducers.swift */; };
 		331527831CDF1BD600CD60EF /* NewPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331527821CDF1BD600CD60EF /* NewPhotoViewController.swift */; };
+		331527951CDF36F100CD60EF /* SubmissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331527941CDF36F100CD60EF /* SubmissionView.swift */; };
 		33153E191CD6CBFF0012AEF7 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33153E181CD6CBFF0012AEF7 /* Colors.swift */; };
 		3382A0AA1CD9B09D00C2A3F3 /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3382A0A91CD9B09D00C2A3F3 /* Family.swift */; };
 		3382A0AC1CD9B0AD00C2A3F3 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3382A0AB1CD9B0AD00C2A3F3 /* Topic.swift */; };
@@ -105,6 +106,7 @@
 		3315277E1CDF06C900CD60EF /* Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Actions.swift; path = Redux/Actions.swift; sourceTree = "<group>"; };
 		331527801CDF06D300CD60EF /* Reducers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reducers.swift; path = Redux/Reducers.swift; sourceTree = "<group>"; };
 		331527821CDF1BD600CD60EF /* NewPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPhotoViewController.swift; sourceTree = "<group>"; };
+		331527941CDF36F100CD60EF /* SubmissionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SubmissionView.swift; path = Views/SubmissionView.swift; sourceTree = "<group>"; };
 		33153E181CD6CBFF0012AEF7 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		3382A0A91CD9B09D00C2A3F3 /* Family.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Family.swift; path = Services/Models/Family.swift; sourceTree = "<group>"; };
 		3382A0AB1CD9B0AD00C2A3F3 /* Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Topic.swift; path = Services/Models/Topic.swift; sourceTree = "<group>"; };
@@ -196,6 +198,14 @@
 				331527801CDF06D300CD60EF /* Reducers.swift */,
 			);
 			name = Redux;
+			sourceTree = "<group>";
+		};
+		331527931CDF36D000CD60EF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				331527941CDF36F100CD60EF /* SubmissionView.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		331EBACE1CDECF5A004F89EA /* ViewControllers */ = {
@@ -333,6 +343,7 @@
 				6546CB0A1CCD9BB800BEEA54 /* Utilities.swift */,
 				650E1C7B1CCC2F28002C69DC /* ViewController.swift */,
 				331EBACE1CDECF5A004F89EA /* ViewControllers */,
+				331527931CDF36D000CD60EF /* Views */,
 			);
 			path = FamJam;
 			sourceTree = "<group>";
@@ -625,6 +636,7 @@
 				65434D271CCEC6BB00B73C60 /* FamilyTableViewCell.swift in Sources */,
 				650E1CB71CCC4615002C69DC /* NewHomePageViewController.swift in Sources */,
 				650E1CAD1CCC3109002C69DC /* LoginViewController.swift in Sources */,
+				331527951CDF36F100CD60EF /* SubmissionView.swift in Sources */,
 				65FD56441CD338E7009C9E98 /* EditUserViewController.swift in Sources */,
 				3315277F1CDF06CA00CD60EF /* Actions.swift in Sources */,
 				3382A0AA1CD9B09D00C2A3F3 /* Family.swift in Sources */,

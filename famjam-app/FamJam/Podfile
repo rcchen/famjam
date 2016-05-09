@@ -5,9 +5,11 @@ target 'FamJam' do
   pod 'AlamofireObjectMapper'
   pod 'FDTake'
   pod 'IQKeyboardManagerSwift'
+  pod 'Kingfisher'
   pod 'NextGrowingTextView'
   pod 'ObjectMapper'
   pod 'PromiseKit'
   pod 'ReSwift'
   pod 'TextFieldEffects'
+  pod 'UIColor_Hex_Swift', '~> 2.1'
 end
