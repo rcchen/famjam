@@ -8,5 +8,6 @@ const familySchema = new Schema({
   members: [{ type: Schema.Types.ObjectId, ref: "User", autopopulate: true }],
   name: String
 });
+familySchema.plugin(autopopulate);
 
 export const Family = model("Family", familySchema);
