@@ -86,7 +86,9 @@ api.get("/me/families", authorizeToken, (req, res) => {
     _id: {
       $in: (req.authenticatedUser as IUser).families
     }
-  }).exec((err, families) => {
+  })
+  .populate("members")
+  .exec((err, families) => {
     if (err) return res.status(500).json(err);
     res.json(families);
   });

@@ -70,7 +70,9 @@ exports.api.get("/me/families", middleware_1.authorizeToken, (req, res) => {
         _id: {
             $in: req.authenticatedUser.families
         }
-    }).exec((err, families) => {
+    })
+        .populate("members")
+        .exec((err, families) => {
         if (err)
             return res.status(500).json(err);
         res.json(families);
