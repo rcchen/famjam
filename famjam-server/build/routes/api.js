@@ -178,6 +178,7 @@ exports.api.get("/topics/:id", middleware_1.authorizeToken, (req, res) => {
         .populate("_creator")
         .populate("_family")
         .populate("images")
+        .populate("members")
         .exec((err, topic) => {
         if (err)
             return res.status(500).json(err);
