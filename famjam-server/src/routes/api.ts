@@ -199,7 +199,6 @@ api.get("/topics/:id", authorizeToken, (req, res) => {
     .populate("_creator")
     .populate("_family")
     .populate("images")
-    .populate("_family.members")
     .exec((err, topic) => {
       if (err) return res.status(500).json(err);
       res.json(topic);
