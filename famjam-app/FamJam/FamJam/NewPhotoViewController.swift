@@ -17,10 +17,14 @@ class NewPhotoViewController: UIViewController {
     
     @IBOutlet weak var photoContainerView: UIView!
     @IBOutlet weak var descriptionField: UITextView!
+    @IBOutlet weak var submitButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initializeFdTakeController()
+        self.submitButton.enabled = false
+        self.submitButton.backgroundColor = UIColor(rgba: "#81D4FA")
+        self.submitButton.titleLabel?.text = "Add a photo first"
     }
     
     @IBAction func selectPhoto(sender: AnyObject) {
@@ -38,7 +42,6 @@ class NewPhotoViewController: UIViewController {
                 // figure out error state here if image could not be submitted
             }
         }
-        
     }
 
     func addImageToView(image: UIImage) {
@@ -53,6 +56,9 @@ class NewPhotoViewController: UIViewController {
         fdTakeController.didGetPhoto = {(photo: UIImage, info: [NSObject : AnyObject]) -> Void in
             self.selectedImage = photo
             self.addImageToView(photo)
+            self.submitButton.enabled = true
+            self.submitButton.backgroundColor = UIColor(rgba: "#039BE5")
+            self.submitButton.titleLabel?.text = "Submit photo"
         }
     }
 }

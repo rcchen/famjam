@@ -61,5 +61,14 @@ class AnonymousApiService: BaseApiService {
             }
         }
     }
-    
+
+    static func logoutUser() -> Promise<Void> {
+        return Promise { fulfill, reject in
+            // HACKHACK: Just clears their token from NSUserDefaults
+            let defaults = NSUserDefaults.standardUserDefaults()
+            defaults.removeObjectForKey(BaseApiService.TOKEN_KEY)
+            defaults.synchronize()
+            fulfill()
+        }
+    }
 }

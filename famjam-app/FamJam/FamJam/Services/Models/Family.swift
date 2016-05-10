@@ -11,7 +11,7 @@ import ObjectMapper
 class Family: Mappable {
     var _id: String?
     var attributes: [String: String]?
-    var members: [String]?
+    var members: [User]?
     
     required init?(_ map: Map) {
         // no-op

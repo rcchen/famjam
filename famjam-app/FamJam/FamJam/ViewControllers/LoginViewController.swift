@@ -16,6 +16,7 @@ class LoginViewController: UIViewController, StoreSubscriber {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        modalTransitionStyle = .FlipHorizontal
     }
 
     override func viewWillAppear(animated: Bool) {

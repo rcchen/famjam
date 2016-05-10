@@ -13,6 +13,7 @@ class NewUserViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        modalTransitionStyle = .CoverVertical
     }
 
     override func didReceiveMemoryWarning() {

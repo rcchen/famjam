@@ -13,6 +13,10 @@ struct SetUser: Action {
     let user: User
 }
 
+struct SetUserFamilies: Action {
+    let userFamilies: [Family]
+}
+
 struct SetCurrentTopic: Action {
     let currentTopic: Topic
 }

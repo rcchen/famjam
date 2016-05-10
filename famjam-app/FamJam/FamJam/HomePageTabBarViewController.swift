@@ -14,6 +14,8 @@ class HomePageTabBarViewController: UITabBarController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+
+        modalTransitionStyle = .FlipHorizontal
         
         let tabItems = self.tabBar.items! as [UITabBarItem]
         let tabItem0 = tabItems[0] as UITabBarItem

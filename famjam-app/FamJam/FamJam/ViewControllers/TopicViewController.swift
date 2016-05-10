@@ -46,15 +46,31 @@ class TopicViewController: UIViewController, UICollectionViewDataSource, UIColle
         store.unsubscribe(self)
     }
     
+    @IBAction func createNewTopic(sender: UIBarButtonItem) {
+        var inputTextField = UITextField()
+        let alert = UIAlertController(title: "Create new topic", message: "This will change the active topic of the day", preferredStyle: .Alert)
+        alert.addTextFieldWithConfigurationHandler { textField -> Void in
+            inputTextField = textField
+        }
+        
+        
+        
+        alert.addAction(UIAlertAction(title: "Create", style: .Default, handler: nil))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+
     @IBAction func unwindToTopicViewController(segue: UIStoryboardSegue) {
     }
 
     func applyBlurToSubmissionViewCell(cell: SubmissionView) {
-        let blur = UIBlurEffect(style: .Light)
-        let blurView = UIVisualEffectView(effect: blur)
-        blurView.frame = cell.imageView.bounds
-        blurView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-        cell.imageView.addSubview(blurView)
+        if (cell.imageView.subviews.count == 0) {
+            let blur = UIBlurEffect(style: .Light)
+            let blurView = UIVisualEffectView(effect: blur)
+            blurView.frame = cell.imageView.bounds
+            blurView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+            cell.imageView.addSubview(blurView)            
+        }
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {

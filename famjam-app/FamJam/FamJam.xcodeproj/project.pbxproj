@@ -13,6 +13,8 @@
 		331527811CDF06D300CD60EF /* Reducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331527801CDF06D300CD60EF /* Reducers.swift */; };
 		331527831CDF1BD600CD60EF /* NewPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331527821CDF1BD600CD60EF /* NewPhotoViewController.swift */; };
 		331527951CDF36F100CD60EF /* SubmissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331527941CDF36F100CD60EF /* SubmissionView.swift */; };
+		331527B41CE07ECE00CD60EF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331527B31CE07ECE00CD60EF /* ProfileViewController.swift */; };
+		331527B61CE19F3600CD60EF /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331527B51CE19F3600CD60EF /* UserView.swift */; };
 		33153E191CD6CBFF0012AEF7 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33153E181CD6CBFF0012AEF7 /* Colors.swift */; };
 		3382A0AA1CD9B09D00C2A3F3 /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3382A0A91CD9B09D00C2A3F3 /* Family.swift */; };
 		3382A0AC1CD9B0AD00C2A3F3 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3382A0AB1CD9B0AD00C2A3F3 /* Topic.swift */; };
@@ -107,6 +109,8 @@
 		331527801CDF06D300CD60EF /* Reducers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reducers.swift; path = Redux/Reducers.swift; sourceTree = "<group>"; };
 		331527821CDF1BD600CD60EF /* NewPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPhotoViewController.swift; sourceTree = "<group>"; };
 		331527941CDF36F100CD60EF /* SubmissionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SubmissionView.swift; path = Views/SubmissionView.swift; sourceTree = "<group>"; };
+		331527B31CE07ECE00CD60EF /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = ViewControllers/ProfileViewController.swift; sourceTree = "<group>"; };
+		331527B51CE19F3600CD60EF /* UserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserView.swift; path = Views/UserView.swift; sourceTree = "<group>"; };
 		33153E181CD6CBFF0012AEF7 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		3382A0A91CD9B09D00C2A3F3 /* Family.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Family.swift; path = Services/Models/Family.swift; sourceTree = "<group>"; };
 		3382A0AB1CD9B0AD00C2A3F3 /* Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Topic.swift; path = Services/Models/Topic.swift; sourceTree = "<group>"; };
@@ -204,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				331527941CDF36F100CD60EF /* SubmissionView.swift */,
+				331527B51CE19F3600CD60EF /* UserView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -215,6 +220,7 @@
 				65FD563C1CD338CC009C9E98 /* NewUserViewController.swift */,
 				3315276A1CDF04F200CD60EF /* TopicViewController.swift */,
 				331527821CDF1BD600CD60EF /* NewPhotoViewController.swift */,
+				331527B31CE07ECE00CD60EF /* ProfileViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -626,12 +632,14 @@
 				65FD563D1CD338CC009C9E98 /* NewUserViewController.swift in Sources */,
 				650E1C821CCC2F28002C69DC /* FamJam.xcdatamodeld in Sources */,
 				3382A0B01CD9B11900C2A3F3 /* User.swift in Sources */,
+				331527B41CE07ECE00CD60EF /* ProfileViewController.swift in Sources */,
 				6546CB0B1CCD9BB800BEEA54 /* Utilities.swift in Sources */,
 				3382A0AE1CD9B0EC00C2A3F3 /* Image.swift in Sources */,
 				331527811CDF06D300CD60EF /* Reducers.swift in Sources */,
 				651D90861CD2E5BB006E8CBB /* AuthenticatedApiService.swift in Sources */,
 				6546CB091CCD970100BEEA54 /* AlbumHeaderCollectionReusableView.swift in Sources */,
 				65173BE71CCF1AF800F5A028 /* AllPhotosCollectionViewCell.swift in Sources */,
+				331527B61CE19F3600CD60EF /* UserView.swift in Sources */,
 				651D90851CD2E5BB006E8CBB /* AnonymousApiService.swift in Sources */,
 				65434D271CCEC6BB00B73C60 /* FamilyTableViewCell.swift in Sources */,
 				650E1CB71CCC4615002C69DC /* NewHomePageViewController.swift in Sources */,
