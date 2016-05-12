@@ -33,12 +33,12 @@ class TopicViewController: UIViewController, UICollectionViewDataSource, UIColle
         super.viewDidLoad()
         submissionCollectionView.dataSource = self
         submissionCollectionView.delegate = self
-        self.fetchCurrentTopic()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         store.subscribe(self)
+        fetchCurrentTopic()
     }
 
     override func viewWillDisappear(animated: Bool) {
@@ -52,10 +52,21 @@ class TopicViewController: UIViewController, UICollectionViewDataSource, UIColle
         alert.addTextFieldWithConfigurationHandler { textField -> Void in
             inputTextField = textField
         }
-        
-        
-        
-        alert.addAction(UIAlertAction(title: "Create", style: .Default, handler: nil))
+
+        alert.addAction(UIAlertAction(title: "Create", style: .Default, handler: { (action: UIAlertAction!) in
+            let input = inputTextField.text!
+            
+            let service = AuthenticatedApiService.sharedInstance
+            service.createTopic(input)
+                .then { topic -> Void in
+                store.dispatch(SetCurrentTopic(currentTopic: topic))
+            }
+
+            alert.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
+            alert.dismissViewControllerAnimated(true, completion: nil)
+        }))
         
         self.presentViewController(alert, animated: true, completion: nil)
     }
@@ -73,6 +84,12 @@ class TopicViewController: UIViewController, UICollectionViewDataSource, UIColle
         }
     }
 
+    func removeBlurFromSubmissionViewCell(cell: SubmissionView) {
+        if (cell.imageView.subviews.count > 0) {
+            cell.imageView.subviews[0].removeFromSuperview()
+        }
+    }
+    
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = submissionCollectionView.dequeueReusableCellWithReuseIdentifier("SubmissionView", forIndexPath: indexPath) as! SubmissionView
         let image = self.topic!.images![indexPath.row]
@@ -80,6 +97,8 @@ class TopicViewController: UIViewController, UICollectionViewDataSource, UIColle
 
         if (self.topic!.images!.count < self.topic?._family?.members?.count) {
             applyBlurToSubmissionViewCell(cell)
+        } else {
+            removeBlurFromSubmissionViewCell(cell)
         }
         
         cell.usernameLabel.text = image._creator?.username
@@ -96,7 +115,7 @@ class TopicViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
 
     func fetchCurrentTopic() {
-        AuthenticatedApiService.sharedInstance.getTopic("572ea4dd6e607d110025343f")
+        AuthenticatedApiService.sharedInstance.getActiveTopic()
             .then { topic -> Void in
                 store.dispatch(SetCurrentTopic(currentTopic: topic))
         }
@@ -128,6 +147,10 @@ class TopicViewController: UIViewController, UICollectionViewDataSource, UIColle
                 self.buttonView.enabled = false
                 self.buttonView.backgroundColor = UIColor(rgba: "#43A047")
                 self.buttonView.setTitle("Already submitted!", forState: .Disabled)
+            } else {
+                self.buttonView.enabled = true
+                self.buttonView.backgroundColor = UIColor(rgba: "#03A9F4")
+                self.buttonView.setTitle("Add your photo", forState: .Normal)
             }
         }
     }

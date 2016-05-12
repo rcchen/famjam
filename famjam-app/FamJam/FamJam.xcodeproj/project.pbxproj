@@ -455,6 +455,11 @@
 					650E1C751CCC2F28002C69DC = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 23JPF8VA7F;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 					650E1C8C1CCC2F28002C69DC = {
 						CreatedOnToolsVersion = 7.3;

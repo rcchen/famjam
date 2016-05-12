@@ -74,9 +74,9 @@ class AppDataFunctions {
         return family.attributes!["displayName"]!
     }
     
-    static func getFamilyMembersFromFamily(family: Family) -> [String] {
-        return family.members!
-    }
+//    static func getFamilyMembersFromFamily(family: Family) -> [String] {
+//        return family.members!
+//    }
     
     static func getNumFamilyMembersFromFamily(family: Family) -> Int {
         return family.members!.count

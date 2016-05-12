@@ -210,6 +210,14 @@ class AuthenticatedApiService: BaseApiService {
         }
     }
 
+    // Convenience method for getting the active topic
+    func getActiveTopic() -> Promise<Topic> {
+        return getTopics(true)
+            .then { topics -> Topic in
+            return topics[topics.count - 1]
+        }
+    }
+
     // Retrieve a topic
     func getTopic(topicId: String) -> Promise<Topic> {
         return Promise { fulfill, reject in
