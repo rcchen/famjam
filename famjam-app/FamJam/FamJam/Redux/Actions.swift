@@ -9,6 +9,14 @@
 import Foundation
 import ReSwift
 
+struct SetCurrentTopic: Action {
+    let currentTopic: Topic
+}
+
+struct SetTopics: Action {
+    let topics: [Topic]
+}
+
 struct SetUser: Action {
     let user: User
 }
@@ -16,8 +24,3 @@ struct SetUser: Action {
 struct SetUserFamilies: Action {
     let userFamilies: [Family]
 }
-
-struct SetCurrentTopic: Action {
-    let currentTopic: Topic
-}
-

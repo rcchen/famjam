@@ -3,29 +3,30 @@ PODS:
   - AlamofireObjectMapper (3.0.0):
     - Alamofire (~> 3.2)
     - ObjectMapper (~> 1.0)
+  - CHTCollectionViewWaterfallLayout/Swift (0.9.4)
   - FDTake (0.3.2)
   - IQKeyboardManagerSwift (4.0.2)
   - Kingfisher (2.3.1)
   - NextGrowingTextView (0.6.0)
   - ObjectMapper (1.2.0)
-  - OMGHTTPURLRQ (3.1.1):
-    - OMGHTTPURLRQ/RQ (= 3.1.1)
-  - OMGHTTPURLRQ/FormURLEncode (3.1.1)
-  - OMGHTTPURLRQ/RQ (3.1.1):
+  - OMGHTTPURLRQ (3.0.2):
+    - OMGHTTPURLRQ/RQ (= 3.0.2)
+  - OMGHTTPURLRQ/FormURLEncode (3.0.2)
+  - OMGHTTPURLRQ/RQ (3.0.2):
     - OMGHTTPURLRQ/FormURLEncode
     - OMGHTTPURLRQ/UserAgent
-  - OMGHTTPURLRQ/UserAgent (3.1.1)
-  - PromiseKit (3.1.1):
-    - PromiseKit/Foundation (= 3.1.1)
-    - PromiseKit/QuartzCore (= 3.1.1)
-    - PromiseKit/UIKit (= 3.1.1)
-  - PromiseKit/CorePromise (3.1.1)
-  - PromiseKit/Foundation (3.1.1):
-    - OMGHTTPURLRQ (~> 3.1.0)
+  - OMGHTTPURLRQ/UserAgent (3.0.2)
+  - PromiseKit (3.0.0):
+    - PromiseKit/Foundation (= 3.0.0)
+    - PromiseKit/QuartzCore (= 3.0.0)
+    - PromiseKit/UIKit (= 3.0.0)
+  - PromiseKit/CorePromise (3.0.0)
+  - PromiseKit/Foundation (3.0.0):
+    - OMGHTTPURLRQ (~> 3.0.0)
     - PromiseKit/CorePromise
-  - PromiseKit/QuartzCore (3.1.1):
+  - PromiseKit/QuartzCore (3.0.0):
     - PromiseKit/CorePromise
-  - PromiseKit/UIKit (3.1.1):
+  - PromiseKit/UIKit (3.0.0):
     - PromiseKit/CorePromise
   - ReSwift (1.0.0)
   - TextFieldEffects (1.2.0)
@@ -34,30 +35,42 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - AlamofireObjectMapper
+  - CHTCollectionViewWaterfallLayout/Swift
   - FDTake
   - IQKeyboardManagerSwift
   - Kingfisher
   - NextGrowingTextView
   - ObjectMapper
-  - PromiseKit
+  - PromiseKit (from `git@github.com:rad3ks/PromiseKit.git`, branch `bug/415`)
   - ReSwift
   - TextFieldEffects
   - UIColor_Hex_Swift (~> 2.1)
 
+EXTERNAL SOURCES:
+  PromiseKit:
+    :branch: bug/415
+    :git: git@github.com:rad3ks/PromiseKit.git
+
+CHECKOUT OPTIONS:
+  PromiseKit:
+    :commit: f4201bcaf91cab1a215662ea3154ca0955f50d4c
+    :git: git@github.com:rad3ks/PromiseKit.git
+
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
   AlamofireObjectMapper: 2d16585d06177be0116d76de73497e77437798af
+  CHTCollectionViewWaterfallLayout: db74be9135826d285f45ff163fd090e57c99fc50
   FDTake: 122aaf465673b05648cd1b40200a19c85b1aa9e0
   IQKeyboardManagerSwift: 2f2c19c509f67c4c0df2826db54033d3e090ce65
   Kingfisher: 6d3fbada4829cbc7b89e883e8218c28afeb64e42
   NextGrowingTextView: 8a179d9a5a328918c089d6d1fbe7d40d32c3b396
   ObjectMapper: b1e9c7c8a9f6400b72690c80072c131504caa66f
-  OMGHTTPURLRQ: 633f98ee745aeda02345935a52eec1784cddb589
-  PromiseKit: 4e8127c22a9b29d1b44958ab2ec762ea6115cbfb
+  OMGHTTPURLRQ: 8376dc887d76a5a7e2a67881dc788f917a2f437c
+  PromiseKit: f196dac172600f95e77c3f9c478eae62007f4286
   ReSwift: 2097946852b045bcc04182b63cdab9ab7fc35812
   TextFieldEffects: bc4fd3bd557321bd61a0762f3f50965477a36f62
   UIColor_Hex_Swift: e91dc51f6bf252ec7bf74c8704ceedeeb7640c1c
 
-PODFILE CHECKSUM: ebf678da5fd901469c9157410ce1546bc7b35104
+PODFILE CHECKSUM: f79c59024d97c9dd41f612833e8d0421c5da6102
 
 COCOAPODS: 1.0.0.beta.8

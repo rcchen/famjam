@@ -113,36 +113,36 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
         
         
         
-        // Rendering the user's displayname
-        let cellUser = AppDataFunctions.getFamilyMemberFromIndexPath(indexPath)
-        let userName = cellUser.attributes!["displayName"]
-        cell.name.text = userName
-        
-        
-        // Rendering photo with caption
-        
-        if (topicIsUnlocked(AppData.ACTIVE_FAMILY!, topic: AppData.ACTIVE_TOPIC!)) {
-            if let userPhoto = AppDataFunctions.getUserPhotoFromPhotosInTopic(AppData.ACTIVE_TOPIC!, user: cellUser) {
-                let imageURL = NSURL(string: userPhoto.url!)
-                let imageData = NSData(contentsOfURL: imageURL!)
-                cell.photo.image = UIImage(data: imageData!)
-                cell.caption.text = userPhoto.description
-            } else {
-                cell.photo.image = UIImage(named: Constants.DEFAULT_LOCK_IMAGE_NAME)
-                cell.caption.text = "Not submitted yet"
-            }
-        } else {
-            cell.photo.image = UIImage(named: Constants.DEFAULT_LOCK_IMAGE_NAME)
-            cell.caption.text = "Topic locked"
-        }
-        
-        
-        
-        // Formatting cell properties
-        cell.caption.font = Constants.FAMJAM_FONT
-        cell.name.font = Constants.FAMJAM_SUBHEADER_FONT
-        cell.name.textColor = Constants.FAMJAM_WHITE_COLOR
-        cell.caption.textColor = Constants.FAMJAM_WHITE_COLOR
+//        // Rendering the user's displayname
+//        let cellUser = AppDataFunctions.getFamilyMemberFromIndexPath(indexPath)
+//        let userName = cellUser.attributes!["displayName"]
+//        cell.name.text = userName
+//        
+//        
+//        // Rendering photo with caption
+//        
+//        if (topicIsUnlocked(AppData.ACTIVE_FAMILY!, topic: AppData.ACTIVE_TOPIC!)) {
+//            if let userPhoto = AppDataFunctions.getUserPhotoFromPhotosInTopic(AppData.ACTIVE_TOPIC!, user: cellUser) {
+//                let imageURL = NSURL(string: userPhoto.url!)
+//                let imageData = NSData(contentsOfURL: imageURL!)
+//                cell.photo.image = UIImage(data: imageData!)
+//                cell.caption.text = userPhoto.description
+//            } else {
+//                cell.photo.image = UIImage(named: Constants.DEFAULT_LOCK_IMAGE_NAME)
+//                cell.caption.text = "Not submitted yet"
+//            }
+//        } else {
+//            cell.photo.image = UIImage(named: Constants.DEFAULT_LOCK_IMAGE_NAME)
+//            cell.caption.text = "Topic locked"
+//        }
+//        
+//        
+//        
+//        // Formatting cell properties
+//        cell.caption.font = Constants.FAMJAM_FONT
+//        cell.name.font = Constants.FAMJAM_SUBHEADER_FONT
+//        cell.name.textColor = Constants.FAMJAM_WHITE_COLOR
+//        cell.caption.textColor = Constants.FAMJAM_WHITE_COLOR
         return cell
     }
     
@@ -160,7 +160,8 @@ class NewHomePageViewController: UIViewController, UICollectionViewDataSource, U
         
         default:
             assert(false, "Unexpected element kind")
-            
+            fatalError("Unexpected element kind")
+
         }
     }
     

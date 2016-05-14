@@ -70,32 +70,32 @@ class AllPhotosViewController: UIViewController, UICollectionViewDataSource {
         
         //cell.name.text = UserData.NAMES[indexPath.row]
         
-        let cellImage = AppDataFunctions.getUserPhotoForAllPhotosVCForIndexPath(indexPath)
+//        let cellImage = AppDataFunctions.getUserPhotoForAllPhotosVCForIndexPath(indexPath)
         
 //        cell.name.text = AppData.ALL_TOPICS[indexPath.section].images![indexPath.row]._creator
-        print("CELLIMAGE")
-        print(cellImage)
-        if (cellImage._creator?.attributes != nil) {
-            cell.name.text = cellImage._creator?.attributes!["displayName"]
-        } else {
-            cell.name.text = cellImage._creator?.username
-        }
-        
-        
-        //cell.photo.image = UIImage(named: Constants.DEFAULT_LOCK_IMAGE_NAME)
-//        let imageURL = NSURL(string: AppData.ALL_TOPICS[indexPath.section].images![indexPath.row].url!)
-        let imageURL = NSURL(string: cellImage.url!)
-        
-        let imageData = NSData(contentsOfURL: imageURL!)
-        
-        cell.photo.image = UIImage(data: imageData!)
-        
-        cell.caption.text = AppData.ALL_TOPICS[indexPath.section].images![indexPath.row].description
-        
-        cell.name.font = Constants.FAMJAM_SUBHEADER_FONT
-        cell.caption.font = Constants.FAMJAM_FONT
-        cell.name.textColor = Constants.FAMJAM_WHITE_COLOR
-        cell.caption.textColor = Constants.FAMJAM_WHITE_COLOR
+//        print("CELLIMAGE")
+//        print(cellImage)
+//        if (cellImage._creator?.attributes != nil) {
+//            cell.name.text = cellImage._creator?.attributes!["displayName"]
+//        } else {
+//            cell.name.text = cellImage._creator?.username
+//        }
+//        
+//        
+//        //cell.photo.image = UIImage(named: Constants.DEFAULT_LOCK_IMAGE_NAME)
+////        let imageURL = NSURL(string: AppData.ALL_TOPICS[indexPath.section].images![indexPath.row].url!)
+//        let imageURL = NSURL(string: cellImage.url!)
+//        
+//        let imageData = NSData(contentsOfURL: imageURL!)
+//        
+//        cell.photo.image = UIImage(data: imageData!)
+//        
+//        cell.caption.text = AppData.ALL_TOPICS[indexPath.section].images![indexPath.row].description
+//        
+//        cell.name.font = Constants.FAMJAM_SUBHEADER_FONT
+//        cell.caption.font = Constants.FAMJAM_FONT
+//        cell.name.textColor = Constants.FAMJAM_WHITE_COLOR
+//        cell.caption.textColor = Constants.FAMJAM_WHITE_COLOR
         
         return cell
     }
@@ -112,13 +112,11 @@ class AllPhotosViewController: UIViewController, UICollectionViewDataSource {
 //            print((AppData.ALL_TOPICS[indexPath.section].images![indexPath.row]._creator)!)
             headerView!.changeLabelTitle((AppData.ALL_TOPICS[indexPath.section].name)!)
             return headerView!
-            
-            
         default:
             assert(false, "Unexpected element kind")
-            
-        }
+            fatalError("Unexpected element kind")
 
+        }
     }
     
 

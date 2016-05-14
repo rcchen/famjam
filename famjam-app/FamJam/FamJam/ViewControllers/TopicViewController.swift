@@ -6,13 +6,14 @@
 //  Copyright © 2016 Famjam. All rights reserved.
 //
 
+import CHTCollectionViewWaterfallLayout
 import Foundation
 import Kingfisher
 import ReSwift
 import UIColor_Hex_Swift
 import UIKit
 
-class TopicViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, StoreSubscriber {
+class TopicViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CHTCollectionViewDelegateWaterfallLayout, StoreSubscriber {
     var topic: Topic?
     var user: User?
     
@@ -73,36 +74,10 @@ class TopicViewController: UIViewController, UICollectionViewDataSource, UIColle
 
     @IBAction func unwindToTopicViewController(segue: UIStoryboardSegue) {
     }
-
-    func applyBlurToSubmissionViewCell(cell: SubmissionView) {
-        if (cell.imageView.subviews.count == 0) {
-            let blur = UIBlurEffect(style: .Light)
-            let blurView = UIVisualEffectView(effect: blur)
-            blurView.frame = cell.imageView.bounds
-            blurView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-            cell.imageView.addSubview(blurView)            
-        }
-    }
-
-    func removeBlurFromSubmissionViewCell(cell: SubmissionView) {
-        if (cell.imageView.subviews.count > 0) {
-            cell.imageView.subviews[0].removeFromSuperview()
-        }
-    }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = submissionCollectionView.dequeueReusableCellWithReuseIdentifier("SubmissionView", forIndexPath: indexPath) as! SubmissionView
-        let image = self.topic!.images![indexPath.row]
-        cell.imageView.kf_setImageWithURL(NSURL(string: image.url!)!)
-
-        if (self.topic!.images!.count < self.topic?._family?.members?.count) {
-            applyBlurToSubmissionViewCell(cell)
-        } else {
-            removeBlurFromSubmissionViewCell(cell)
-        }
-        
-        cell.usernameLabel.text = image._creator?.username
-        cell.descriptionLabel.text = image.description
+        Utilities.buildSubmissionViewCell(cell, topic: self.topic!, index: indexPath.row)
         return cell
     }
 
@@ -111,7 +86,14 @@ class TopicViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(collectionView.bounds.width / 2 - 5, 230)
+        let width = collectionView.bounds.width / 2 - 5
+        var height = CGFloat(230)
+        if let topic = self.topic {
+            print(indexPath)
+            print(topic.images!)
+            height = topic.images![indexPath.row].description!.heightWithConstrainedWidth(width, font: UIFont.systemFontOfSize(14)) + width + 35
+        }
+        return CGSizeMake(width, height)
     }
 
     func fetchCurrentTopic() {

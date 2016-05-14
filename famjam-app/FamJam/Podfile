@@ -3,12 +3,15 @@ use_frameworks!
 target 'FamJam' do
   pod 'Alamofire'
   pod 'AlamofireObjectMapper'
+  pod 'CHTCollectionViewWaterfallLayout/Swift'
   pod 'FDTake'
   pod 'IQKeyboardManagerSwift'
   pod 'Kingfisher'
   pod 'NextGrowingTextView'
   pod 'ObjectMapper'
-  pod 'PromiseKit'
+  pod 'PromiseKit',
+    :git => 'git@github.com:rad3ks/PromiseKit.git',
+    :branch => 'bug/415'
   pod 'ReSwift'
   pod 'TextFieldEffects'
   pod 'UIColor_Hex_Swift', '~> 2.1'

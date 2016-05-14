@@ -95,7 +95,7 @@ private func ==(lhs: ErrorPair, rhs: ErrorPair) -> Bool {
 }
 
 extension NSError {
-    @objc public class func cancelledError() -> NSError {
+    @objc class func cancelledError() -> NSError {
         let info: [NSObject: AnyObject] = [NSLocalizedDescriptionKey: "The operation was cancelled"]
         return NSError(domain: PMKErrorDomain, code: PMKOperationCancelled, userInfo: info)
     }
@@ -202,8 +202,7 @@ extension NSError {
     }
 }
 
-func unconsume(error error: NSError, reusingToken t: ErrorConsumptionToken? = nil) {
-    var token = t
+func unconsume(error error: NSError, var reusingToken token: ErrorConsumptionToken? = nil) {
     if token != nil {
         objc_setAssociatedObject(error, &handle, token, .OBJC_ASSOCIATION_RETAIN)
     } else {

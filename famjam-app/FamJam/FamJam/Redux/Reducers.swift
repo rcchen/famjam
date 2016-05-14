@@ -14,12 +14,15 @@ struct AppReducer: Reducer {
         var state = state ?? AppState()
         
         switch action {
+        case let action as SetCurrentTopic:
+            state.currentTopic = action.currentTopic
+        case let action as SetTopics:
+            state.topics = action.topics
         case let action as SetUser:
             state.user = action.user
         case let action as SetUserFamilies:
             state.userFamilies = action.userFamilies
-        case let action as SetCurrentTopic:
-            state.currentTopic = action.currentTopic
+
         default:
             break
         }

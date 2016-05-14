@@ -10,10 +10,12 @@ import FDTake
 import Foundation
 import UIKit
 
-class NewPhotoViewController: UIViewController {
+class NewPhotoViewController: UIViewController, UITextViewDelegate {
     var fdTakeController = FDTakeController()
     var selectedImage: UIImage!
     var topicId: String!
+
+    var PLACEHOLDER = "Enter a description here..."
     
     @IBOutlet weak var photoContainerView: UIView!
     @IBOutlet weak var descriptionField: UITextView!
@@ -25,6 +27,8 @@ class NewPhotoViewController: UIViewController {
         self.submitButton.enabled = false
         self.submitButton.backgroundColor = UIColor(rgba: "#81D4FA")
         self.submitButton.titleLabel?.text = "Add a photo first"
+        self.descriptionField.text = PLACEHOLDER
+        self.descriptionField.textColor = UIColor.lightGrayColor()
     }
     
     @IBAction func selectPhoto(sender: AnyObject) {
@@ -59,6 +63,21 @@ class NewPhotoViewController: UIViewController {
             self.submitButton.enabled = true
             self.submitButton.backgroundColor = UIColor(rgba: "#039BE5")
             self.submitButton.titleLabel?.text = "Submit photo"
+        }
+    }
+
+    func textViewDidBeginEditing(textView: UITextView) {
+        print("hurr");
+        if textView.textColor == UIColor.lightGrayColor() {
+            textView.text = nil
+            textView.textColor = UIColor.blackColor()
+        }
+    }
+
+    func textViewDidEndEditing(textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = PLACEHOLDER
+            textView.textColor = UIColor.lightGrayColor()
         }
     }
 }

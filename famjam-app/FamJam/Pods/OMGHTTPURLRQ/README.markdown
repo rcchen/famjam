@@ -60,7 +60,7 @@ id config = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentif
 id session = [NSURLSession sessionWithConfiguration:config delegate:someObject delegateQueue:[NSOperationQueue new]];
 
 OMGMultipartFormData *multipartFormData = [OMGMultipartFormData new];
-[multipartFormData addFile:data parameterName:@"file" filename:nil contentType:nil];
+[multipartFormDatabuilder addFile:data parameterName:@"file" filename:nil contentType:nil];
 
 NSURLRequest *rq = [OMGHTTPURLRQ POST:urlString:multipartFormData];
 

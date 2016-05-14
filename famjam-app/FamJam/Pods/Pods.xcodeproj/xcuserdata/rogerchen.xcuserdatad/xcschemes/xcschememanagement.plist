@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>CHTCollectionViewWaterfallLayout.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>FDTake-FDTake.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -87,12 +92,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1F9626FB65E12B5E381F8CB0034946A9</key>
+		<key>1FE61565459EBB781E9AA9D8D0A6240E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3AC328315BE7B89CA4A71BF521E8D168</key>
+		<key>454587BB497275C4D16BE567F01DBF0C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,12 +117,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9811D0852B8D0E101FA8852BCE23B369</key>
+		<key>A76F2DEBF8DC695AE33028C19FAE4930</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AD0EB41EEB1C16255A9B00D8ADBE39DE</key>
+		<key>ABB6BE779B371B39FE14B1869976620C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -127,7 +132,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E11F294C8822C4301BDDDCACCE147A14</key>
+		<key>DC7F9093EC08A4F8F45CEEF5046D8B75</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E362038A9F90D975B6F1FEDC29CB0DFF</key>
 		<dict>
 			<key>primary</key>
 			<true/>

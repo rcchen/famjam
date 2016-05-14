@@ -61,7 +61,8 @@ class FamilyDashboardViewController: UIViewController, UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //return FamilyDashboardConstants.NUM_ROWS_IN_SECTION
-        return AppDataFunctions.getNumFamilyMembersFromFamily(AppData.ACTIVE_FAMILY!)
+        return 0;
+//        return AppDataFunctions.getNumFamilyMembersFromFamily(AppData.ACTIVE_FAMILY!)
 //        firstly { () -> Promise<[User]> in
 //            AuthenticatedApiService.sharedInstance.getFamilyMembers((AppData.ACTIVE_FAMILY?._id)!)
 //            }.then { familyMembers -> Int in
@@ -76,13 +77,13 @@ class FamilyDashboardViewController: UIViewController, UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("familyCell", forIndexPath: indexPath) as! FamilyTableViewCell
-        let nameString = AppDataFunctions.getFamilyMemberNameFromIndexPath(indexPath)
-        cell.name.text = nameString
-        cell.name.font = Constants.FAMJAM_SUBHEADER_FONT
-        if (nameString == AppDataFunctions.getActiveUserDisplayname(AppData.ACTIVE_USER!)) {
-            cell.remindButton.hidden = true
-        }
-        cell.name.textColor = Constants.FAMJAM_WHITE_COLOR
+//        let nameString = AppDataFunctions.getFamilyMemberNameFromIndexPath(indexPath)
+//        cell.name.text = nameString
+//        cell.name.font = Constants.FAMJAM_SUBHEADER_FONT
+//        if (nameString == AppDataFunctions.getActiveUserDisplayname(AppData.ACTIVE_USER!)) {
+//            cell.remindButton.hidden = true
+//        }
+//        cell.name.textColor = Constants.FAMJAM_WHITE_COLOR
         return cell
     }
     

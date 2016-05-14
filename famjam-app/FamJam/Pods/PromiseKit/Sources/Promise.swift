@@ -174,17 +174,6 @@ public class Promise<T> {
     }
 
     /**
-     A `typealias` for the return values of `pendingPromise()`. Simplifies declaration of properties that reference the values' containing tuple when this is necessary. For example, when working with multiple `pendingPromise()`s within the same scope, or when the promise initialization must occur outside of the caller's initialization.
-
-         class Foo: BarDelegate {
-            var pendingPromise: Promise<Int>.PendingPromise?
-         }
-
-     - SeeAlso: pendingPromise()
-     */
-    public typealias PendingPromise = (promise: Promise, fulfill: (T) -> Void, reject: (ErrorType) -> Void)
-
-    /**
      Making promises that wrap asynchronous delegation systems or other larger asynchronous systems without a simple completion handler is easier with pendingPromise.
 
          class Foo: BarDelegate {
@@ -204,7 +193,7 @@ public class Promise<T> {
        2) A function that fulfills that promise
        3) A function that rejects that promise
     */
-    public class func pendingPromise() -> PendingPromise {
+    public class func pendingPromise() -> (promise: Promise, fulfill: (T) -> Void, reject: (ErrorType) -> Void) {
         var fulfill: ((T) -> Void)!
         var reject: ((ErrorType) -> Void)!
         let promise = Promise { fulfill = $0; reject = $1 }
@@ -250,7 +239,7 @@ public class Promise<T> {
         return Promise<U>(when: self) { resolution, resolve in
             switch resolution {
             case .Rejected(let error):
-                resolve(.Rejected((error.0, error.1)))
+                resolve(.Rejected(error))
             case .Fulfilled(let value):
                 contain_zalgo(q, rejecter: resolve) {
                     resolve(.Fulfilled(try body(value)))
@@ -279,7 +268,7 @@ public class Promise<T> {
         return Promise<U>(when: self) { resolution, resolve in
             switch resolution {
             case .Rejected(let error):
-                resolve(.Rejected((error.0, error.1)))
+                resolve(.Rejected(error))
             case .Fulfilled(let value):
                 contain_zalgo(q, rejecter: resolve) {
                     let promise = try body(value)
@@ -313,7 +302,7 @@ public class Promise<T> {
         return Promise<AnyObject?>(when: self) { resolution, resolve in
             switch resolution {
             case .Rejected(let error):
-                resolve(.Rejected((error.0, error.1)))
+                resolve(.Rejected(error))
             case .Fulfilled(let value):
                 contain_zalgo(q, rejecter: resolve) {
                     try body(value).pipe(resolve)
@@ -373,11 +362,10 @@ public class Promise<T> {
 
         pipe { resolution in
             switch (resolution, policy) {
-            case (let .Rejected(error, token), .AllErrorsExceptCancellation):
+            case (let .Rejected(error as CancellableErrorType, token), .AllErrorsExceptCancellation):
                 dispatch_async(dispatch_get_main_queue()) {
-                    guard let cancellableError = error as? CancellableErrorType where cancellableError.cancelled else {
+                    if !error.cancelled {     // cancelled must be called on main
                         consume(error, token)
-                        return
                     }
                 }
             case (let .Rejected(error, token), _):
@@ -388,33 +376,6 @@ public class Promise<T> {
                 break
             }
         }
-    }
-
-    /**
-     Provides an alias for the `error` function for cases where the Swift
-     compiler cannot disambiguate from our `error` property. If you're
-     having trouble with `error`, before using this alias, first try 
-     being as explicit as possible with the types e.g.:
-
-         }.error { (error:ErrorType) -> Void in
-             //...
-         }
-
-     Or even using verbose function syntax:
-
-         }.error({ (error:ErrorType) -> Void in
-             //...
-         })
-     
-     If you absolutely cannot get Swift to accept `error` then `onError`
-     may be used instead as it does the same thing.
-     
-     - Warning: This alias will be unavailable in PromiseKit 4.0.0
-     - SeeAlso: [https://github.com/mxcl/PromiseKit/issues/347](https://github.com/mxcl/PromiseKit/issues/347)
-    */
-    @available(*, deprecated, renamed="error", message="Temporary alias `onError` will eventually be removed and should only be used when the Swift compiler cannot be satisfied with `error`")
-    public func onError(policy policy: ErrorPolicy = .AllErrorsExceptCancellation, _ body: (ErrorType) -> Void) {
-        error(policy: policy, body)
     }
 
     /**
@@ -489,7 +450,7 @@ public class Promise<T> {
     public func report(policy policy: ErrorPolicy = .AllErrorsExceptCancellation, _ body: (ErrorType) -> Void) { error(policy: policy, body) }
 
     @available(*, deprecated, renamed="always")
-    public func ensure(on q: dispatch_queue_t = dispatch_get_main_queue(), _ body: () -> Void) -> Promise { return always(on: q, body) }
+    public func ensure(on q: dispatch_queue_t = dispatch_get_main_queue(), _ body: () -> Void) -> Promise { return ensure(on: q, body) }
 }
 
 

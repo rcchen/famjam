@@ -51,16 +51,16 @@ class AppData {
 }
 
 class TabItemLabels {
-    static var FIRST_LABEL = "My Family"
-    static var SECOND_LABEL = "Theme of the Day"
-    static var THIRD_LABEL = "All Our Photos"
+    static var FIRST_LABEL = "Topic of the Day"
+    static var SECOND_LABEL = "All Photos"
+    static var THIRD_LABEL = "Profile"
 }
 
 class AllPhotosConstants {
     //static let THEMES = ["Random", "Lunch", "Winning", "Cute Animals", "Dessert", "Night-Out"]
 }
 
-class AppDataFunctions {
+class Utilities {
     
     static func getActiveUsername(user: User) -> String {
         return user.username!
@@ -139,7 +139,36 @@ class AppDataFunctions {
             AppData.ALL_TOPICS.append(topic)
         }
     }
+
+    static func buildSubmissionViewCell(cell: SubmissionView, topic: Topic, index: Int) -> Void {
+        let image = topic.images![index]
+        cell.imageView.kf_setImageWithURL(NSURL(string: image.url!)!)
+
+        if (topic.images!.count < topic._family?.members?.count) {
+            Utilities.applyBlurToSubmissionViewCell(cell)
+        } else {
+            Utilities.removeBlurFromSubmissionViewCell(cell)
+        }
+        
+        cell.usernameLabel.text = image._creator?.username
+        cell.descriptionLabel.text = image.description
+    }
+
+    static func applyBlurToSubmissionViewCell(cell: SubmissionView) {
+        if (cell.imageView.subviews.count == 0) {
+            let blur = UIBlurEffect(style: .Light)
+            let blurView = UIVisualEffectView(effect: blur)
+            blurView.frame = cell.imageView.bounds
+            blurView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+            cell.imageView.addSubview(blurView)
+        }
+    }
     
+    static func removeBlurFromSubmissionViewCell(cell: SubmissionView) {
+        if (cell.imageView.subviews.count > 0) {
+            cell.imageView.subviews[0].removeFromSuperview()
+        }
+    }
 }
 
 

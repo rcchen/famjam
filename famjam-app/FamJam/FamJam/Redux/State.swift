@@ -11,6 +11,7 @@ import ReSwift
 
 struct AppState: StateType {
     var currentTopic: Topic?
+    var topics: [Topic]?
     var user: User?
     var userFamilies: [Family]?
 }
