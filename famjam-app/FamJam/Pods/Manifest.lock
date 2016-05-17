@@ -5,6 +5,7 @@ PODS:
     - ObjectMapper (~> 1.0)
   - CHTCollectionViewWaterfallLayout/Swift (0.9.4)
   - FDTake (0.3.2)
+  - Flurry-iOS-SDK/FlurrySDK (7.6.0)
   - IQKeyboardManagerSwift (4.0.2)
   - Kingfisher (2.3.1)
   - NextGrowingTextView (0.6.0)
@@ -37,6 +38,7 @@ DEPENDENCIES:
   - AlamofireObjectMapper
   - CHTCollectionViewWaterfallLayout/Swift
   - FDTake
+  - Flurry-iOS-SDK/FlurrySDK
   - IQKeyboardManagerSwift
   - Kingfisher
   - NextGrowingTextView
@@ -61,6 +63,7 @@ SPEC CHECKSUMS:
   AlamofireObjectMapper: 2d16585d06177be0116d76de73497e77437798af
   CHTCollectionViewWaterfallLayout: db74be9135826d285f45ff163fd090e57c99fc50
   FDTake: 122aaf465673b05648cd1b40200a19c85b1aa9e0
+  Flurry-iOS-SDK: 9822fe709195f0e3ae3e52c785eee9ff651ff648
   IQKeyboardManagerSwift: 2f2c19c509f67c4c0df2826db54033d3e090ce65
   Kingfisher: 6d3fbada4829cbc7b89e883e8218c28afeb64e42
   NextGrowingTextView: 8a179d9a5a328918c089d6d1fbe7d40d32c3b396
@@ -71,6 +74,6 @@ SPEC CHECKSUMS:
   TextFieldEffects: bc4fd3bd557321bd61a0762f3f50965477a36f62
   UIColor_Hex_Swift: e91dc51f6bf252ec7bf74c8704ceedeeb7640c1c
 
-PODFILE CHECKSUM: f79c59024d97c9dd41f612833e8d0421c5da6102
+PODFILE CHECKSUM: 58edbdad58356eb838086b9a777fb0dda701cb63
 
 COCOAPODS: 1.0.0.beta.8

@@ -5,6 +5,7 @@ target 'FamJam' do
   pod 'AlamofireObjectMapper'
   pod 'CHTCollectionViewWaterfallLayout/Swift'
   pod 'FDTake'
+  pod 'Flurry-iOS-SDK/FlurrySDK'
   pod 'IQKeyboardManagerSwift'
   pod 'Kingfisher'
   pod 'NextGrowingTextView'

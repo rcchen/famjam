@@ -29,6 +29,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Flurry-iOS-SDK.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>IQKeyboardManagerSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -92,12 +97,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1FE61565459EBB781E9AA9D8D0A6240E</key>
+		<key>2CC921CA82E4DC8C620AF1CC6DC05883</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>454587BB497275C4D16BE567F01DBF0C</key>
+		<key>370C523E2A513F39AC93CCF872965C3F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5CA67B8D4E41697C4A09087DA9666C1F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>63032474C4AB56D648B39982530DFD55</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -117,7 +132,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A76F2DEBF8DC695AE33028C19FAE4930</key>
+		<key>A1B12859EF4F3AD4450D2E426F372F66</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -127,17 +142,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>AF1B9E6305CE813CFF9A3C7D68152331</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>C5CBCAA97E951CC882334464FBDF983D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DC7F9093EC08A4F8F45CEEF5046D8B75</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E362038A9F90D975B6F1FEDC29CB0DFF</key>
 		<dict>
 			<key>primary</key>
 			<true/>

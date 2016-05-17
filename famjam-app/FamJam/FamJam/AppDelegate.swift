@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import Flurry_iOS_SDK
 import IQKeyboardManagerSwift
 import PromiseKit
 import ReSwift
@@ -21,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         IQKeyboardManager.sharedManager().enable = true
+        Flurry.startSession("YMDJ8V4YJSN2VQZWM3W8");
         return true
     }
     
