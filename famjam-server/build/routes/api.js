@@ -97,7 +97,15 @@ exports.api.post("/families", bodyParser.json(), middleware_1.authorizeToken, (r
     }).save((err, family) => {
         models_1.User.findById(uid, (err, user) => {
             user.families.push(family._id);
-            user.save(_ => res.json(family));
+            user.save(_ => {
+                new models_1.Topic({
+                    _creator: user._id,
+                    _family: family._id,
+                    active: true,
+                    locked: true,
+                    name: "How was your day?"
+                }).save(_ => res.json(family));
+            });
         });
     });
 });

@@ -114,7 +114,15 @@ api.post("/families", bodyParser.json(), authorizeToken, (req, res) => {
   }).save((err, family: IFamily) => {
     User.findById(uid, (err, user: IUser) => {
       user.families.push(family._id);
-      user.save(_ => res.json(family));
+      user.save(_ => {
+        new Topic({
+          _creator: user._id,
+          _family: family._id,
+          active: true,
+          locked: true,
+          name: "How was your day?"
+        }).save(_ => res.json(family));
+      });
     });
   });
 });
