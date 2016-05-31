@@ -26,6 +26,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 
         // retrieve family data
         fetchFamilies()
+        fetchUserInfo()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -50,6 +51,13 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         service.getMeFamilies()
             .then { families -> Void in
                 store.dispatch(SetUserFamilies(userFamilies: families))
+        }
+    }
+
+    func fetchUserInfo() {
+        AuthenticatedApiService.sharedInstance.getMe()
+            .then { user -> Void in
+                store.dispatch(SetUser(user: user))
         }
     }
     

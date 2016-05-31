@@ -257,32 +257,32 @@
 		650E1C781CCC2F28002C69DC /* FamJam */ = {
 			isa = PBXGroup;
 			children = (
-				33F3844D1CD210E700EF7C8D /* BridgingHeader.h */,
-				650E1C881CCC2F28002C69DC /* Info.plist */,
 				6546CB081CCD970100BEEA54 /* AlbumHeaderCollectionReusableView.swift */,
 				65173BE61CCF1AF800F5A028 /* AllPhotosCollectionViewCell.swift */,
 				6546CB101CCDAE1D00BEEA54 /* AllPhotosViewController.swift */,
 				650E1C791CCC2F28002C69DC /* AppDelegate.swift */,
+				650E1C831CCC2F28002C69DC /* Assets.xcassets */,
+				33F3844D1CD210E700EF7C8D /* BridgingHeader.h */,
 				335A76151CE46EC300EE8D98 /* CHTCollectionViewWaterfallLayout.swift */,
 				33153E181CD6CBFF0012AEF7 /* Colors.swift */,
 				65FD56431CD338E7009C9E98 /* EditUserViewController.swift */,
+				33C99CDA1CE4458D00A4A6CA /* Extensions */,
 				65434D241CCEC3C500B73C60 /* FamilyDashboardViewController.swift */,
 				65434D261CCEC6BB00B73C60 /* FamilyTableViewCell.swift */,
+				650E1C801CCC2F28002C69DC /* FamJam.xcdatamodeld */,
 				6546CB061CCD90E400BEEA54 /* HomePageTabBarViewController.swift */,
+				650E1C881CCC2F28002C69DC /* Info.plist */,
+				650E1C851CCC2F28002C69DC /* LaunchScreen.storyboard */,
+				650E1C7D1CCC2F28002C69DC /* Main.storyboard */,
 				650E1CB61CCC4615002C69DC /* NewHomePageViewController.swift */,
 				65C4D5661CD46B0000ED8DBC /* NewTopicViewController.swift */,
 				650E1CB21CCC360C002C69DC /* PhotoCollectionViewCell.swift */,
 				650E1CB41CCC3AF6002C69DC /* PhotoDetailViewController.swift */,
+				331527761CDF06A300CD60EF /* Redux */,
 				6546CB121CCDAE8600BEEA54 /* SavingPhotoViewController.swift */,
+				651D908D1CD2E5C6006E8CBB /* Services */,
 				6546CB0A1CCD9BB800BEEA54 /* Utilities.swift */,
 				650E1C7B1CCC2F28002C69DC /* ViewController.swift */,
-				650E1C831CCC2F28002C69DC /* Assets.xcassets */,
-				33C99CDA1CE4458D00A4A6CA /* Extensions */,
-				650E1C801CCC2F28002C69DC /* FamJam.xcdatamodeld */,
-				650E1C851CCC2F28002C69DC /* LaunchScreen.storyboard */,
-				650E1C7D1CCC2F28002C69DC /* Main.storyboard */,
-				331527761CDF06A300CD60EF /* Redux */,
-				651D908D1CD2E5C6006E8CBB /* Services */,
 				331EBACE1CDECF5A004F89EA /* ViewControllers */,
 				331527931CDF36D000CD60EF /* Views */,
 			);
@@ -310,10 +310,10 @@
 		651D908D1CD2E5C6006E8CBB /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				3382A0A81CD9B08800C2A3F3 /* Models */,
 				651D90821CD2E5BB006E8CBB /* AnonymousApiService.swift */,
 				651D90831CD2E5BB006E8CBB /* AuthenticatedApiService.swift */,
 				651D90841CD2E5BB006E8CBB /* BaseApiService.swift */,
+				3382A0A81CD9B08800C2A3F3 /* Models */,
 			);
 			name = Services;
 			sourceTree = "<group>";

@@ -7,6 +7,7 @@
 //
 
 import FDTake
+import Flurry_iOS_SDK
 import Foundation
 import UIKit
 
@@ -41,6 +42,7 @@ class NewPhotoViewController: UIViewController, UITextViewDelegate {
         service.addPhotoToTopic(self.topicId, photo: self.selectedImage, description: description)
         .then { success -> Void in
             if (success) {
+                Flurry.logEvent("PHOTO_SUBMITTED", withParameters: Utilities.getFlurryParameters())
                 self.dismissViewControllerAnimated(true, completion: nil)
             } else {
                 // figure out error state here if image could not be submitted

@@ -6,6 +6,7 @@
 //  Copyright © 2016 Accord.io. All rights reserved.
 //
 
+import Flurry_iOS_SDK
 import PromiseKit
 import ReSwift
 import UIKit
@@ -57,6 +58,7 @@ class LoginViewController: UIViewController, StoreSubscriber {
             return authenticatedService.getMeFamilies()
         }.then { families -> Promise<[User]> in
             AppData.ACTIVE_FAMILY = families[0]
+            store.dispatch(SetUserFamilies(userFamilies: families))
             return authenticatedService.getFamilyMembers(AppData.ACTIVE_FAMILY!._id!)
         } .then { familyMembers -> Promise<[Topic]> in
             AppData.ACTIVE_FAMILY_MEMBERS = familyMembers
@@ -77,6 +79,7 @@ class LoginViewController: UIViewController, StoreSubscriber {
         }.then { topics -> Void in
             AppData.ALL_TOPICS = topics
             self.clearTextFieldsFromInputs()
+            Flurry.logEvent("USER_LOGGED_IN", withParameters: Utilities.getFlurryParameters())
             self.performSegueWithIdentifier("loginUser", sender: self)
         }
 

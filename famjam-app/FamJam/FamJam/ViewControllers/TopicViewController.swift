@@ -13,7 +13,7 @@ import ReSwift
 import UIColor_Hex_Swift
 import UIKit
 
-class TopicViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CHTCollectionViewDelegateWaterfallLayout, StoreSubscriber {
+class TopicViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, StoreSubscriber {
     var topic: Topic?
     var user: User?
     
@@ -76,25 +76,38 @@ class TopicViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+
+
+        let family = self.topic!._family!
+        let user = family.members![indexPath.row]
+        var hasMatch = false
+        topic!.images!.forEach { image in
+            if (image._creator?._id == user._id!) {
+                hasMatch = true
+            }
+        }
+
         let cell = submissionCollectionView.dequeueReusableCellWithReuseIdentifier("SubmissionView", forIndexPath: indexPath) as! SubmissionView
-        Utilities.buildSubmissionViewCell(cell, topic: self.topic!, index: indexPath.row)
+        if (hasMatch) {
+            Utilities.buildSubmissionViewCell(cell, topic: self.topic!, index: indexPath.row)
+        } else {
+            Utilities.buildUnsubmittedSubmissionViewCell(cell, username: user.username!)
+        }
         return cell
     }
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return topic != nil ? topic!.images!.count : 0
+        return topic != nil ? topic!._family!.members!.count : 0
     }
 
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let width = collectionView.bounds.width / 2 - 5
-        var height = CGFloat(230)
-        if let topic = self.topic {
-            print(indexPath)
-            print(topic.images!)
-            height = topic.images![indexPath.row].description!.heightWithConstrainedWidth(width, font: UIFont.systemFontOfSize(14)) + width + 35
-        }
-        return CGSizeMake(width, height)
-    }
+//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+//        let width = collectionView.bounds.width / 2 - 5
+//        var height = CGFloat(230)
+//        if let topic = self.topic {
+//            height = topic.images![indexPath.row].description!.heightWithConstrainedWidth(width, font: UIFont.systemFontOfSize(14)) + width + 35
+//        }
+//        return CGSizeMake(width, height)
+//    }
 
     func fetchCurrentTopic() {
         AuthenticatedApiService.sharedInstance.getActiveTopic()

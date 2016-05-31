@@ -73,6 +73,12 @@ class Utilities {
     static func getActiveFamilyname(family: Family) -> String {
         return family.attributes!["displayName"]!
     }
+
+    static func getFlurryParameters() -> [String:String] {
+        return [
+            "user_id": store.state.user!._id!
+        ]
+    }
     
 //    static func getFamilyMembersFromFamily(family: Family) -> [String] {
 //        return family.members!
@@ -154,6 +160,12 @@ class Utilities {
         cell.descriptionLabel.text = image.description
     }
 
+    static func buildUnsubmittedSubmissionViewCell(cell: SubmissionView, username: String) -> Void {
+        cell.imageView.image = UIImage(named: Constants.DEFAULT_LOCK_IMAGE_NAME)
+        cell.usernameLabel.text = username
+        cell.descriptionLabel.text = "User has not submitted yet!"
+    }
+    
     static func applyBlurToSubmissionViewCell(cell: SubmissionView) {
         if (cell.imageView.subviews.count == 0) {
             let blur = UIBlurEffect(style: .Light)
