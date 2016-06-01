@@ -12,32 +12,67 @@
 		<key>AlamofireObjectMapper.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>11</integer>
+			<integer>6</integer>
 		</dict>
 		<key>BrightFutures.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>9</integer>
+			<integer>4</integer>
+		</dict>
+		<key>CHTCollectionViewWaterfallLayout.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>12</integer>
 		</dict>
 		<key>CodePush.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>JSONHelper.xcscheme</key>
+		<key>FDTake-FDTake.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>8</integer>
+			<integer>14</integer>
 		</dict>
-		<key>OMGHTTPURLRQ.xcscheme</key>
+		<key>FDTake.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>13</integer>
 		</dict>
+		<key>Flurry-iOS-SDK.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>15</integer>
+		</dict>
+		<key>IQKeyboardManagerSwift.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>10</integer>
+		</dict>
+		<key>JSONHelper.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>Kingfisher.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>16</integer>
+		</dict>
+		<key>NextGrowingTextView.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>17</integer>
+		</dict>
+		<key>OMGHTTPURLRQ.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
 		<key>ObjectMapper.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>12</integer>
+			<integer>7</integer>
 		</dict>
 		<key>Pods-FamJam.xcscheme</key>
 		<dict>
@@ -47,7 +82,12 @@
 		<key>PromiseKit.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>14</integer>
+			<integer>9</integer>
+		</dict>
+		<key>ReSwift.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>18</integer>
 		</dict>
 		<key>React.xcscheme_^#shared#^_</key>
 		<dict>
@@ -57,11 +97,26 @@
 		<key>Result.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>10</integer>
+			<integer>5</integer>
+		</dict>
+		<key>TextFieldEffects.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
+		</dict>
+		<key>UIColor_Hex_Swift.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>19</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>1520003FEBEC114D6C84F832AFEDB994</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>190ACD3A51BC90B85EADB13E9CDD207B</key>
 		<dict>
 			<key>primary</key>
@@ -77,7 +132,37 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>2CC921CA82E4DC8C620AF1CC6DC05883</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>370C523E2A513F39AC93CCF872965C3F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5CA67B8D4E41697C4A09087DA9666C1F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>5F7860934FA60A3EAD6B31B9D20A2B11</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>63032474C4AB56D648B39982530DFD55</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6365D1196FB71360F1D9604997F2CED7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>63C2DFE48D3CE38D013CCB454DE1B6BF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,6 +197,21 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>A1B12859EF4F3AD4450D2E426F372F66</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>ABB6BE779B371B39FE14B1869976620C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AF1B9E6305CE813CFF9A3C7D68152331</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>B9B4DDC6AA4D85A16E085BD38240F789</key>
 		<dict>
 			<key>primary</key>
@@ -123,6 +223,16 @@
 			<true/>
 		</dict>
 		<key>DCB45C0AF8651B0CC72E303D3F242439</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F3B87D093A49B3F7B4794037EC2B814E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F91226101ECE8FCFD221A3EC54481F82</key>
 		<dict>
 			<key>primary</key>
 			<true/>
